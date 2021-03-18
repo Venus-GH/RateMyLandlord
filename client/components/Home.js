@@ -6,7 +6,6 @@ import {
   StreetViewPanorama
 } from '@react-google-maps/api'
 import BuildingResult from './BuildingResult'
-import Map from './Map'
 
 const containerStyle = {
   width: '400px',
