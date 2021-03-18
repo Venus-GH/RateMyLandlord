@@ -49,7 +49,11 @@
     "express-session": "^1.15.1",
     "google-maps-react": "^2.0.6",
     "history": "^4.9.0",
+
+    "materialize-css": "^1.0.0-rc.2",
+
     "mapbox-gl": "^2.1.1",
+
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
     "passport-google-oauth": "^2.0.0",
@@ -58,9 +62,13 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+
+    "react-materialize": "^3.9.7",
+
     "react-google-maps-loader": "^4.3.0",
     "react-google-places-suggest": "^3.11.0",
     "react-places-street-input": "^1.0.9",
+
     "react-redux": "^7.0.1",
     "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",
@@ -100,7 +108,7 @@
     "mocha": "^6.1.4",
     "nodemon": "^1.18.3",
     "npm-merge-driver": "^2.3.5",
-    "prettier": "1.11.1",
+    "prettier": "2.2.1",
     "react-test-renderer": "^16.4.2",
     "redux-devtools-extension": "^2.13.5",
     "redux-mock-store": "^1.5.3",
