@@ -12,30 +12,17 @@ const Review = db.define('review', {
       }
     }
   },
-  rating: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    validate: {
-      max: {
-        args: [100],
-        msg: 'Landlord rating must be less than 100.'
-      },
-      min: {
-        args: [0],
-        msg: 'Landlord rating must be greater than 0.'
-      },
-      isInt: {
-        msg: 'Landlord rating must be an integer.'
-      }
-    }
+  grade: {
+    type: Sequelize.STRING,
+    allowNull: false
   },
   responsiveness: {
     type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
       max: {
-        args: [100],
-        msg: 'Landlord responsiveness rating must be less than 100.'
+        args: [5],
+        msg: 'Landlord responsiveness rating must be less than 5.'
       },
       min: {
         args: [0],
@@ -51,8 +38,8 @@ const Review = db.define('review', {
     allowNull: false,
     validate: {
       max: {
-        args: [100],
-        msg: 'Pest control rating must be less than 100.'
+        args: [5],
+        msg: 'Pest control rating must be less than 5.'
       },
       min: {
         args: [0],
@@ -68,8 +55,8 @@ const Review = db.define('review', {
     allowNull: false,
     validate: {
       max: {
-        args: [100],
-        msg: 'Landlord kindness rating must be less than 100.'
+        args: [5],
+        msg: 'Landlord kindness rating must be less than 5.'
       },
       min: {
         args: [0],
@@ -85,8 +72,8 @@ const Review = db.define('review', {
     allowNull: false,
     validate: {
       max: {
-        args: [100],
-        msg: 'Landlord maintenance rating must be less than 100.'
+        args: [5],
+        msg: 'Landlord maintenance rating must be less than 5.'
       },
       min: {
         args: [0],
@@ -97,9 +84,19 @@ const Review = db.define('review', {
       }
     }
   },
+  bedrooms: {
+    type: Sequelize.FLOAT,
+    allowNull: true,
+    validate: {
+      min: {
+        args: [0],
+        msg: 'Bedrooms must be greater than 0.'
+      }
+    }
+  },
   rent: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    allowNull: true,
     validate: {
       min: {
         args: [0],
@@ -129,10 +126,10 @@ const Review = db.define('review', {
   },
   wouldRecommend: {
     type: Sequelize.BOOLEAN
+  },
+  tags: {
+    type: Sequelize.ARRAY(Sequelize.STRING)
   }
-  // tags: {
-
-  // }
 })
 
 module.exports = Review
