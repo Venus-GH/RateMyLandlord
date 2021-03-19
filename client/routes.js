@@ -8,7 +8,8 @@ import {
   UserHome,
   AllLandlords,
   Home,
-  SingleLandlord
+  SingleLandlord,
+  BuildingResult
 } from "./components";
 import { me } from "./store";
 
@@ -28,6 +29,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/results" component={BuildingResult} />
         <Route exact path="/landlords" component={AllLandlords} />
         <Route path="/landlords/:landlordId" component={SingleLandlord} />
         <Route path="/" component={Home} />
