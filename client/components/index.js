@@ -8,5 +8,5 @@ export { default as Navbar } from "./navbar";
 export { default as UserHome } from "./user-home";
 export { Login, Signup } from "./auth-form";
 export { default as AllLandlords } from "./AllLandlords";
-export {default as Home} from './Home'
-
+export { default as SingleLandlord } from "./SingleLandlord";
+export { default as Home } from "./Home";
