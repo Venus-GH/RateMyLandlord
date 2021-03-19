@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { Landlord, Review, Building, User } = require("../db/models");
+
 module.exports = router;
 
 //GET /api/landlords/:id
@@ -34,7 +35,6 @@ router.get("/", async (req, res, next) => {
       landlord.dataValues.avgs = avgs;
       newLandlordsArr.push(landlord);
     }
-
     res.json(newLandlordsArr);
   } catch (err) {
     next(err);
