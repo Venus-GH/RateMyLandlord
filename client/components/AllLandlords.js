@@ -77,7 +77,7 @@ class AllLandlords extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    landlords: state.landlords,
+    landlords: state.allLandlords,
   };
 };
 
