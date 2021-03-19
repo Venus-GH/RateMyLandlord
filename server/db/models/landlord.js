@@ -16,7 +16,6 @@ const Landlord = db.define("landlord", {
 });
 
 Landlord.prototype.getAverages = async function () {
-  console.log("in instance method", this);
   const reviews = await Review.findAll({
     where: {
       landlordId: this.id,
