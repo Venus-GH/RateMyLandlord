@@ -55,3 +55,20 @@ form div {
   background-color: darkgray;
   color: orange;
 }
+
+#selectDiv {
+  width: 150px;
+}
+
+#reviewForm {
+  width: 300px;
+  margin-left: 10px;
+}
+
+#TextInput-4 {
+  width: 100px;
+}
+
+#TextInput-5 {
+  width: 300px;
+}
