@@ -6,13 +6,16 @@ import { TagCloud } from "react-tagcloud";
 
 class SingleLandlord extends Component {
   componentDidMount() {
+    // console.log("inside componentDidMount");
     this.props.getSingleLandlord(this.props.match.params.landlordId);
   }
 
   render() {
+    console.log("inside render");
     // console.log("props.landlord->", this.props.landlord);
     const { name, rating } = this.props.landlord;
     const reviews = this.props.landlord.reviews || [];
+    const buildings = this.props.landlord.buildings || [];
 
     const flattenTagData = reviews.reduce((accumulator, curr) => {
       return accumulator.concat(curr.tags);
@@ -42,15 +45,15 @@ class SingleLandlord extends Component {
       return arr;
     };
 
-    // const tagData = formatTagData(countedTagsObj);
-    // console.log("tagData", tagData);
-    const tagData = [
-      { value: "flexible", count: 2 },
-      { value: "respectful", count: 6 },
-      { value: "fair", count: 8 },
-      { value: "professional", count: 2 },
-      { value: "timely", count: 15 }
-    ];
+    const tagData = formatTagData(countedTagsObj);
+    console.log("tagData", tagData);
+    // const tagData = [
+    //   { value: "flexible", count: 2 },
+    //   { value: "respectful", count: 6 },
+    //   { value: "fair", count: 8 },
+    //   { value: "professional", count: 2 },
+    //   { value: "timely", count: 15 },
+    // ];
 
     return (
       <div className="container">
@@ -62,7 +65,7 @@ class SingleLandlord extends Component {
                 <div>
                   <p>Overall Rating: {rating}</p>
                   <p>Total Reviews: {reviews.length}</p>
-                  <p>Total Buildings: [placeholder]</p>
+                  <p>Total Buildings: {buildings.length}</p>
                 </div>
               </div>
               <div className="card-action">

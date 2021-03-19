@@ -8,7 +8,7 @@ router.get("/:id", async (req, res, next) => {
     const id = req.params.id;
     const singleLandlord = await Landlord.findOne({
       where: { id: id },
-      include: Review
+      include: [Review, Building]
     });
     res.json(singleLandlord);
   } catch (error) {
