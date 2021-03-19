@@ -46,10 +46,10 @@ class SingleLandlord extends Component {
     // console.log("tagData", tagData);
     const tagData = [
       { value: "flexible", count: 2 },
-      { value: "respectful", count: 2 },
-      { value: "fair", count: 2 },
+      { value: "respectful", count: 6 },
+      { value: "fair", count: 8 },
       { value: "professional", count: 2 },
-      { value: "timely", count: 2 }
+      { value: "timely", count: 15 }
     ];
 
     return (
@@ -77,19 +77,19 @@ class SingleLandlord extends Component {
               </div>
             </div>
           </div>
-          <div className="container">
-            <h5>What people say about this landlord...</h5>
-            <div>
-              <TagCloud minSize={12} maxSize={35} tags={tagData} />
-            </div>
-            <br />
+        </div>
+        <div>
+          <h5>What people say about this landlord...</h5>
+          <div>
+            <TagCloud minSize={12} maxSize={35} tags={tagData} />
           </div>
-          <div className="divider" />
-          <div className="container">
-            <h5>{reviews.length} reviews</h5>
-            <p>Placeholder: ReviewList component</p>
-            {/* <ReivewList /> */}
-          </div>
+          <br />
+        </div>
+        <div className="divider" />
+        <div>
+          <h5>{reviews.length} reviews</h5>
+          <p>Placeholder: ReviewList component</p>
+          {/* <ReivewList /> */}
         </div>
       </div>
     );
