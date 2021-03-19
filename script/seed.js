@@ -209,7 +209,7 @@ async function seed() {
   // responsive, respectful, fair, friendly, trustworthy, reliable, professional, flexible, timely, helpful
   const reviews = [
     {
-      landlordName: "Sabat Group",
+      // landlordName: "Sabat Group",
       grade: 3,
       responsiveness: 2,
       pestControl: 4,
@@ -227,7 +227,7 @@ async function seed() {
       landlordId: downing.landlordId
     },
     {
-      landlordName: "Sabat Group",
+      // landlordName: "Sabat Group",
       grade: 3,
       responsiveness: 2,
       pestControl: 3,
@@ -246,7 +246,7 @@ async function seed() {
       landlordId: west14.landlordId
     },
     {
-      landlordName: "Sabat Group",
+      // landlordName: "Sabat Group",
       grade: 1,
       responsiveness: 1,
       pestControl: 3,
@@ -264,7 +264,7 @@ async function seed() {
       landlordId: downing.landlordId
     },
     {
-      landlordName: "Sabat Group",
+      // landlordName: "Sabat Group",
       grade: 4,
       responsiveness: 4,
       pestControl: 4,
@@ -283,7 +283,7 @@ async function seed() {
       landlordId: east7.landlordId
     },
     {
-      landlordName: "Related",
+      // landlordName: "Related",
       grade: 5,
       responsiveness: 5,
       pestControl: 4,
@@ -302,7 +302,7 @@ async function seed() {
       landlordId: west55.landlordId
     },
     {
-      landlordName: "Related",
+      // landlordName: "Related",
       grade: 5,
       responsiveness: 5,
       pestControl: 5,
@@ -321,7 +321,7 @@ async function seed() {
       landlordId: wooster.landlordId
     },
     {
-      landlordName: "Related",
+      // landlordName: "Related",
       grade: 5,
       responsiveness: 5,
       pestControl: 4,
@@ -340,7 +340,7 @@ async function seed() {
       landlordId: west57.landlordId
     },
     {
-      landlordName: "Blackstone Group",
+      // landlordName: "Blackstone Group",
       grade: 4,
       responsiveness: 3,
       pestControl: 4,
@@ -359,7 +359,7 @@ async function seed() {
       landlordId: norfolk.landlordId
     },
     {
-      landlordName: "Blackstone Group",
+      // landlordName: "Blackstone Group",
       grade: 3,
       responsiveness: 4,
       pestControl: 3,
@@ -378,7 +378,7 @@ async function seed() {
       landlordId: norfolk.landlordId
     },
     {
-      landlordName: "Blackstone Group",
+      // landlordName: "Blackstone Group",
       grade: 5,
       responsiveness: 5,
       pestControl: 5,
@@ -396,7 +396,7 @@ async function seed() {
       landlordId: lafayette.landlordId
     },
     {
-      landlordName: "Blackstone Group",
+      // landlordName: "Blackstone Group",
       grade: 5,
       responsiveness: 4,
       pestControl: 5,
@@ -414,7 +414,7 @@ async function seed() {
       landlordId: schermerhorn.landlordId
     },
     {
-      landlordName: "A&E Real Estate Holdings",
+      // landlordName: "A&E Real Estate Holdings",
       grade: 4,
       responsiveness: 4,
       pestControl: 4,
@@ -432,7 +432,7 @@ async function seed() {
       landlordId: east28.landlordId
     },
     {
-      landlordName: "A&E Real Estate Holdings",
+      // landlordName: "A&E Real Estate Holdings",
       grade: 4,
       responsiveness: 4,
       pestControl: 4,
@@ -450,7 +450,7 @@ async function seed() {
       landlordId: jewel.landlordId
     },
     {
-      landlordName: "A&E Real Estate Holdings",
+      // landlordName: "A&E Real Estate Holdings",
       grade: 4,
       responsiveness: 4,
       pestControl: 4,
@@ -469,7 +469,7 @@ async function seed() {
       landlordId: fleet.landlordId
     },
     {
-      landlordName: "LeFrank Organization",
+      // landlordName: "LeFrank Organization",
       grade: 4,
       responsiveness: 4,
       pestControl: 4,
@@ -488,7 +488,7 @@ async function seed() {
       landlordId: bathgate.landlordId
     },
     {
-      landlordName: "LeFrank Organization",
+      // landlordName: "LeFrank Organization",
       grade: 2,
       responsiveness: 3,
       pestControl: 3,

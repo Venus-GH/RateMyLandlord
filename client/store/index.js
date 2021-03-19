@@ -4,9 +4,10 @@ import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import user from "./user";
 import allLandlords from "./landlords";
+import reviews from "./reviews";
 import landlord from "./singleLandlord";
 
-const reducer = combineReducers({ user, allLandlords, landlord });
+const reducer = combineReducers({ user, allLandlords, landlord, reviews });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );
