@@ -3,19 +3,23 @@ import { connect } from "react-redux";
 import { fetchSingleLandlord } from "../store/singleLandlord";
 import { Link } from "react-router-dom";
 import { TagCloud } from "react-tagcloud";
+import ReviewList from "./ReviewList";
 
 class SingleLandlord extends Component {
   componentDidMount() {
-    // console.log("inside componentDidMount");
     this.props.getSingleLandlord(this.props.match.params.landlordId);
   }
 
   render() {
-    console.log("inside render");
     // console.log("props.landlord->", this.props.landlord);
-    const { name, rating } = this.props.landlord;
+    const { name } = this.props.landlord;
     const reviews = this.props.landlord.reviews || [];
     const buildings = this.props.landlord.buildings || [];
+    const avgs = this.props.landlord.avgs || {};
+    const avgWouldRecommend = avgs.avgWouldRecommend || {};
+
+    // console.log("avgs", avgWouldRecommend.true);
+    // console.log("recommend", avgs.avgWouldRecommend.true);
 
     const flattenTagData = reviews.reduce((accumulator, curr) => {
       return accumulator.concat(curr.tags);
@@ -45,37 +49,46 @@ class SingleLandlord extends Component {
       return arr;
     };
 
-    const tagData = formatTagData(countedTagsObj);
-    console.log("tagData", tagData);
-    // const tagData = [
-    //   { value: "flexible", count: 2 },
-    //   { value: "respectful", count: 6 },
-    //   { value: "fair", count: 8 },
-    //   { value: "professional", count: 2 },
-    //   { value: "timely", count: 15 },
-    // ];
+    // const tagData = formatTagData(countedTagsObj);
+    // console.log("tagData", tagData);
+    const tagData = [
+      { value: "flexible", count: 2 },
+      { value: "respectful", count: 6 },
+      { value: "fair", count: 8 },
+      { value: "professional", count: 2 },
+      { value: "timely", count: 15 }
+    ];
 
     return (
       <div className="container">
         <div className="row">
-          <div className="col s12 m6">
-            <div className="card blue-grey darken-3">
-              <div className="card-content blue-grey-text text-lighten-4">
-                <span className="card-title white-text">{name}</span>
+          <div className="col s12 m8">
+            <div className="card blue-grey darken-1">
+              <div className="card-content white-text">
+                <span className="card-title white-text">
+                  {name}
+                  {avgWouldRecommend.true > avgWouldRecommend.false ? (
+                    <span
+                      className="new badge"
+                      data-badge-caption="Recommend"
+                    />
+                  ) : (
+                    <span
+                      className="new badge red"
+                      data-badge-caption="Not Recommended"
+                    />
+                  )}
+                </span>
+
                 <div>
-                  <p>Overall Rating: {rating}</p>
+                  <p>Overall Rating: {avgs.avgGrade}</p>
                   <p>Total Reviews: {reviews.length}</p>
                   <p>Total Buildings: {buildings.length}</p>
                 </div>
               </div>
               <div className="card-action">
                 <Link to="/reviewform">
-                  <button
-                    type="submit"
-                    className="btn waves-effect waves-light orange darken-2"
-                  >
-                    Submit Review <i className="material-icons right">send</i>
-                  </button>
+                  Submit Review <i className="material-icons icon">send</i>
                 </Link>
               </div>
             </div>
@@ -91,8 +104,7 @@ class SingleLandlord extends Component {
         <div className="divider" />
         <div>
           <h5>{reviews.length} reviews</h5>
-          <p>Placeholder: ReviewList component</p>
-          {/* <ReivewList /> */}
+          <ReviewList reviews={reviews} />
         </div>
       </div>
     );
