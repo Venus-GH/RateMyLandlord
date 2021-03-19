@@ -19,3 +19,39 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.home-view {
+  height: 100%;
+}
+
+.map-container {
+  position: relative;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+.home-input {
+  z-index: 1;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 35px;
+}
+
+.home-input input {
+  background-color: black;
+  color: yellow;
+  width: 500px;
+  height: 35px;
+}
+
+.navbar {
+  background-color: darkgray;
+  color: orange;
+}

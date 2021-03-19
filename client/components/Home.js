@@ -1,43 +1,36 @@
 import React, {Component} from 'react'
-import {
-  LoadScript,
-  Autocomplete,
-  GoogleMap,
-  StreetViewPanorama
-} from '@react-google-maps/api'
-import BuildingResult from './BuildingResult'
-import Map from './Map'
-
-const containerStyle = {
-  width: '400px',
-  height: '400px',
-  backgroundColor: 'black'
-}
-
-const center = {
-  lat: 40.73061,
-  lng: -73.935242
-}
+import {Link} from 'react-router-dom'
+import {LoadScript, Autocomplete} from '@react-google-maps/api'
+import mapboxgl from 'mapbox-gl'
+mapboxgl.accessToken =
+  'pk.eyJ1IjoibnVhbGEtb2Rvbm92YW4iLCJhIjoiY2ttZmJxNWtkMHliajJvbXc5c2o4NjdjbiJ9.M-UhLR8qwMdUjQCagBEfdw'
 
 class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      lat: null,
-      lng: null,
+      lat: 40.73061,
+      lng: -73.935242,
       address: '',
-      result: false
+      zoom: 9,
     }
     this.autocomplete = null
     this.onLoad = this.onLoad.bind(this)
     this.onPlaceChanged = this.onPlaceChanged.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.goBack = this.goBack.bind(this)
+    this.mapContainer = React.createRef()
+  }
+
+  componentDidMount() {
+    const {lng, lat, zoom} = this.state
+    const map = new mapboxgl.Map({
+      container: this.mapContainer.current,
+      style: 'mapbox://styles/mapbox/dark-v10',
+      center: [lng, lat],
+      zoom: zoom,
+    })
   }
 
   onLoad(autocomplete) {
-    console.log('autocomplete: ', autocomplete)
-
     this.autocomplete = autocomplete
   }
 
@@ -47,57 +40,49 @@ class Home extends Component {
       this.setState({
         lat: place.geometry.location.lat(),
         lng: place.geometry.location.lng(),
-        address: place.formatted_address
+        address: place.formatted_address,
       })
     } else {
       console.log('Autocomplete is not loaded yet!')
     }
   }
 
-  handleSubmit() {
-    console.log('in handle')
-    this.setState({result: true})
-  }
-
-  goBack() {
-    this.setState({result: false})
-  }
-
   render() {
-    const {address, lat, lng, result} = this.state
+    const {address, lat, lng} = this.state
     return (
-      <div>
-        {result ? (
-          <BuildingResult
-            address={address}
-            lat={lat}
-            lng={lng}
-            goBack={this.goBack}
-          />
-        ) : (
-          // <Map />
+      <div className="home-view">
+        <div>
+          <div ref={this.mapContainer} className="map-container" />
           <LoadScript
             googleMapsApiKey="AIzaSyCOopGii1dRKKnMTLI00ilvrrKW64KKLfk"
             libraries={['places']}
           >
-            <GoogleMap
-              mapContainerStyle={containerStyle}
-              style={containerStyle}
-              center={center}
-              zoom={10}
-            />
-            <div>
-              <p>Enter an address to get started:</p>
+            <div className="home-input">
               <Autocomplete
                 onLoad={this.onLoad}
                 onPlaceChanged={this.onPlaceChanged}
               >
-                <input width="100%" />
+                <input />
               </Autocomplete>
-              <button onClick={this.handleSubmit}>Enter</button>
+              {address.length ? (
+                <Link
+                  to={{
+                    pathname: '/results',
+                    state: {
+                      address,
+                      lat,
+                      lng,
+                    },
+                  }}
+                >
+                  <button onClick={this.handleSubmit}>Enter</button>
+                </Link>
+              ) : (
+                ''
+              )}
             </div>
           </LoadScript>
-        )}
+        </div>
       </div>
     )
   }
