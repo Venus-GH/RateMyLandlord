@@ -8,8 +8,10 @@ router.get("/:id", async (req, res, next) => {
     const id = req.params.id;
     const singleLandlord = await Landlord.findOne({
       where: { id: id },
-      include: Review
+      include: Review,
     });
+    const avgs = await singleLandlord.getAverages();
+    singleLandlord.dataValues.avgs = avgs;
     res.json(singleLandlord);
   } catch (error) {
     next(error);
@@ -19,7 +21,9 @@ router.get("/:id", async (req, res, next) => {
 // GET /api/landlords/
 router.get("/", async (req, res, next) => {
   try {
-    const allLandlords = await Landlord.findAll({ include: Review });
+    const allLandlords = await Landlord.findAll({
+      include: [Review, Building],
+    });
     res.json(allLandlords);
   } catch (err) {
     next(err);
