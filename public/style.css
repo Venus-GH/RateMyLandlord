@@ -20,6 +20,10 @@ form div {
   display: inline-block;
 }
 
+/* SingleLandlord */
+.icon {
+  vertical-align: bottom;
+}
 .home-view {
   height: 100%;
 }

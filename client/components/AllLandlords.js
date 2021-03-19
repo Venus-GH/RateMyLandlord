@@ -9,7 +9,7 @@ import {
   NavItem,
   Row,
   Input,
-  Select,
+  Select
 } from "react-materialize";
 // import { Row, Input } from 'react-materialize'
 import ReviewHome from "./Reviews/ReviewHome";
@@ -24,7 +24,7 @@ class AllLandlords extends React.Component {
     this.props.getLandlords();
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     console.log("e.target.value", e.target.value);
     this.props.filter(e.target.value);
   };
@@ -57,8 +57,8 @@ class AllLandlords extends React.Component {
                 onCloseStart: null,
                 onOpenEnd: null,
                 onOpenStart: null,
-                outDuration: 250,
-              },
+                outDuration: 250
+              }
             }}
             value=""
           >
@@ -73,7 +73,7 @@ class AllLandlords extends React.Component {
           </Select>
         </div>
 
-        {landlords.map((landlord) => (
+        {landlords.map(landlord => (
           <div className="row" key={landlord.id}>
             <div className="col s12 m6">
               <div className="card blue-grey darken-1">
@@ -94,16 +94,16 @@ class AllLandlords extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    landlords: state.allLandlords,
+    landlords: state.allLandlords
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     getLandlords: () => dispatch(fetchLandlords()),
-    filter: (filter) => dispatch(filterLandlords(filter)),
+    filter: filter => dispatch(filterLandlords(filter))
   };
 };
 

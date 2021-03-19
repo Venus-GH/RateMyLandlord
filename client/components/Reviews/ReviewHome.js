@@ -14,7 +14,7 @@ class ReviewForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      bedrooms: "",
+      bedrooms: ""
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -24,7 +24,7 @@ class ReviewForm extends React.Component {
   }
   onChange(event) {
     this.setState({
-      [event.target.id]: event.target.value,
+      [event.target.id]: event.target.value
     });
     console.log("this.state", this.state);
   }
@@ -37,13 +37,13 @@ class ReviewForm extends React.Component {
       grade: 5,
       bedrooms: 2,
       rent: 1500,
-      leaseLength: 12,
+      leaseLength: 12
     };
     let newerReview = {
       ...this.props.reviews,
       ...this.state,
       landlordName: "test",
-      grade: "A",
+      grade: "A"
     };
     this.props.addReview(newerReview);
     // this.props.addReview(this.props.reviews)
@@ -82,7 +82,7 @@ class ReviewForm extends React.Component {
           onClick={this.onSubmit}
           node="button"
           style={{
-            marginRight: "5px",
+            marginRight: "5px"
           }}
           waves="light"
         >
@@ -93,15 +93,15 @@ class ReviewForm extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    reviews: state.reviews,
+    reviews: state.reviews
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    addReview: (review) => dispatch(addReview(review)),
+    addReview: review => dispatch(addReview(review))
   };
 };
 

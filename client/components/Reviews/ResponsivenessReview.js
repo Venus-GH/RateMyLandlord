@@ -7,7 +7,7 @@ class KindnessReview extends React.Component {
   constructor() {
     super();
     this.state = {
-      rating: 0,
+      rating: 0
     };
     this.changeRating = this.changeRating.bind(this);
   }
@@ -16,7 +16,7 @@ class KindnessReview extends React.Component {
     // console.log('category', category)
     console.log("newRating", newRating);
     this.setState({
-      rating: newRating,
+      rating: newRating
     });
     this.props.sendResponsiveness(newRating);
     console.log(this.state, "this.state in change rating");
@@ -43,9 +43,9 @@ class KindnessReview extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    sendResponsiveness: (rating) => dispatch(_addResponsivenessReview(rating)),
+    sendResponsiveness: rating => dispatch(_addResponsivenessReview(rating))
   };
 };
 

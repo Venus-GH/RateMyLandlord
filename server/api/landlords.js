@@ -11,11 +11,15 @@ router.get("/:id", async (req, res, next) => {
       where: { id: id },
       include: {
         model: Review,
-        include: User,
-      },
+        include: User
+      }
     });
     const avgs = await singleLandlord.getAverages();
     singleLandlord.dataValues.avgs = avgs;
+    const buildings = await singleLandlord.getBuildings();
+    singleLandlord.dataValues.buildings = buildings;
+    const tags = await singleLandlord.getTags();
+    singleLandlord.dataValues.tags = tags;
     res.json(singleLandlord);
   } catch (error) {
     next(error);
@@ -26,7 +30,7 @@ router.get("/:id", async (req, res, next) => {
 router.get("/", async (req, res, next) => {
   try {
     let allLandlords = await Landlord.findAll({
-      include: [Review, Building],
+      include: [Review, Building]
     });
     let newLandlordsArr = [];
     for (let i = 0; i < allLandlords.length; i++) {

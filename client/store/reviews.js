@@ -7,33 +7,33 @@ const ADD_PEST_REVIEW = "ADD_PEST_REVIEW";
 const ADD_RESPONSIVENESS_REVIEW = "ADD_RESPONSIVENESS_REVIEW";
 const ADD_MAINTENANCE_REVIEW = "ADD_MAINTENANCE_REVIEW";
 
-export const _addKindnessReview = (kindness) => ({
+export const _addKindnessReview = kindness => ({
   type: ADD_KINDNESS_REVIEW,
-  kindness,
+  kindness
 });
 
-export const _addPestReview = (pest) => ({
+export const _addPestReview = pest => ({
   type: ADD_PEST_REVIEW,
-  pest,
+  pest
 });
 
-export const _addResponsivenessReview = (responsiveness) => ({
+export const _addResponsivenessReview = responsiveness => ({
   type: ADD_RESPONSIVENESS_REVIEW,
-  responsiveness,
+  responsiveness
 });
 
-export const _addMaintenanceReview = (maintenance) => ({
+export const _addMaintenanceReview = maintenance => ({
   type: ADD_MAINTENANCE_REVIEW,
-  maintenance,
+  maintenance
 });
 
-export const _addReview = (review) => ({
+export const _addReview = review => ({
   type: ADD_REVIEW,
-  review,
+  review
 });
 
-export const addReview = (review) => {
-  return async (dispatch) => {
+export const addReview = review => {
+  return async dispatch => {
     try {
       const added = (await axios.post("/api/reviews", review)).data;
       // will need to do this to add to the page?
@@ -47,7 +47,7 @@ export const addReview = (review) => {
 
 const initialState = {};
 
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
   console.log("action", action);
   switch (action.type) {
     case ADD_KINDNESS_REVIEW:

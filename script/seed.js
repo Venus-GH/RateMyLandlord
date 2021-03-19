@@ -11,42 +11,42 @@ async function seed() {
     {
       email: "cody@email.com",
       perferredName: "Cody",
-      password: "123",
+      password: "123"
     },
     {
       email: "murphy@email.com",
       perferredName: "Murphy",
-      password: "123",
+      password: "123"
     },
     {
       name: "Cooper",
       email: "cooper@email.com",
-      password: "123",
+      password: "123"
     },
     {
       name: "Calandra",
       isAdmin: true,
       email: "calandra@email.com",
-      password: "123",
+      password: "123"
     },
     {
       name: "Nikki",
       isAdmin: true,
       email: "nikki@email.com",
-      password: "123",
+      password: "123"
     },
     {
       name: "Nuala",
       isAdmin: true,
       email: "nuala@email.com",
-      password: "123",
+      password: "123"
     },
     {
       name: "Heather",
       isAdmin: true,
       email: "heather@email.com",
-      password: "123",
-    },
+      password: "123"
+    }
   ];
 
   const [
@@ -56,34 +56,34 @@ async function seed() {
     calandra,
     nikki,
     nuala,
-    heather,
-  ] = await Promise.all(users.map((user) => User.create(user)));
+    heather
+  ] = await Promise.all(users.map(user => User.create(user)));
 
   const landlords = [
     {
       name: "Blackstone Group",
-      rating: 67,
+      rating: 67
     },
     {
       name: "LeFrank Organization",
-      rating: 42,
+      rating: 42
     },
     {
       name: "A&E Real Estate Holdings",
-      rating: 81,
+      rating: 81
     },
     {
       name: "Related Rentals",
-      rating: 94,
+      rating: 94
     },
     {
       name: "Sabat Group",
-      rating: 33,
-    },
+      rating: 33
+    }
   ];
 
   const [blackstone, lefrank, ae, related, sabat] = await Promise.all(
-    landlords.map((landlord) => Landlord.create(landlord))
+    landlords.map(landlord => Landlord.create(landlord))
   );
 
   const buildings = [
@@ -92,99 +92,99 @@ async function seed() {
       latitude: 40.72788101991443,
       longitude: -73.98702320411665,
       borough: "Manhattan",
-      landlordId: sabat.id,
+      landlordId: sabat.id
     },
     {
       address: "64 Downing St, New York, NY 10014",
       latitude: 40.729005286653184,
       longitude: -74.00481492925742,
       borough: "Manhattan",
-      landlordId: sabat.id,
+      landlordId: sabat.id
     },
     {
       address: "420 W 55th St, New York, NY 10019",
       latitude: 40.7426557304367,
       longitude: -73.98165371535876,
       borough: "Manhattan",
-      landlordId: related.id,
+      landlordId: related.id
     },
     {
       address: "141 E 28th St, New York, NY 10016",
       latitude: 40.72788101991443,
       longitude: -73.98702320411665,
       borough: "Manhattan",
-      landlordId: ae.id,
+      landlordId: ae.id
     },
     {
       address: "149 W 14th St, New York, NY 10011",
       latitude: 40.73863222152678,
       longitude: -73.99888675993972,
       borough: "Manhattan",
-      landlordId: sabat.id,
+      landlordId: sabat.id
     },
     {
       address: "61 Wooster St, New York, NY 10012",
       latitude: 40.72334659149321,
       longitude: -74.00198202901962,
       borough: "Manhattan",
-      landlordId: related.id,
+      landlordId: related.id
     },
     {
       address: "145 Norfolk St, New York, NY 10002",
       latitude: 40.72032990449303,
       longitude: -73.98648958962771,
       borough: "Manhattan",
-      landlordId: blackstone.id,
+      landlordId: blackstone.id
     },
     {
       address: "2534 Bathgate Ave, The Bronx, NY 10458",
       latitude: 40.86003048038912,
       longitude: -73.88660364459504,
       borough: "Bronx",
-      landlordId: lefrank.id,
+      landlordId: lefrank.id
     },
     {
       address: "340 W 57th St, New York, NY 10019",
       latitude: 40.76742049274174,
       longitude: -73.98466027343284,
       borough: "Manhattan",
-      landlordId: related.id,
+      landlordId: related.id
     },
     {
       address: "926 Lafayette Ave, Brooklyn, NY 11221",
       latitude: 40.69160456837008,
       longitude: -73.93531081576434,
       borough: "Brooklyn",
-      landlordId: blackstone.id,
+      landlordId: blackstone.id
     },
     {
       address: "153 Lexington Ave, Brooklyn, NY 11216",
       latitude: 40.687500636173375,
       longitude: -73.95623254459989,
       borough: "Brooklyn",
-      landlordId: lefrank.id,
+      landlordId: lefrank.id
     },
     {
       address: "79 Jewel St, Brooklyn, NY 11222",
       latitude: 40.72724531332582,
       longitude: -73.94678133295196,
       borough: "Brooklyn",
-      landlordId: ae.id,
+      landlordId: ae.id
     },
     {
       address: "333 Schermerhorn St, Brooklyn, NY 11217",
       latitude: 40.687771359670485,
       longitude: -73.9813810176117,
       borough: "Brooklyn",
-      landlordId: blackstone.id,
+      landlordId: blackstone.id
     },
     {
       address: "81 Fleet Pl, Brooklyn, NY 11201",
       latitude: 40.69334631269403,
       longitude: -73.98126410227022,
       borough: "Brooklyn",
-      landlordId: ae.id,
-    },
+      landlordId: ae.id
+    }
   ];
 
   const [
@@ -201,8 +201,8 @@ async function seed() {
     lexington,
     jewel,
     schermerhorn,
-    fleet,
-  ] = await Promise.all(buildings.map((building) => Building.create(building)));
+    fleet
+  ] = await Promise.all(buildings.map(building => Building.create(building)));
 
   // TAGS:
   // slumlord, unfriendly, hard to reach, rude, unreliable
@@ -224,7 +224,7 @@ async function seed() {
       tags: ["slumlord", "unfriendly", "hard to reach", "rude"],
       userId: cody.id,
       buildingId: downing.id,
-      landlordId: downing.landlordId,
+      landlordId: downing.landlordId
     },
     {
       // landlordName: "Sabat Group",
@@ -243,7 +243,7 @@ async function seed() {
       tags: ["unfriendly", "hard to reach", "rude"],
       userId: cody.id,
       buildingId: west14.id,
-      landlordId: west14.landlordId,
+      landlordId: west14.landlordId
     },
     {
       // landlordName: "Sabat Group",
@@ -261,7 +261,7 @@ async function seed() {
       tags: ["slumlord", "unfriendly", "hard to reach", "unreliable"],
       userId: murphy.id,
       buildingId: downing.id,
-      landlordId: downing.landlordId,
+      landlordId: downing.landlordId
     },
     {
       // landlordName: "Sabat Group",
@@ -280,7 +280,7 @@ async function seed() {
       tags: ["unreliable", "hard to reach"],
       userId: cody.id,
       buildingId: east7.id,
-      landlordId: east7.landlordId,
+      landlordId: east7.landlordId
     },
     {
       // landlordName: "Related",
@@ -299,7 +299,7 @@ async function seed() {
       tags: ["responsive", "friendly", "reliable", "helpful"],
       userId: cooper.id,
       buildingId: west55.id,
-      landlordId: west55.landlordId,
+      landlordId: west55.landlordId
     },
     {
       // landlordName: "Related",
@@ -318,7 +318,7 @@ async function seed() {
       tags: ["responsive", "reliable", "helpful", "timely", "flexible"],
       userId: cooper.id,
       buildingId: wooster.id,
-      landlordId: wooster.landlordId,
+      landlordId: wooster.landlordId
     },
     {
       // landlordName: "Related",
@@ -337,7 +337,7 @@ async function seed() {
       tags: ["responsive", "timely", "reliable", "flexible"],
       userId: calandra.id,
       buildingId: west57.id,
-      landlordId: west57.landlordId,
+      landlordId: west57.landlordId
     },
     {
       // landlordName: "Blackstone Group",
@@ -356,7 +356,7 @@ async function seed() {
       tags: ["responsive", "unfriendly"],
       userId: cooper.id,
       buildingId: norfolk.id,
-      landlordId: norfolk.landlordId,
+      landlordId: norfolk.landlordId
     },
     {
       // landlordName: "Blackstone Group",
@@ -375,7 +375,7 @@ async function seed() {
       tags: ["responsive", "friendly"],
       userId: cooper.id,
       buildingId: norfolk.id,
-      landlordId: norfolk.landlordId,
+      landlordId: norfolk.landlordId
     },
     {
       // landlordName: "Blackstone Group",
@@ -393,7 +393,7 @@ async function seed() {
       tags: ["responsive", "friendly", "timely", "helpful"],
       userId: nuala.id,
       buildingId: lafayette.id,
-      landlordId: lafayette.landlordId,
+      landlordId: lafayette.landlordId
     },
     {
       // landlordName: "Blackstone Group",
@@ -411,7 +411,7 @@ async function seed() {
       tags: ["responsive", "friendly", "respectful", "fair"],
       userId: heather.id,
       buildingId: schermerhorn.id,
-      landlordId: schermerhorn.landlordId,
+      landlordId: schermerhorn.landlordId
     },
     {
       // landlordName: "A&E Real Estate Holdings",
@@ -429,7 +429,7 @@ async function seed() {
       tags: ["flexible", "friendly", "respectful", "fair"],
       userId: cody.id,
       buildingId: east28.id,
-      landlordId: east28.landlordId,
+      landlordId: east28.landlordId
     },
     {
       // landlordName: "A&E Real Estate Holdings",
@@ -447,7 +447,7 @@ async function seed() {
       tags: ["flexible", "friendly", "timely", "respectful", "fair"],
       userId: cody.id,
       buildingId: jewel.id,
-      landlordId: jewel.landlordId,
+      landlordId: jewel.landlordId
     },
     {
       // landlordName: "A&E Real Estate Holdings",
@@ -466,7 +466,7 @@ async function seed() {
       tags: ["timely", "fair"],
       userId: nikki.id,
       buildingId: fleet.id,
-      landlordId: fleet.landlordId,
+      landlordId: fleet.landlordId
     },
     {
       // landlordName: "LeFrank Organization",
@@ -485,7 +485,7 @@ async function seed() {
       tags: ["flexible", "respectful", "fair", "professional", "timely"],
       userId: calandra.id,
       buildingId: bathgate.id,
-      landlordId: bathgate.landlordId,
+      landlordId: bathgate.landlordId
     },
     {
       // landlordName: "LeFrank Organization",
@@ -503,13 +503,15 @@ async function seed() {
       tags: ["flexible", "respectful", "fair", "professional", "timely"],
       userId: murphy.id,
       buildingId: lexington.id,
-      landlordId: lexington.landlordId,
-    },
+      landlordId: lexington.landlordId
+    }
   ];
 
-  await Promise.all(reviews.map((review) => Review.create(review)));
+  await Promise.all(reviews.map(review => Review.create(review)));
   console.log(
-    `seeded ${users.length} users, ${buildings.length} buildings, ${landlords.length} landlords, ${reviews.length} reviews`
+    `seeded ${users.length} users, ${buildings.length} buildings, ${
+      landlords.length
+    } landlords, ${reviews.length} reviews`
   );
 
   console.log(`seeded successfully`);

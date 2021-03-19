@@ -7,8 +7,8 @@ router.get("/search", async (req, res, next) => {
   try {
     const building = await Building.findOne({
       where: {
-        address: req.query.address,
-      },
+        address: req.query.address
+      }
     });
     res.json(building);
   } catch (error) {

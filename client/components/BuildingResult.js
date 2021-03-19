@@ -1,14 +1,18 @@
-import React from 'react'
-import {GoogleMap, LoadScript, StreetViewPanorama} from '@react-google-maps/api'
-import {connect} from 'react-redux'
+import React from "react";
+import {
+  GoogleMap,
+  LoadScript,
+  StreetViewPanorama
+} from "@react-google-maps/api";
+import { connect } from "react-redux";
 
 class BuildingResult extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
       isLoading: true,
-      landlord: null,
-    }
+      landlord: null
+    };
   }
 
   async componentDidMount() {
@@ -16,14 +20,14 @@ class BuildingResult extends React.Component {
     // const { address } = this.props.location.state
 
     // await findBuilding(address)
-    this.setState({isLoading: false, landlord: 'Jacobs Brothers'})
+    this.setState({ isLoading: false, landlord: "Jacobs Brothers" });
   }
 
   render() {
-    const {address, lat, lng} = this.props.location.state
-    const {isLoading} = this.state
+    const { address, lat, lng } = this.props.location.state;
+    const { isLoading } = this.state;
     // const landlord = this.props.building.landlord.name || ""
-    const landlord = this.state.landlord
+    const landlord = this.state.landlord;
 
     return (
       <div className="results-view">
@@ -31,16 +35,16 @@ class BuildingResult extends React.Component {
         <div className="container">
           <LoadScript
             googleMapsApiKey="AIzaSyCOopGii1dRKKnMTLI00ilvrrKW64KKLfk"
-            libraries={['places']}
+            libraries={["places"]}
           >
             <GoogleMap
-              mapContainerStyle={{width: '400px', height: '400px'}}
+              mapContainerStyle={{ width: "400px", height: "400px" }}
               // center={center}
               zoom={14}
             >
               <StreetViewPanorama
                 // address={this.state.address}
-                position={{lat: lat, lng: lng}}
+                position={{ lat: lat, lng: lng }}
                 visible={true}
               />
             </GoogleMap>
@@ -56,20 +60,20 @@ class BuildingResult extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-const mapState = (state) => {
+const mapState = state => {
   return {
-    building: state.building,
-  }
-}
+    building: state.building
+  };
+};
 
-const mapDispatch = (state) => {
+const mapDispatch = state => {
   return {
-    findBuilding: (add) => dispatch(findBuilding(add)),
-  }
-}
+    findBuilding: add => dispatch(findBuilding(add))
+  };
+};
 
-export default connect(mapState, mapDispatch)(BuildingResult)
+export default connect(mapState, mapDispatch)(BuildingResult);
