@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Landlord, Review, Building } = require("../db/models");
+const { Landlord, Review, Building, User } = require("../db/models");
 module.exports = router;
 
 //GET /api/landlords/:id
@@ -8,7 +8,10 @@ router.get("/:id", async (req, res, next) => {
     const id = req.params.id;
     const singleLandlord = await Landlord.findOne({
       where: { id: id },
-      include: [Review, Building]
+      include: {
+        model: Review,
+        include: User
+      }
     });
     const avgs = await singleLandlord.getAverages();
     singleLandlord.dataValues.avgs = avgs;
@@ -21,10 +24,18 @@ router.get("/:id", async (req, res, next) => {
 // GET /api/landlords/
 router.get("/", async (req, res, next) => {
   try {
-    const allLandlords = await Landlord.findAll({
+    let allLandlords = await Landlord.findAll({
       include: [Review, Building]
     });
-    res.json(allLandlords);
+    let newLandlordsArr = [];
+    for (let i = 0; i < allLandlords.length; i++) {
+      const landlord = allLandlords[i];
+      const avgs = await landlord.getAverages();
+      landlord.dataValues.avgs = avgs;
+      newLandlordsArr.push(landlord);
+    }
+
+    res.json(newLandlordsArr);
   } catch (err) {
     next(err);
   }
