@@ -8,9 +8,11 @@ import {
   UserHome,
   AllLandlords,
   Home,
-  SingleLandlord
+  SingleLandlord,
+  BuildingResult
 } from "./components";
 import { me } from "./store";
+
 
 /**
  * COMPONENT
@@ -28,6 +30,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/results" component={BuildingResult} />
         <Route exact path="/landlords" component={AllLandlords} />
         <Route path="/landlords/:landlordId" component={SingleLandlord} />
         <Route path="/" component={Home} />
@@ -48,7 +51,7 @@ class Routes extends Component {
 /**
  * CONTAINER
  */
-const mapState = state => {
+const mapState = (state) => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
@@ -56,7 +59,7 @@ const mapState = state => {
   };
 };
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
     loadInitialData() {
       dispatch(me());

@@ -10,3 +10,5 @@ export { Login, Signup } from "./auth-form";
 export { default as AllLandlords } from "./AllLandlords";
 export { default as SingleLandlord } from "./SingleLandlord";
 export { default as Home } from "./Home";
+export {default as BuildingResult} from './BuildingResult'
+
