@@ -10,10 +10,10 @@ label {
   display: block;
 }
 
-nav a {
+/* nav a {
   display: inline-block;
   margin: 1em;
-}
+} */
 
 form div {
   margin: 1em;
@@ -62,10 +62,10 @@ form div {
   height: 35px;
 }
 
-.navbar {
+/* .navbar {
   background-color: darkgray;
   color: orange;
-}
+} */
 
 #selectDiv {
   width: 150px;

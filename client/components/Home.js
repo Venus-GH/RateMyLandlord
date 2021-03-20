@@ -12,7 +12,7 @@ class Home extends Component {
       lat: 40.73061,
       lng: -73.935242,
       address: "",
-      zoom: 9
+      zoom: 9,
     };
     this.autocomplete = null;
     this.onLoad = this.onLoad.bind(this);
@@ -26,7 +26,7 @@ class Home extends Component {
       container: this.mapContainer.current,
       style: "mapbox://styles/mapbox/dark-v10",
       center: [lng, lat],
-      zoom: zoom
+      zoom: zoom,
     });
   }
 
@@ -40,7 +40,7 @@ class Home extends Component {
       this.setState({
         lat: place.geometry.location.lat(),
         lng: place.geometry.location.lng(),
-        address: place.formatted_address
+        address: place.formatted_address,
       });
     } else {
       console.log("Autocomplete is not loaded yet!");
@@ -71,11 +71,11 @@ class Home extends Component {
                     state: {
                       address,
                       lat,
-                      lng
-                    }
+                      lng,
+                    },
                   }}
                 >
-                  <button onClick={this.handleSubmit}>Enter</button>
+                  <a className="waves-effect waves-light btn-small">Search</a>
                 </Link>
               ) : (
                 ""
