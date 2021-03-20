@@ -38,6 +38,11 @@ form div {
   z-index: 0;
 }
 
+.results-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .home-input {
   z-index: 1;
   position: fixed;
