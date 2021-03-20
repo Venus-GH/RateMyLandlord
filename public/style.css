@@ -30,6 +30,7 @@ form div {
 
 .map-container {
   position: relative;
+  min-height: 100vh;
   top: 0;
   right: 0;
   left: 0;

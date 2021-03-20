@@ -6,8 +6,15 @@ import user from "./user";
 import allLandlords from "./landlords";
 import reviews from "./reviews";
 import landlord from "./singleLandlord";
+import buildings from "./buildings";
 
-const reducer = combineReducers({ user, allLandlords, landlord, reviews });
+const reducer = combineReducers({
+  user,
+  allLandlords,
+  landlord,
+  reviews,
+  buildings,
+});
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );
