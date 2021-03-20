@@ -4,11 +4,10 @@ import { fetchSingleLandlord } from "../store/singleLandlord";
 import { Link } from "react-router-dom";
 import { TagCloud } from "react-tagcloud";
 import ReviewList from "./ReviewList";
-import WordCloud from "./WordCloud";
 
 class SingleLandlord extends Component {
-  componentDidMount() {
-    this.props.getSingleLandlord(this.props.match.params.landlordId);
+  async componentDidMount() {
+    await this.props.getSingleLandlord(this.props.match.params.landlordId);
   }
 
   render() {
@@ -20,16 +19,6 @@ class SingleLandlord extends Component {
     const buildings = this.props.landlord.buildings || [];
     const avgs = this.props.landlord.avgs || {};
     const avgWouldRecommend = avgs.avgWouldRecommend || {};
-
-    const tagsData = [
-      { value: "responsive", count: 4 },
-      { value: "unfriendly", count: 1 },
-      { value: "friendly", count: 3 },
-      { value: "timely", count: 1 },
-      { value: "helpful", count: 1 },
-      { value: "respectful", count: 1 },
-      { value: "fair", count: 1 }
-    ];
 
     return (
       <div className="container">
@@ -69,8 +58,7 @@ class SingleLandlord extends Component {
         <div>
           <h5>What people say about this landlord...</h5>
           <div>
-            {/* <WordCloud tags={tagData} /> */}
-            <TagCloud minSize={12} maxSize={35} tags={tagsData} />
+            <TagCloud minSize={12} maxSize={35} tags={tagData} />
           </div>
           <br />
         </div>
@@ -84,15 +72,15 @@ class SingleLandlord extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    landlord: state.landlord
+    landlord: state.landlord,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    getSingleLandlord: id => dispatch(fetchSingleLandlord(id))
+    getSingleLandlord: (id) => dispatch(fetchSingleLandlord(id)),
   };
 };
 
