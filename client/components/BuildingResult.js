@@ -32,7 +32,7 @@ class BuildingResult extends React.Component {
 
     return (
       <div className="results-view">
-        <h2>{address}</h2>
+        <h4>{address}</h4>
         <div className="results-container">
           <div className="results-street-view">
             <LoadScript
@@ -40,7 +40,7 @@ class BuildingResult extends React.Component {
               libraries={["places"]}
             >
               <GoogleMap
-                mapContainerStyle={{ width: "450px", height: "600px" }}
+                mapContainerStyle={{ width: "450px", height: "550px" }}
                 // center={center}
                 zoom={14}
               >
@@ -54,19 +54,24 @@ class BuildingResult extends React.Component {
           </div>
           <div className="results-reviews">
             {landlord.name && (
-              <h5>
-                Landlord: {landlord.name}.
-                <Link to={`/landlords/${landlord.id}`}>See all reviews.</Link>
-              </h5>
+              <div>
+                <h5>Owned by {landlord.name}</h5>
+                <Link to={`/landlords/${landlord.id}`}>
+                  See all reviews for {landlord.name}.
+                </Link>
+              </div>
             )}
-            <h3>Add a review</h3>
+            <h4>
+              <Link to={`/landlords/${landlord.id}/add`}>Add a review</Link>
+            </h4>
+
             {isLoading ? (
               <div className="progress">
                 <div className="indeterminate"></div>
               </div>
             ) : landlord.name ? (
               <div>
-                <h4>{reviews.length} Reviews</h4>
+                <h6>{reviews.length} Reviews</h6>
                 <ReviewList reviews={reviews} />
               </div>
             ) : (
