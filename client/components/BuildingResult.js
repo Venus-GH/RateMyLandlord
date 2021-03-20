@@ -15,25 +15,20 @@ class BuildingResult extends React.Component {
     super();
     this.state = {
       isLoading: true,
-      landlord: null,
     };
   }
 
   async componentDidMount() {
     const { address } = this.props.location.state;
-
     await this.props.fetchBuilding(address);
-    this.setState({ isLoading: false, landlord: "Jacobs Brothers" });
+    this.setState({ isLoading: false });
   }
 
   render() {
     const { address, lat, lng } = this.props.location.state;
     const { isLoading } = this.state;
-    // const landlord = this.props.building.landlord.name || ""
     const { landlord, reviews } = this.props;
-    console.log("reviews:", reviews);
     const coord = { lat, lng };
-    console.log("coord:", coord);
 
     return (
       <div className="results-view">
@@ -51,7 +46,7 @@ class BuildingResult extends React.Component {
               >
                 <StreetViewPanorama
                   // address={this.state.address}
-                  position={{ lat: lat, lng: lng }}
+                  position={coord}
                   visible={true}
                 />
               </GoogleMap>
@@ -86,9 +81,9 @@ class BuildingResult extends React.Component {
               <GoogleMap
                 mapContainerStyle={{ width: "500px", height: "700px" }}
                 center={coord}
-                zoom={10}
+                zoom={13}
               >
-                <Marker postition={{ lat: lat, lng: lng }} />
+                <Marker position={coord} />
               </GoogleMap>
             </LoadScript>
           </div>
