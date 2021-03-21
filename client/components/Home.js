@@ -61,7 +61,13 @@ class Home extends Component {
                 key={place.id}
                 icon={icon}
                 position={[place.latitude, place.longitude]}
-              />
+              >
+                <Popup>
+                  <Link to={`/landlords/${place.landlordId}`}>
+                    {place.address}
+                  </Link>
+                </Popup>
+              </Marker>
             ))}
           </MapContainer>
           <LoadScript
