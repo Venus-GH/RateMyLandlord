@@ -3,14 +3,7 @@ import { connect } from "react-redux";
 import { fetchLandlords, filterLandlords } from "../store/landlords";
 import { Link } from "react-router-dom";
 import "materialize-css";
-import {
-  Button,
-  Dropdown,
-  NavItem,
-  Row,
-  Input,
-  Select
-} from "react-materialize";
+import { Select } from "react-materialize";
 // import { Row, Input } from 'react-materialize'
 import ReviewHome from "./Reviews/ReviewHome";
 
@@ -24,7 +17,7 @@ class AllLandlords extends React.Component {
     this.props.getLandlords();
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     console.log("e.target.value", e.target.value);
     this.props.filter(e.target.value);
   };
@@ -38,6 +31,7 @@ class AllLandlords extends React.Component {
         <ReviewHome />
 
         <h3>Landlords</h3>
+
         <div id="selectDiv">
           <Select
             id="Select-9"
@@ -57,8 +51,8 @@ class AllLandlords extends React.Component {
                 onCloseStart: null,
                 onOpenEnd: null,
                 onOpenStart: null,
-                outDuration: 250
-              }
+                outDuration: 250,
+              },
             }}
             value=""
           >
@@ -72,38 +66,53 @@ class AllLandlords extends React.Component {
             <option value="5">F</option>
           </Select>
         </div>
+        <div className=" rowcontainer">
+          <div className="row">
+            {landlords.map((landlord) => (
+              <div className="col  s12 m4" key={landlord.id}>
+                <div className="card medium blue-grey darken-1 ">
+                  <div className="card-content white-text">
+                    <span className="card-title">{landlord.name}</span>
+                    <h4>Overall Rating: {landlord.avgs.avgGrade}</h4>
 
-        {landlords.map(landlord => (
-          <div className="row" key={landlord.id}>
-            <div className="col s12 m6">
-              <div className="card blue-grey darken-1">
-                <div className="card-content white-text">
-                  <span className="card-title">{landlord.name}</span>
-                  <h2>Overall Rating: {landlord.avgRating}</h2>
-                  <p>Number of reviews: {}</p>
-                </div>
-                <div className="card-action">
-                  <Link to={`/landlords/${landlord}.id`}>Check them out</Link>
+                    <p>Average Kindness Rating: {landlord.avgs.avgKindness}</p>
+                    <p>
+                      Average Maintenance Rating: {landlord.avgs.avgMaintenance}
+                    </p>
+                    <p>
+                      Average Pest Control Rating:{" "}
+                      {landlord.avgs.avgPestControl}
+                    </p>
+                    <p>
+                      Would people recommend? Yes:{" "}
+                      {landlord.avgs.avgWouldRecommend.true} No:{" "}
+                      {landlord.avgs.avgWouldRecommend.false}
+                    </p>
+                    <p>Number of reviews: {landlord.reviews.length}</p>
+                  </div>
+                  <div className="card-action">
+                    <Link to={`/landlords/${landlord.id}`}>Check them out</Link>
+                  </div>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    landlords: state.allLandlords
+    landlords: state.allLandlords,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     getLandlords: () => dispatch(fetchLandlords()),
-    filter: filter => dispatch(filterLandlords(filter))
+    filter: (filter) => dispatch(filterLandlords(filter)),
   };
 };
 
