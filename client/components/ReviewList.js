@@ -2,11 +2,10 @@ import React from "react";
 import moment from "moment";
 
 const ReviewList = ({ reviews }) => {
-  // console.log("reviews", reviews);
   return (
     <div className="section">
       {reviews &&
-        reviews.map(review => {
+        reviews.map((review) => {
           return (
             <div className="card z-depth-0 blue-grey lighten-5" key={review.id}>
               <div className="card-content grey-text text-darken-4">

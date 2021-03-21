@@ -24,6 +24,13 @@ form div {
 .icon {
   vertical-align: bottom;
 }
+
+.leaflet-container {
+  width: 60%;
+  height: 60vh;
+}
+
+/* Home */
 .home-view {
   height: 100%;
 }
