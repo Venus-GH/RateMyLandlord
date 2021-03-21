@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { TagCloud } from "react-tagcloud";
 import ReviewList from "./ReviewList";
 import BuildingByLandlord from "./BuildingByLandlord";
+import BarChart from "./BarChart";
 
 class SingleLandlord extends Component {
   async componentDidMount() {
@@ -56,7 +57,7 @@ class SingleLandlord extends Component {
               <TagCloud minSize={12} maxSize={35} tags={tagData} />
             </div>
             <div>
-              <h6>[Placeholder for more data visualization]</h6>
+              <BarChart avgs={avgs} />
             </div>
           </div>
           <div className="col s12 m8 l8">
