@@ -22,7 +22,7 @@ class SingleLandlord extends Component {
     return (
       <div>
         <div className="row">
-          <div className="col s12 m4 13">
+          <div className="col s12 m4 l4">
             <div className="card blue-grey darken-1">
               <div className="card-content white-text">
                 <span className="card-title white-text">
@@ -59,7 +59,7 @@ class SingleLandlord extends Component {
               <h6>[Placeholder for more data visualization]</h6>
             </div>
           </div>
-          <div className="col s12 m8 19">
+          <div className="col s12 m8 l8">
             <BuildingByLandlord buildings={buildings} />
           </div>
         </div>
