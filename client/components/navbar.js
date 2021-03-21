@@ -3,45 +3,71 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
+import { LoadScript, Autocomplete } from "@react-google-maps/api";
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div className="navbar">
-    <h3>Rate My Landlord</h3>
     <nav>
-      {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
-      ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-        </div>
-      )}
+      <div className="nav-wrapper">
+        <Link to="/" className="brand-logo">
+          Rate My Landlord
+        </Link>
+        {isLoggedIn ? (
+          <ul id="nav-mobile" className="right hide-on-med-and-down">
+            {/* The navbar will show these links after you log in */}
+            <li>
+              <Link to="/home">Home</Link>
+            </li>
+            <li>
+              <a href="#" onClick={handleClick}>
+                Logout
+              </a>
+            </li>
+          </ul>
+        ) : (
+          <ul id="nav-mobile" className="right hide-on-med-and-down">
+            {/* The navbar will show these links before you log in */}
+            <li>
+              <form>
+                <div className="input-field">
+                  <input id="search" type="search" required />
+                  <label className="label-icon" htmlFor="search">
+                    <i className="material-icons">search</i>
+                  </label>
+                  <i className="material-icons">close</i>
+                </div>
+              </form>
+            </li>
+            <li>
+              <Link to="/landlords">Landlords</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/signup">Sign Up</Link>
+            </li>
+          </ul>
+        )}
+      </div>
     </nav>
-    <hr />
   </div>
 );
 
 /**
  * CONTAINER
  */
-const mapState = state => {
+const mapState = (state) => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
   };
 };
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
     handleClick() {
       dispatch(logout());
-    }
+    },
   };
 };
 
@@ -52,5 +78,5 @@ export default connect(mapState, mapDispatch)(Navbar);
  */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
 };

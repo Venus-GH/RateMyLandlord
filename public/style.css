@@ -10,10 +10,10 @@ label {
   display: block;
 }
 
-nav a {
+/* nav a {
   display: inline-block;
   margin: 1em;
-}
+} */
 
 form div {
   margin: 1em;
@@ -30,11 +30,18 @@ form div {
 
 .map-container {
   position: relative;
+  min-height: 100vh;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
   z-index: 0;
+}
+
+.results-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .home-input {
@@ -55,10 +62,10 @@ form div {
   height: 35px;
 }
 
-.navbar {
+/* .navbar {
   background-color: darkgray;
   color: orange;
-}
+} */
 
 #selectDiv {
   width: 150px;
