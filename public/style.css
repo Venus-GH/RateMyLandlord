@@ -38,6 +38,8 @@ form div {
 .map-container {
   position: relative;
   min-height: 100vh;
+  min-width: 100vh;
+  width: 100%;
   top: 0;
   right: 0;
   left: 0;
@@ -69,10 +71,9 @@ form div {
   height: 35px;
 }
 
-/* .navbar {
-  background-color: darkgray;
-  color: orange;
-} */
+.leaflet-marker-icon {
+  opacity: 0.5;
+}
 
 #selectDiv {
   width: 150px;

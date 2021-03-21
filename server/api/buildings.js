@@ -21,3 +21,14 @@ router.get("/search", async (req, res, next) => {
     next(error);
   }
 });
+
+//GET /api/buildings => returns all buildings in database
+router.get("/", async (req, res, next) => {
+  try {
+    const buildings = await Building.findAll();
+    console.log("BUILDINGS =>", buildings);
+    res.json(buildings);
+  } catch (err) {
+    next(err);
+  }
+});
