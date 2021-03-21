@@ -8,7 +8,7 @@ import { LoadScript, Autocomplete } from "@react-google-maps/api";
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div className="navbar">
     <nav>
-      <div className="nav-wrapper">
+      <div className="nav-wrapper grey darken-4">
         <Link to="/" className="brand-logo">
           Rate My Landlord
         </Link>
