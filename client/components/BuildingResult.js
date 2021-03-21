@@ -2,61 +2,95 @@ import React from "react";
 import {
   GoogleMap,
   LoadScript,
-  StreetViewPanorama
+  StreetViewPanorama,
+  Marker,
 } from "@react-google-maps/api";
 import { connect } from "react-redux";
+import { fetchBuilding } from "../store/buildings";
+import { Link } from "react-router-dom";
+import ReviewList from "./ReviewList";
 
 class BuildingResult extends React.Component {
   constructor() {
     super();
     this.state = {
       isLoading: true,
-      landlord: null
     };
   }
 
   async componentDidMount() {
-    // const { findBuilding } = this.props
-    // const { address } = this.props.location.state
-
-    // await findBuilding(address)
-    this.setState({ isLoading: false, landlord: "Jacobs Brothers" });
+    const { address } = this.props.location.state;
+    await this.props.fetchBuilding(address);
+    this.setState({ isLoading: false });
   }
 
   render() {
     const { address, lat, lng } = this.props.location.state;
     const { isLoading } = this.state;
-    // const landlord = this.props.building.landlord.name || ""
-    const landlord = this.state.landlord;
+    const { landlord, reviews } = this.props;
+    const coord = { lat, lng };
 
     return (
       <div className="results-view">
-        <h2>{address}</h2>
-        <div className="container">
-          <LoadScript
-            googleMapsApiKey="AIzaSyCOopGii1dRKKnMTLI00ilvrrKW64KKLfk"
-            libraries={["places"]}
-          >
-            <GoogleMap
-              mapContainerStyle={{ width: "400px", height: "400px" }}
-              // center={center}
-              zoom={14}
+        <h4>{address}</h4>
+        <div className="results-container">
+          <div className="results-street-view">
+            <LoadScript
+              googleMapsApiKey="AIzaSyCOopGii1dRKKnMTLI00ilvrrKW64KKLfk"
+              libraries={["places"]}
             >
-              <StreetViewPanorama
-                // address={this.state.address}
-                position={{ lat: lat, lng: lng }}
-                visible={true}
-              />
-            </GoogleMap>
-          </LoadScript>
-          <div>
-            {isLoading ? (
-              <div>Loading...</div>
-            ) : landlord ? (
-              <div>{landlord} is associated with this address.</div>
-            ) : (
-              <div>There are no landlords associated with this address.</div>
+              <GoogleMap
+                mapContainerStyle={{ width: "450px", height: "550px" }}
+                // center={center}
+                zoom={14}
+              >
+                <StreetViewPanorama
+                  // address={this.state.address}
+                  position={coord}
+                  visible={true}
+                />
+              </GoogleMap>
+            </LoadScript>
+          </div>
+          <div className="results-reviews">
+            {landlord.name && (
+              <div>
+                <h5>Owned by {landlord.name}</h5>
+                <Link to={`/landlords/${landlord.id}`}>
+                  See all reviews for {landlord.name}.
+                </Link>
+              </div>
             )}
+            <h4>
+              <Link to={`/landlords/${landlord.id}/add`}>Add a review</Link>
+            </h4>
+
+            {isLoading ? (
+              <div className="progress">
+                <div className="indeterminate"></div>
+              </div>
+            ) : landlord.name ? (
+              <div>
+                <h6>{reviews.length} Reviews</h6>
+                <ReviewList reviews={reviews} />
+              </div>
+            ) : (
+              <div>No reviews yet... Add a review to get started.</div>
+            )}
+          </div>
+          <div className="result-map">
+            <LoadScript
+              googleMapsApiKey="AIzaSyCOopGii1dRKKnMTLI00ilvrrKW64KKLfk"
+              libraries={["places"]}
+            >
+              <GoogleMap
+                mapContainerStyle={{ width: "500px", height: "700px" }}
+                center={coord}
+                zoom={13}
+              >
+                <Marker position={coord} />
+              </GoogleMap>
+            </LoadScript>
           </div>
         </div>
       </div>
@@ -64,15 +98,17 @@ class BuildingResult extends React.Component {
   }
 }
 
-const mapState = state => {
+const mapState = (state) => {
   return {
-    building: state.building
+    building: state.buildings.single,
+    landlord: state.buildings.landlord,
+    reviews: state.buildings.reviews,
   };
 };
 
-const mapDispatch = state => {
+const mapDispatch = (dispatch) => {
   return {
-    findBuilding: add => dispatch(findBuilding(add))
+    fetchBuilding: (address) => dispatch(fetchBuilding(address)),
   };
 };
 
