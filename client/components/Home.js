@@ -1,9 +1,14 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { LoadScript, Autocomplete } from "@react-google-maps/api";
-import mapboxgl from "mapbox-gl";
-mapboxgl.accessToken =
-  "pk.eyJ1IjoibnVhbGEtb2Rvbm92YW4iLCJhIjoiY2ttZmJxNWtkMHliajJvbXc5c2o4NjdjbiJ9.M-UhLR8qwMdUjQCagBEfdw";
+import { fetchAllBuildings } from "../store/buildings";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { Icon } from "leaflet";
+
+export const icon = new Icon({
+  iconUrl: "./orangemapmarker.png",
+});
 
 class Home extends Component {
   constructor(props) {
@@ -12,22 +17,14 @@ class Home extends Component {
       lat: 40.73061,
       lng: -73.935242,
       address: "",
-      zoom: 9,
     };
     this.autocomplete = null;
     this.onLoad = this.onLoad.bind(this);
     this.onPlaceChanged = this.onPlaceChanged.bind(this);
-    this.mapContainer = React.createRef();
   }
 
-  componentDidMount() {
-    const { lng, lat, zoom } = this.state;
-    const map = new mapboxgl.Map({
-      container: this.mapContainer.current,
-      style: "mapbox://styles/mapbox/dark-v10",
-      center: [lng, lat],
-      zoom: zoom,
-    });
+  async componentDidMount() {
+    await this.props.getAll();
   }
 
   onLoad(autocomplete) {
@@ -49,10 +46,30 @@ class Home extends Component {
 
   render() {
     const { address, lat, lng } = this.state;
+    const { places } = this.props;
     return (
       <div className="home-view">
         <div>
-          <div ref={this.mapContainer} className="map-container" />
+          <MapContainer center={[lat, lng]} zoom={12} className="map-container">
+            <TileLayer
+              attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+              url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
+            />
+            {places.map((place) => (
+              <Marker
+                className="home-marker"
+                key={place.id}
+                icon={icon}
+                position={[place.latitude, place.longitude]}
+              >
+                <Popup>
+                  <Link to={`/landlords/${place.landlordId}`}>
+                    {place.address}
+                  </Link>
+                </Popup>
+              </Marker>
+            ))}
+          </MapContainer>
           <LoadScript
             googleMapsApiKey="AIzaSyCOopGii1dRKKnMTLI00ilvrrKW64KKLfk"
             libraries={["places"]}
@@ -62,7 +79,7 @@ class Home extends Component {
                 onLoad={this.onLoad}
                 onPlaceChanged={this.onPlaceChanged}
               >
-                <input />
+                <input placeholder="Enter an address to get started" />
               </Autocomplete>
               {address.length ? (
                 <Link
@@ -93,4 +110,16 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const mapState = (state) => {
+  return {
+    places: state.buildings.all,
+  };
+};
+
+const mapDispatch = (dispatch) => {
+  return {
+    getAll: () => dispatch(fetchAllBuildings()),
+  };
+};
+
+export default connect(mapState, mapDispatch)(Home);
