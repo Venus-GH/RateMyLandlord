@@ -62,7 +62,8 @@ class BuildingResult extends React.Component {
               </div>
             )}
             <h4>
-              <Link to={`/landlords/${landlord.id}/add`}>Add a review</Link>
+              {/* <Link to={`/landlords/${landlord.id}/add`}>Add a review</Link> */}
+              <Link to="/review">Add a review</Link>
             </h4>
 
             {isLoading ? (
