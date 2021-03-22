@@ -23,18 +23,19 @@ router.post("/", async (req, res, next) => {
       comments,
       wouldRecommend,
       tags,
-      userId
+      userId,
+      allowContact,
     } = req.body;
     // find or create landlord - name
     const landlord = await Landlord.findOrCreate({
-      where: { name: landlordName }
+      where: { name: landlordName },
     });
     console.log("landlord ------>", landlord);
 
     // find or create building – address, landlordId
     const building = await Building.findOrCreate({
       where: { address: address },
-      defaults: { landlordId: landlord.id, latitude, longitude, borough }
+      defaults: { landlordId: landlord.id, latitude, longitude, borough },
     });
     console.log("building ------>", building);
     // create review -
@@ -57,7 +58,8 @@ router.post("/", async (req, res, next) => {
       tags,
       userId,
       landlordId: landlord.id,
-      buildingId: building.id
+      buildingId: building.id,
+      allowContact,
     });
     console.log("review ------>", review);
 

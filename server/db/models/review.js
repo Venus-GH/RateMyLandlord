@@ -14,7 +14,7 @@ const Review = db.define("review", {
   // },
   grade: {
     type: Sequelize.INTEGER,
-    allowNull: false
+    allowNull: false,
   },
   responsiveness: {
     type: Sequelize.INTEGER,
@@ -22,16 +22,16 @@ const Review = db.define("review", {
     validate: {
       max: {
         args: [5],
-        msg: "Landlord responsiveness rating must be less than 5."
+        msg: "Landlord responsiveness rating must be less than 5.",
       },
       min: {
         args: [0],
-        msg: "Landlord responsiveness rating must be greater than 0."
+        msg: "Landlord responsiveness rating must be greater than 0.",
       },
       isInt: {
-        msg: "Landlord responsiveness rating must be an integer."
-      }
-    }
+        msg: "Landlord responsiveness rating must be an integer.",
+      },
+    },
   },
   pestControl: {
     type: Sequelize.INTEGER,
@@ -39,16 +39,16 @@ const Review = db.define("review", {
     validate: {
       max: {
         args: [5],
-        msg: "Pest control rating must be less than 5."
+        msg: "Pest control rating must be less than 5.",
       },
       min: {
         args: [0],
-        msg: "Pest control rating must be greater than 0."
+        msg: "Pest control rating must be greater than 0.",
       },
       isInt: {
-        msg: "Pest control rating must be an integer."
-      }
-    }
+        msg: "Pest control rating must be an integer.",
+      },
+    },
   },
   kindness: {
     type: Sequelize.INTEGER,
@@ -56,16 +56,16 @@ const Review = db.define("review", {
     validate: {
       max: {
         args: [5],
-        msg: "Landlord kindness rating must be less than 5."
+        msg: "Landlord kindness rating must be less than 5.",
       },
       min: {
         args: [0],
-        msg: "Landlord kindness rating must be greater than 0."
+        msg: "Landlord kindness rating must be greater than 0.",
       },
       isInt: {
-        msg: "Landlord kindness rating must be an integer."
-      }
-    }
+        msg: "Landlord kindness rating must be an integer.",
+      },
+    },
   },
   maintenance: {
     type: Sequelize.INTEGER,
@@ -73,16 +73,16 @@ const Review = db.define("review", {
     validate: {
       max: {
         args: [5],
-        msg: "Landlord maintenance rating must be less than 5."
+        msg: "Landlord maintenance rating must be less than 5.",
       },
       min: {
         args: [0],
-        msg: "Landlord maintenance rating must be greater than 0."
+        msg: "Landlord maintenance rating must be greater than 0.",
       },
       isInt: {
-        msg: "Landlord maintenance rating must be an integer."
-      }
-    }
+        msg: "Landlord maintenance rating must be an integer.",
+      },
+    },
   },
   bedrooms: {
     type: Sequelize.FLOAT,
@@ -90,9 +90,9 @@ const Review = db.define("review", {
     validate: {
       min: {
         args: [0],
-        msg: "Bedrooms must be greater than 0."
-      }
-    }
+        msg: "Bedrooms must be greater than 0.",
+      },
+    },
   },
   rent: {
     type: Sequelize.INTEGER,
@@ -100,36 +100,39 @@ const Review = db.define("review", {
     validate: {
       min: {
         args: [0],
-        msg: "Rent must be greater than 0."
+        msg: "Rent must be greater than 0.",
       },
       isInt: {
-        msg: "Rent must be an integer."
-      }
-    }
+        msg: "Rent must be an integer.",
+      },
+    },
   },
   leaseLength: {
     type: Sequelize.INTEGER,
     allowNull: true,
     validate: {
       isInt: {
-        msg: "Lease length must be an integer number of months."
-      }
-    }
+        msg: "Lease length must be an integer number of months.",
+      },
+    },
   },
   startDate: {
     type: Sequelize.STRING,
-    allowNull: true
+    allowNull: true,
   },
   comments: {
     type: Sequelize.TEXT,
-    allowNull: true
+    allowNull: true,
   },
   wouldRecommend: {
-    type: Sequelize.BOOLEAN
+    type: Sequelize.BOOLEAN,
   },
   tags: {
-    type: Sequelize.ARRAY(Sequelize.STRING)
-  }
+    type: Sequelize.ARRAY(Sequelize.STRING),
+  },
+  allowContact: {
+    type: Sequelize.BOOLEAN,
+  },
 });
 
 module.exports = Review;
