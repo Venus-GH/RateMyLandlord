@@ -75,7 +75,12 @@ class Home extends Component {
                     },
                   }}
                 >
-                  <a className="waves-effect waves-light btn-small">Search</a>
+                  <button
+                    type="button"
+                    className="waves-effect waves-light btn-small"
+                  >
+                    Search
+                  </button>
                 </Link>
               ) : (
                 ""
