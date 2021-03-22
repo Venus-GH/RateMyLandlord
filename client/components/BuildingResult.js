@@ -26,6 +26,10 @@ class BuildingResult extends React.Component {
     const { address } = this.props.location.state;
     await this.props.fetchBuilding(address);
     this.setState({ isLoading: false });
+    document.addEventListener("DOMContentLoaded", function () {
+      var elems = document.querySelectorAll(".modal");
+      M.Modal.init(elems, options);
+    });
   }
 
   handleClick() {

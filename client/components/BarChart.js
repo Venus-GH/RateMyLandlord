@@ -1,10 +1,11 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
 
-const BarChart = ({ avgs }) => {
+const BarChart = ({ avgs, mktAvgs }) => {
   const avgValOnly = Object.values(avgs).slice(1, -1);
-  console.log("avgs", avgs);
-  console.log("avgValOnly", avgValOnly);
+  const mktAvgValOnly = Object.values(mktAvgs);
+  // console.log("avgs", avgs);
+  // console.log("mktAvgs", mktAvgs);
 
   return (
     <div>
@@ -19,7 +20,7 @@ const BarChart = ({ avgs }) => {
             },
             {
               label: "Market Avg",
-              data: [3, 4, 3.5, 5],
+              data: mktAvgValOnly,
               backgroundColor: ["#90b4ce", "#90b4ce", "#90b4ce", "#90b4ce"],
             },
           ],

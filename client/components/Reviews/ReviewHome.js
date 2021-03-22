@@ -8,9 +8,29 @@ import MaintenanceReview from "./MaintenanceReview";
 
 import { addReview } from "../../store/reviews";
 
-import { Button, TextInput, Chip, Icon, Select } from "react-materialize";
+import {
+  Button,
+  TextInput,
+  Chip,
+  Icon,
+  Select,
+  Checkbox,
+} from "react-materialize";
 let chipsData = [];
 let data = [];
+
+const defaultState = {
+  bedrooms: "",
+  wouldRecommend: "",
+  grade: "",
+  rent: "",
+  startDate: "",
+  leaseLength: "",
+  tags: [],
+  comments: "",
+  submitted: true,
+  allowContact: false,
+};
 
 class ReviewForm extends React.Component {
   constructor() {
@@ -18,6 +38,14 @@ class ReviewForm extends React.Component {
     this.state = {
       bedrooms: "",
       wouldRecommend: "",
+      grade: "",
+      rent: "",
+      startDate: "",
+      leaseLength: "",
+      tags: [],
+      comments: "",
+      submitted: false,
+      allowContact: false,
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -25,6 +53,7 @@ class ReviewForm extends React.Component {
     this.onChipDelete = this.onChipDelete.bind(this);
     this.onYes = this.onYes.bind(this);
     this.onNo = this.onNo.bind(this);
+    this.onCheck = this.onCheck.bind(this);
   }
   componentDidMount() {
     console.log("this.state in review form", this.state);
@@ -56,6 +85,8 @@ class ReviewForm extends React.Component {
     };
     this.props.addReview(newerReview);
     console.log("this.state", this.state);
+    this.setState(defaultState);
+    console.log("this.state", this.state);
     // this.props.addReview(this.props.reviews)
   }
   onYes() {
@@ -67,6 +98,16 @@ class ReviewForm extends React.Component {
     this.setState({
       wouldRecommend: false,
     });
+  }
+  onCheck() {
+    console.log("this.state.allowContact", this.state.allowContact);
+    // if (this.state.allowContact==='false'){
+    //   this.setState({allowContact: true})
+    // } else {
+    //   this.setState({allowContact})
+    // }
+    this.setState({ allowContact: !this.state.allowContact });
+    console.log("this.state.allowcontact", this.state.allowContact);
   }
   onChipAdd(chips) {
     console.log("add");
@@ -135,20 +176,32 @@ class ReviewForm extends React.Component {
         <ResponsivenessReview />
         <MaintenanceReview />
         <p>How many bedrooms?</p>
-        <TextInput id="bedrooms" placeholder="ex: 2" onChange={this.onChange} />
+        <TextInput
+          id="bedrooms"
+          placeholder="ex: 2"
+          onChange={this.onChange}
+          value={this.state.bedrooms}
+        />
         <p>How much was rent?</p>
-        <TextInput id="rent" placeholder="ex: 1500" onChange={this.onChange} />
+        <TextInput
+          id="rent"
+          placeholder="ex: 1500"
+          onChange={this.onChange}
+          value={this.state.rent}
+        />
         <p>When did you move in?</p>
         <TextInput
           id="startDate"
           placeholder="ex: 01/01/2021"
           onChange={this.onChange}
+          value={this.state.startDate}
         />
         <p>How long was your lease length in months?</p>
         <TextInput
           id="leaseLength"
           placeholder="ex: 12"
           onChange={this.onChange}
+          value={this.state.leaseLength}
         />
         <p>Would you recommend this landlord to a friend?</p>
         <div>
@@ -160,8 +213,16 @@ class ReviewForm extends React.Component {
           id="comments"
           placeholder="ex: Wonderful landlord. Sad to move."
           onChange={this.onChange}
+          value={this.state.comments}
         />
 
+        <Checkbox
+          // checked
+          id="Checkbox_3"
+          label="Allow others to contact you?"
+          onChange={this.onCheck}
+          value={this.state.allowContact}
+        />
         <Chip
           close={false}
           closeIcon={<Icon className="close">close</Icon>}
@@ -194,6 +255,7 @@ class ReviewForm extends React.Component {
         >
           Submit Review
         </Button>
+        {this.state.submitted && <p>Form submitted</p>}
       </div>
     );
   }
