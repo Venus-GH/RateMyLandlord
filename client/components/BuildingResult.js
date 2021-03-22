@@ -40,7 +40,7 @@ class BuildingResult extends React.Component {
               libraries={["places"]}
             >
               <GoogleMap
-                mapContainerStyle={{ width: "450px", height: "550px" }}
+                mapContainerStyle={{ width: "28vw", height: "60vh" }}
                 // center={center}
                 zoom={14}
               >
@@ -84,7 +84,7 @@ class BuildingResult extends React.Component {
               libraries={["places"]}
             >
               <GoogleMap
-                mapContainerStyle={{ width: "500px", height: "700px" }}
+                mapContainerStyle={{ width: "30vw", height: "80vh" }}
                 center={coord}
                 zoom={13}
               >

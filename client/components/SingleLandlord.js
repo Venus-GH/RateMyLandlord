@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { TagCloud } from "react-tagcloud";
 import ReviewList from "./ReviewList";
 import BuildingByLandlord from "./BuildingByLandlord";
+import BarChart from "./BarChart";
 
 class SingleLandlord extends Component {
   async componentDidMount() {
@@ -18,6 +19,23 @@ class SingleLandlord extends Component {
     const buildings = this.props.landlord.buildings || [];
     const avgs = this.props.landlord.avgs || {};
     const avgWouldRecommend = avgs.avgWouldRecommend || {};
+
+    const customRenderer = (tag, size, color) => (
+      <span
+        key={tag.value}
+        style={{
+          animation: "blinker 3s linear infinite",
+          animationDelay: `${Math.random() * 2}s`,
+          fontSize: `${size / 5}em`,
+          margin: "3px",
+          padding: "3px",
+          display: "inline-block",
+          color: color,
+        }}
+      >
+        {tag.value}
+      </span>
+    );
 
     return (
       <div>
@@ -53,10 +71,16 @@ class SingleLandlord extends Component {
             </div>
             <div>
               <h6>What people say about this landlord...</h6>
-              <TagCloud minSize={12} maxSize={35} tags={tagData} />
+              <TagCloud
+                minSize={5}
+                maxSize={10}
+                tags={tagData}
+                renderer={customRenderer}
+              />
             </div>
+            <br />
             <div>
-              <h6>[Placeholder for more data visualization]</h6>
+              <BarChart avgs={avgs} />
             </div>
           </div>
           <div className="col s12 m8 l8">
