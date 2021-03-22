@@ -6,7 +6,7 @@ import { fetchAllBuildings } from "../store/buildings";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Icon } from "leaflet";
 
-const icon = new Icon({
+export const icon = new Icon({
   iconUrl: "./orangemapmarker.png",
 });
 
