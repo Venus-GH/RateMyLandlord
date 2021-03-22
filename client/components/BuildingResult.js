@@ -9,6 +9,9 @@ import { connect } from "react-redux";
 import { fetchBuilding } from "../store/buildings";
 import { Link } from "react-router-dom";
 import ReviewList from "./ReviewList";
+import { Modal, Button } from "react-materialize";
+import M from "materialize-css";
+import ReviewHome from "./Reviews/ReviewHome";
 
 class BuildingResult extends React.Component {
   constructor() {
@@ -22,6 +25,10 @@ class BuildingResult extends React.Component {
     const { address } = this.props.location.state;
     await this.props.fetchBuilding(address);
     this.setState({ isLoading: false });
+    document.addEventListener("DOMContentLoaded", function () {
+      var elems = document.querySelectorAll(".modal");
+      M.Modal.init(elems, options);
+    });
   }
 
   render() {
@@ -63,7 +70,40 @@ class BuildingResult extends React.Component {
             )}
             <h4>
               {/* <Link to={`/landlords/${landlord.id}/add`}>Add a review</Link> */}
-              <Link to="/review">Add a review</Link>
+              {/* <Link to="/review">Add a review</Link> */}
+              <div>
+                <Button className="modal-trigger" href="#modal1" node="button">
+                  Add a Review
+                </Button>
+                <Modal
+                  actions={[
+                    <Button flat modal="close" node="button" waves="green">
+                      Close
+                    </Button>,
+                  ]}
+                  bottomSheet={false}
+                  fixedFooter={false}
+                  header="Rate This Landlord"
+                  id="modal1"
+                  open={false}
+                  options={{
+                    dismissible: true,
+                    endingTop: "10%",
+                    inDuration: 250,
+                    onCloseEnd: null,
+                    onCloseStart: null,
+                    onOpenEnd: null,
+                    onOpenStart: null,
+                    opacity: 0.5,
+                    outDuration: 250,
+                    preventScrolling: true,
+                    startingTop: "4%",
+                  }}
+                  // root={[object HTMLBodyElement]}
+                >
+                  <ReviewHome />
+                </Modal>
+              </div>
             </h4>
 
             {isLoading ? (

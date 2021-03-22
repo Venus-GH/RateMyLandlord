@@ -6,6 +6,8 @@ import { TagCloud } from "react-tagcloud";
 import ReviewList from "./ReviewList";
 import BuildingByLandlord from "./BuildingByLandlord";
 import BarChart from "./BarChart";
+import { Button, Modal } from "react-materialize";
+import ReviewHome from "./Reviews/ReviewHome";
 
 class SingleLandlord extends Component {
   async componentDidMount() {
@@ -64,9 +66,46 @@ class SingleLandlord extends Component {
                 </div>
               </div>
               <div className="card-action">
-                <Link to="/review">
+                <div>
+                  <Button
+                    className="modal-trigger"
+                    href="#modal1"
+                    node="button"
+                  >
+                    Add a Review
+                  </Button>
+                  <Modal
+                    actions={[
+                      <Button flat modal="close" node="button" waves="green">
+                        Close
+                      </Button>,
+                    ]}
+                    bottomSheet={false}
+                    fixedFooter={false}
+                    header="Rate This Landlord"
+                    id="modal1"
+                    open={false}
+                    options={{
+                      dismissible: true,
+                      endingTop: "10%",
+                      inDuration: 250,
+                      onCloseEnd: null,
+                      onCloseStart: null,
+                      onOpenEnd: null,
+                      onOpenStart: null,
+                      opacity: 0.5,
+                      outDuration: 250,
+                      preventScrolling: true,
+                      startingTop: "4%",
+                    }}
+                    // root={[object HTMLBodyElement]}
+                  >
+                    <ReviewHome />
+                  </Modal>
+                </div>
+                {/* <Link to="/review">
                   Submit Review <i className="material-icons icon">send</i>
-                </Link>
+                </Link> */}
               </div>
             </div>
             <div>
