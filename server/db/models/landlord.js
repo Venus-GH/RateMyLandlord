@@ -10,24 +10,24 @@ const Landlord = db.define("landlord", {
     unique: true,
     validate: {
       notNull: {
-        msg: "Must enter a Landlord name."
-      }
-    }
-  }
+        msg: "Must enter a Landlord name.",
+      },
+    },
+  },
 });
 
-Landlord.prototype.getAverages = async function() {
+Landlord.prototype.getAverages = async function () {
   const reviews = await Review.findAll({
     where: {
-      landlordId: this.id
-    }
+      landlordId: this.id,
+    },
   });
   const grades = {
     5: "A",
     4: "B",
     3: "C",
     2: "D",
-    1: "F"
+    1: "F",
   };
   const avgGrade =
     grades[
@@ -63,24 +63,24 @@ Landlord.prototype.getAverages = async function() {
     avgResponsiveness,
     avgMaintenance,
     avgPestControl,
-    avgWouldRecommend
+    avgWouldRecommend,
   };
 };
 
-Landlord.prototype.getBuildings = async function() {
+Landlord.prototype.getBuildings = async function () {
   const buildings = await Building.findAll({
     where: {
-      landlordId: this.id
-    }
+      landlordId: this.id,
+    },
   });
   return buildings;
 };
 
-Landlord.prototype.getTags = async function() {
+Landlord.prototype.getTags = async function () {
   const reviews = await Review.findAll({
     where: {
-      landlordId: this.id
-    }
+      landlordId: this.id,
+    },
   });
 
   const flattenTagData = reviews.reduce((accumulator, curr) => {
@@ -96,7 +96,7 @@ Landlord.prototype.getTags = async function() {
     return accumulator;
   }, {});
 
-  const formatTagData = objArg => {
+  const formatTagData = (objArg) => {
     let arr = [];
     let keysArr = Object.keys(objArg);
     let valuesArr = Object.values(objArg);
@@ -112,6 +112,29 @@ Landlord.prototype.getTags = async function() {
   const tagData = formatTagData(countedTagsObj);
 
   return tagData;
+};
+
+Landlord.prototype.getMktAvgs = async function () {
+  const reviews = await Review.findAll();
+  const avgKindness =
+    reviews.reduce((accum, current) => accum + current.kindness, 0) /
+    reviews.length;
+  const avgResponsiveness =
+    reviews.reduce((accum, current) => accum + current.responsiveness, 0) /
+    reviews.length;
+  const avgMaintenance =
+    reviews.reduce((accum, current) => accum + current.maintenance, 0) /
+    reviews.length;
+  const avgPestControl =
+    reviews.reduce((accum, current) => accum + current.pestControl, 0) /
+    reviews.length;
+
+  return {
+    avgKindness,
+    avgResponsiveness,
+    avgMaintenance,
+    avgPestControl,
+  };
 };
 
 module.exports = Landlord;

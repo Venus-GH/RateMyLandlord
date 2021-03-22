@@ -18,6 +18,7 @@ class SingleLandlord extends Component {
     const tagData = this.props.landlord.tags || [];
     const buildings = this.props.landlord.buildings || [];
     const avgs = this.props.landlord.avgs || {};
+    const mktAvgs = this.props.landlord.mktAvgs || {};
     const avgWouldRecommend = avgs.avgWouldRecommend || {};
 
     const customRenderer = (tag, size, color) => (
@@ -80,7 +81,7 @@ class SingleLandlord extends Component {
             </div>
             <br />
             <div>
-              <BarChart avgs={avgs} />
+              <BarChart avgs={avgs} mktAvgs={mktAvgs} />
             </div>
           </div>
           <div className="col s12 m8 l8">
