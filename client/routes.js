@@ -10,6 +10,7 @@ import {
   Home,
   SingleLandlord,
   BuildingResult,
+  AddReview,
 } from "./components";
 import { me } from "./store";
 
@@ -33,6 +34,7 @@ class Routes extends Component {
         <Route exact path="/landlords" component={AllLandlords} />
         <Route path="/landlords/:landlordId" component={SingleLandlord} />
         <Route exact path="/" component={Home} />
+        <Route path="/review" component={AddReview} />
 
         {isLoggedIn && (
           <Switch>
