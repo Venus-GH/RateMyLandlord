@@ -64,7 +64,7 @@ form div {
 .results-container {
   display: flex;
   justify-content: space-evenly;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .home-input {
@@ -105,4 +105,28 @@ form div {
 
 #TextInput-5 {
   width: 300px;
+}
+
+#results-header {
+  background-color: lightgray;
+  margin-left: 2em;
+  margin-bottom: 1em;
+  padding: 0.8em;
+  width: 46vw;
+}
+
+#results-num-reviews {
+  font-weight: bold;
+}
+
+#results-landlord-name {
+  font-weight: bold;
+  color: blue;
+  font-size: larger;
+}
+
+#results-address {
+  font-weight: bold;
+  /* font-size: larger; */
+  font-stretch: condensed;
 }
