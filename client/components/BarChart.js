@@ -13,10 +13,14 @@ const BarChart = ({ avgs }) => {
           labels: ["Kindness", "Responsiveness", "Maintenance", "Pest Control"],
           datasets: [
             {
-              label: "Avg Rating",
+              label: "Landlord Avg Rating",
               data: avgValOnly,
-              backgroundColor: ["#094067", "#90b4ce", "#3da9fc", "#ef4565"],
-              // barThickness: 15
+              backgroundColor: ["#094067", "#5f6c7b", "#3da9fc", "#ef4565"],
+            },
+            {
+              label: "Market Avg",
+              data: [3, 4, 3.5, 5],
+              backgroundColor: ["#90b4ce", "#90b4ce", "#90b4ce", "#90b4ce"],
             },
           ],
         }}
@@ -29,6 +33,8 @@ const BarChart = ({ avgs }) => {
               {
                 ticks: {
                   beginAtZero: true,
+                  stepSize: 1,
+                  max: 5,
                 },
               },
             ],
