@@ -166,6 +166,17 @@ class ReviewForm extends React.Component {
           close={false}
           closeIcon={<Icon className="close">close</Icon>}
           options={{
+            autocompleteOptions: {
+              data: {
+                responsive: null,
+                slumlord: null,
+                kind: null,
+                mean: null,
+                communicative: null,
+                rude: null,
+                fair: null,
+              },
+            },
             onChipAdd: this.onChipAdd,
             onChipDelete: this.onChipDelete,
 
