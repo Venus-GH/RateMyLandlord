@@ -16,7 +16,7 @@ const BuildingByLandlord = ({ buildings }) => {
       <div className="col s12 m8 l7">
         <MapContainer
           center={[40.758436620589, -73.95404343903151]}
-          zoom={10}
+          zoom={11}
           scrollWheelZoom={true}
         >
           <TileLayer

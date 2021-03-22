@@ -60,7 +60,7 @@ class Home extends Component {
                 className="home-marker"
                 key={place.id}
                 icon={icon}
-                position={[place.latitude, place.longitude]}
+                position={[Number(place.latitude), Number(place.longitude)]}
               >
                 <Popup>
                   <Link to={`/landlords/${place.landlordId}`}>
