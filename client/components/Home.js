@@ -5,6 +5,8 @@ import { LoadScript, Autocomplete } from "@react-google-maps/api";
 import { fetchAllBuildings } from "../store/buildings";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Icon } from "leaflet";
+import { fetchLandlords } from "../store/landlords";
+import { Dropdown } from "react-materialize";
 
 export const icon = new Icon({
   iconUrl: "./orangemapmarker.png",
@@ -17,14 +19,17 @@ class Home extends Component {
       lat: 40.73061,
       lng: -73.935242,
       address: "",
+      searchBy: "address",
     };
     this.autocomplete = null;
     this.onLoad = this.onLoad.bind(this);
     this.onPlaceChanged = this.onPlaceChanged.bind(this);
+    this.handleSearchOption = this.handleSearchOption.bind(this);
   }
 
   async componentDidMount() {
     await this.props.getAll();
+    await this.props.getLandlords();
   }
 
   onLoad(autocomplete) {
@@ -44,9 +49,16 @@ class Home extends Component {
     }
   }
 
+  handleSearchOption(e) {
+    const option = e.target.name;
+    this.setState({ searchBy: option });
+  }
+
   render() {
-    const { address, lat, lng } = this.state;
-    const { places } = this.props;
+    console.log("in render", this.state);
+    const { address, lat, lng, searchBy } = this.state;
+
+    const { places, landlords } = this.props;
     return (
       <div className="home-view">
         <div>
@@ -75,12 +87,54 @@ class Home extends Component {
             libraries={["places"]}
           >
             <div className="home-input">
-              <Autocomplete
-                onLoad={this.onLoad}
-                onPlaceChanged={this.onPlaceChanged}
-              >
-                <input placeholder="Enter an address to get started" />
-              </Autocomplete>
+              <div>
+                <a
+                  className="btn-small"
+                  name="address"
+                  onClick={this.handleSearchOption}
+                >
+                  Search by Address
+                </a>
+                <a
+                  className="btn-small"
+                  name="landlord"
+                  onClick={this.handleSearchOption}
+                >
+                  Search by Landlord
+                </a>
+              </div>
+              {searchBy === "address" ? (
+                <Autocomplete
+                  onLoad={this.onLoad}
+                  onPlaceChanged={this.onPlaceChanged}
+                >
+                  <input placeholder="Enter an address to get started" />
+                </Autocomplete>
+              ) : (
+                <Dropdown
+                  className="home-dropdown"
+                  option={{
+                    alignment: "center",
+                    constrainWidth: false,
+                  }}
+                  trigger={
+                    <div className="select-landlord">
+                      Select from our records
+                    </div>
+                  }
+                >
+                  <div className="select-option">
+                    <div>Don't see who you're looking for?</div>
+                    <a href="/review">Add</a>
+                  </div>
+                  {landlords.map((landlord) => (
+                    <div className="select-option">
+                      <div>{landlord.name}</div>
+                      <a href={`/landlords/${landlord.id}`}>-></a>
+                    </div>
+                  ))}
+                </Dropdown>
+              )}
               {address.length ? (
                 <Link
                   to={{
@@ -113,12 +167,14 @@ class Home extends Component {
 const mapState = (state) => {
   return {
     places: state.buildings.all,
+    landlords: state.allLandlords,
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
     getAll: () => dispatch(fetchAllBuildings()),
+    getLandlords: () => dispatch(fetchLandlords()),
   };
 };
 

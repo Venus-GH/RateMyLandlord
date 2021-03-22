@@ -17,6 +17,9 @@ label {
   display: block;
 }
 
+nav {
+  z-index: 1;
+}
 /* nav a {
   display: inline-block;
   margin: 1em;
@@ -76,14 +79,32 @@ form div {
   transform: translate(-50%, -50%);
   width: 500px;
   height: 35px;
+  display: flex;
+  flex-direction: column;
 }
 
-.home-input input {
+.home-input div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.home-input a {
+  width: 50%;
+}
+
+.home-input input,
+.select-landlord {
   background-color: black;
   color: yellow;
   width: 500px;
   height: 35px;
   font-family: "Space Mono";
+}
+
+.select-option {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .leaflet-marker-icon {
