@@ -28,7 +28,7 @@ class AllLandlords extends React.Component {
 
     return (
       <div>
-        <ReviewHome />
+        {/* <ReviewHome /> */}
 
         <h3>Landlords</h3>
 

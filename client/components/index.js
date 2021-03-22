@@ -11,3 +11,4 @@ export { default as AllLandlords } from "./AllLandlords";
 export { default as SingleLandlord } from "./SingleLandlord";
 export { default as Home } from "./Home";
 export { default as BuildingResult } from "./BuildingResult";
+export { default as AddReview } from "./Reviews/ReviewHome";

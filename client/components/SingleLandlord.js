@@ -64,7 +64,7 @@ class SingleLandlord extends Component {
                 </div>
               </div>
               <div className="card-action">
-                <Link to="/reviewform">
+                <Link to="/review">
                   Submit Review <i className="material-icons icon">send</i>
                 </Link>
               </div>
