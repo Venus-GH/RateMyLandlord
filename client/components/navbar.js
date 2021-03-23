@@ -43,6 +43,9 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
               </form>
             </li>
             <li>
+              <Link to="/explore">Explore</Link>
+            </li>
+            <li>
               <Link to="/landlords">Landlords</Link>
             </li>
             <li>
