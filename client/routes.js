@@ -11,6 +11,9 @@ import {
   SingleLandlord,
   BuildingResult,
   AddReview,
+  RentInventory,
+  RentPrices,
+  Explore,
 } from "./components";
 import { me } from "./store";
 
@@ -35,6 +38,9 @@ class Routes extends Component {
         <Route path="/landlords/:landlordId" component={SingleLandlord} />
         <Route exact path="/" component={Home} />
         <Route path="/review" component={AddReview} />
+        <Route exact path="/explore" component={Explore} />
+        <Route path="/explore/pastrentinv" component={RentInventory} />
+        <Route path="/explore/pastrentprices" component={RentPrices} />
 
         {isLoggedIn && (
           <Switch>
