@@ -26,7 +26,7 @@ router.get("/search", async (req, res, next) => {
 router.get("/", async (req, res, next) => {
   try {
     const buildings = await Building.findAll();
-    console.log("BUILDINGS =>", buildings);
+
     res.json(buildings);
   } catch (err) {
     next(err);

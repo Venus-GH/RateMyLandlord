@@ -20,10 +20,6 @@ label {
 nav {
   z-index: 1;
 }
-/* nav a {
-  display: inline-block;
-  margin: 1em;
-} */
 
 form div {
   margin: 1em;
@@ -234,4 +230,14 @@ form div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+/* RentHistory */
+/* body { background-color: #30303d; color: #fff; } */
+#chartdiv {
+  width: 100%;
+  height: 500px;
+}
+
+.explore-card {
+  height: 15px;
 }

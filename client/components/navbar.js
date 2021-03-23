@@ -16,6 +16,10 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             {/* The navbar will show these links after you log in */}
             <li>
+              {" "}
+              <Link to="/landlords">Landlords</Link>
+            </li>
+            <li>
               <Link to="/home">Home</Link>
             </li>
             <li>
@@ -37,6 +41,9 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
                   <i className="material-icons">close</i>
                 </div>
               </form>
+            </li>
+            <li>
+              <Link to="/explore">Explore</Link>
             </li>
             <li>
               <Link to="/landlords">Landlords</Link>

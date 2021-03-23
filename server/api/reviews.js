@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Landlord, Review, Building } = require("../db/models");
+const { Landlord, Review, Building, User } = require("../db/models");
 module.exports = router;
 
 // POST /api/reviews/
@@ -31,17 +31,21 @@ router.post("/", async (req, res, next) => {
       where: { name: landlordName },
     });
     console.log("landlord ------>", landlord);
+    console.log("landlordid---->", landlord[0].id);
 
     // find or create building – address, landlordId
     const building = await Building.findOrCreate({
       where: { address: address },
-      defaults: { landlordId: landlord.id, latitude, longitude, borough },
+      defaults: { landlordId: landlord[0].id, latitude, longitude, borough },
     });
     console.log("building ------>", building);
     // create review -
     // (landlordName), grade, responsiveness, pestControl,
     // kindness, maintenance, bedrooms, rent, leaseLength, startDate,
     // comments, wouldRecommend, tags, userId, landlordId, buildingId
+    const user = await User.findOne({
+      where: { id: userId },
+    });
 
     const review = await Review.create({
       grade,
@@ -56,9 +60,9 @@ router.post("/", async (req, res, next) => {
       comments,
       wouldRecommend,
       tags,
-      userId,
-      landlordId: landlord.id,
-      buildingId: building.id,
+      userId: user.id,
+      landlordId: landlord[0].id,
+      buildingId: building[0].id,
       allowContact,
     });
     console.log("review ------>", review);

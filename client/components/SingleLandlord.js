@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import React, { Component, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchSingleLandlord } from "../store/singleLandlord";
@@ -22,6 +23,9 @@ class SingleLandlord extends Component {
     const avgs = this.props.landlord.avgs || {};
     const mktAvgs = this.props.landlord.mktAvgs || {};
     const avgWouldRecommend = avgs.avgWouldRecommend || {};
+    const landlordId = this.props.landlord.id;
+    const user = this.props.user;
+    console.log("landlord", this.props.landlord);
 
     const customRenderer = (tag, size, color) => (
       <span
@@ -67,43 +71,50 @@ class SingleLandlord extends Component {
                 </div>
               </div>
               <div className="card-action">
-                <div>
-                  <Button
-                    className="modal-trigger"
-                    href="#modal1"
-                    node="button"
-                  >
-                    Add a Review
-                  </Button>
-                  <Modal
-                    actions={[
-                      <Button flat modal="close" node="button" waves="green">
-                        Close
-                      </Button>,
-                    ]}
-                    bottomSheet={false}
-                    fixedFooter={false}
-                    header="Rate This Landlord"
-                    id="modal1"
-                    open={false}
-                    options={{
-                      dismissible: true,
-                      endingTop: "10%",
-                      inDuration: 250,
-                      onCloseEnd: null,
-                      onCloseStart: null,
-                      onOpenEnd: null,
-                      onOpenStart: null,
-                      opacity: 0.5,
-                      outDuration: 250,
-                      preventScrolling: true,
-                      startingTop: "4%",
-                    }}
-                    // root={[object HTMLBodyElement]}
-                  >
-                    <ReviewHome />
-                  </Modal>
-                </div>
+                {user.id ? (
+                  <div>
+                    <Button
+                      className="modal-trigger"
+                      href="#modal1"
+                      node="button"
+                    >
+                      Add a Review
+                    </Button>
+                    <Modal
+                      actions={[
+                        <Button flat modal="close" node="button" waves="green">
+                          Close
+                        </Button>,
+                      ]}
+                      bottomSheet={false}
+                      fixedFooter={false}
+                      header="Rate This Landlord"
+                      id="modal1"
+                      open={false}
+                      options={{
+                        dismissible: true,
+                        endingTop: "10%",
+                        inDuration: 250,
+                        onCloseEnd: null,
+                        onCloseStart: null,
+                        onOpenEnd: null,
+                        onOpenStart: null,
+                        opacity: 0.5,
+                        outDuration: 250,
+                        preventScrolling: true,
+                        startingTop: "4%",
+                      }}
+                      // root={[object HTMLBodyElement]}
+                    >
+                      <ReviewHome
+                        landlord={this.props.landlord}
+                        buildings={buildings}
+                      />
+                    </Modal>
+                  </div>
+                ) : (
+                  <Link to="/login">Login to submit a review!</Link>
+                )}
                 {/* <Link to="/review">
                   Submit Review <i className="material-icons icon">send</i>
                 </Link> */}
@@ -140,6 +151,7 @@ class SingleLandlord extends Component {
 const mapStateToProps = (state) => {
   return {
     landlord: state.landlord,
+    user: state.user,
   };
 };
 

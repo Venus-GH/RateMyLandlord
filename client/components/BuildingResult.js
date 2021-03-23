@@ -33,7 +33,7 @@ class BuildingResult extends React.Component {
   render() {
     const { address, lat, lng } = this.props.location.state;
     const { isLoading } = this.state;
-    const { landlord, reviews } = this.props;
+    const { landlord, reviews, user } = this.props;
     const coord = { lat, lng };
 
     return (
@@ -115,36 +115,44 @@ class BuildingResult extends React.Component {
                 </h5>
               </div>
             )}
-
-            <Modal
-              actions={[
-                <Button flat modal="close" node="button" waves="green">
-                  Close
-                </Button>,
-              ]}
-              bottomSheet={false}
-              fixedFooter={false}
-              header="Review Landlord"
-              id="Modal-0"
-              open={false}
-              options={{
-                dismissible: true,
-                endingTop: "10%",
-                inDuration: 250,
-                onCloseEnd: null,
-                onCloseStart: null,
-                onOpenEnd: null,
-                onOpenStart: null,
-                opacity: 0.5,
-                outDuration: 250,
-                preventScrolling: true,
-                startingTop: "4%",
-              }}
-              // root={[object HTMLBodyElement]}
-              trigger={<Button node="button">Review Landlord</Button>}
-            >
-              <ReviewForm address={address} />
-            </Modal>
+            {user.id ? (
+              <Modal
+                actions={[
+                  <Button flat modal="close" node="button" waves="green">
+                    Close
+                  </Button>,
+                ]}
+                bottomSheet={false}
+                fixedFooter={false}
+                header="Review Landlord"
+                id="Modal-0"
+                open={false}
+                options={{
+                  dismissible: true,
+                  endingTop: "10%",
+                  inDuration: 250,
+                  onCloseEnd: null,
+                  onCloseStart: null,
+                  onOpenEnd: null,
+                  onOpenStart: null,
+                  opacity: 0.5,
+                  outDuration: 250,
+                  preventScrolling: true,
+                  startingTop: "4%",
+                }}
+                // root={[object HTMLBodyElement]}
+                trigger={<Button node="button">Review Landlord</Button>}
+              >
+                <ReviewForm
+                  address={address}
+                  landlord={landlord}
+                  latitude={lat}
+                  longitude={lng}
+                />
+              </Modal>
+            ) : (
+              <Link to="/login">Login to submit a review!</Link>
+            )}
 
             {isLoading ? (
               <div className="progress">
@@ -172,6 +180,7 @@ const mapState = (state) => {
     building: state.buildings.single,
     landlord: state.buildings.landlord,
     reviews: state.buildings.reviews,
+    user: state.user,
   };
 };
 

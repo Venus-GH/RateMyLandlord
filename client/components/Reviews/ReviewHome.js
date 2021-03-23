@@ -16,6 +16,7 @@ import {
   Select,
   Checkbox,
 } from "react-materialize";
+import buildings from "../../store/buildings";
 let chipsData = [];
 let data = [];
 
@@ -30,11 +31,12 @@ const defaultState = {
   comments: "",
   submitted: true,
   allowContact: false,
+  landlordName: "",
 };
 
 class ReviewForm extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       bedrooms: "",
       wouldRecommend: "",
@@ -46,6 +48,7 @@ class ReviewForm extends React.Component {
       comments: "",
       submitted: false,
       allowContact: false,
+      landlordName: "",
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -54,40 +57,40 @@ class ReviewForm extends React.Component {
     this.onYes = this.onYes.bind(this);
     this.onNo = this.onNo.bind(this);
     this.onCheck = this.onCheck.bind(this);
+    this.handleProperty = this.handleProperty.bind(this);
   }
   componentDidMount() {
     console.log("this.state in review form", this.state);
+    this.setState({ address: this.props.address });
+    this.setState({ latitude: this.props.latitude });
+    this.setState({ longitude: this.props.longitude });
   }
   onChange(event) {
     this.setState({
       [event.target.id]: event.target.value,
     });
-    console.log("this.state", this.state);
   }
   async onSubmit() {
-    console.log("this.props", this.props);
-
     await this.setState({ tags: data });
-    let newReview = {
-      ...this.props.reviews,
-      landlordName: "hello",
-      grade: 5,
-      bedrooms: 2,
-      rent: 1500,
-      leaseLength: 12,
-    };
-    let newerReview = {
-      ...this.props.reviews,
-      ...this.state,
-      landlordName: "test",
+    let newerReview = "";
 
-      address: "address",
-    };
+    {
+      this.props.landlord.id
+        ? (newerReview = {
+            ...this.props.reviews,
+            ...this.state,
+            landlordName: this.props.landlord.name,
+            userId: this.props.user.id,
+          })
+        : (newerReview = {
+            ...this.props.reviews,
+            ...this.state,
+            userId: this.props.user.id,
+          });
+    }
+
     this.props.addReview(newerReview);
-    console.log("this.state", this.state);
     this.setState(defaultState);
-    console.log("this.state", this.state);
-    // this.props.addReview(this.props.reviews)
   }
   onYes() {
     this.setState({
@@ -100,33 +103,13 @@ class ReviewForm extends React.Component {
     });
   }
   onCheck() {
-    console.log("this.state.allowContact", this.state.allowContact);
-    // if (this.state.allowContact==='false'){
-    //   this.setState({allowContact: true})
-    // } else {
-    //   this.setState({allowContact})
-    // }
     this.setState({ allowContact: !this.state.allowContact });
-    console.log("this.state.allowcontact", this.state.allowContact);
   }
   onChipAdd(chips) {
-    console.log("add");
-    // console.log("event", event);
-    // console.log("value", value);
-    // this.setState({
-    //   tags: chips[0].M_Chips.chipsData,
-    // });
-
     chips[0].M_Chips.chipsData.map((tag) => {
       data.push(tag.tag);
     });
-    console.log("data", data);
     chipsData.push(chips[0].M_Chips.chipsData);
-    // console.log("this.state", this.state);
-    // var chip_data = $(".chips-initial").material_chip("data");
-    // console.log("this.state", this.state);
-    console.log("chipsData", chipsData);
-    // console.log("chpidata", chip_data);
   }
   onChipDelete() {
     console.log("deleted");
@@ -134,9 +117,73 @@ class ReviewForm extends React.Component {
   handleChange = (e) => {
     this.setState({ grade: e.target.value });
   };
+  handleProperty = (e) => {
+    this.setState({ address: e.target.value });
+  };
   render() {
+    let landlord = this.props.landlord || {};
+    let landlordBuildings = this.props.landlord.buildings || [];
+    console.log("this.props in review home", this.props);
+
     return (
       <div id="reviewForm">
+        {!this.props.address && (
+          <div>
+            <Select
+              id="Select-9"
+              multiple={false}
+              onChange={this.handleProperty}
+              options={{
+                classes: "",
+                dropdownOptions: {
+                  alignment: "left",
+                  autoTrigger: true,
+                  closeOnClick: true,
+                  constrainWidth: true,
+                  coverTrigger: true,
+                  hover: false,
+                  inDuration: 150,
+                  onCloseEnd: null,
+                  onCloseStart: null,
+                  onOpenEnd: null,
+                  onOpenStart: null,
+                  outDuration: 250,
+                },
+              }}
+              value=""
+            >
+              <option disabled value="">
+                Which property?
+              </option>
+
+              {landlordBuildings.length > 0 ? (
+                landlordBuildings.map((building) => {
+                  return (
+                    <option key={building.id} value={building.address}>
+                      {building.address}
+                    </option>
+                  );
+                })
+              ) : (
+                <option>Whoops, no properties here.</option>
+              )}
+              <option value="none"> I don't see my building here</option>
+            </Select>
+          </div>
+        )}
+        {this.state.address === "none" && (
+          <div id="googleAPIDiv">
+            <p>this will show up where people can search </p>
+          </div>
+        )}
+        {!landlord.id && (
+          <TextInput
+            id="landlordName"
+            placeholder="ex: Smith Brother Properties"
+            onChange={this.onChange}
+            value={this.state.landlordName}
+          />
+        )}
         <div id="selectDiv">
           <Select
             id="Select-9"
@@ -264,6 +311,7 @@ class ReviewForm extends React.Component {
 const mapStateToProps = (state) => {
   return {
     reviews: state.reviews,
+    user: state.user,
   };
 };
 
