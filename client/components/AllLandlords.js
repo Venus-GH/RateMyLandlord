@@ -66,6 +66,10 @@ class AllLandlords extends React.Component {
             <option value="5">F</option>
           </Select>
         </div>
+        {landlords.length === 0 && (
+          <div>Sorry, no landlords with that grade.</div>
+        )}
+
         <div className=" rowcontainer">
           <div className="row">
             {landlords.map((landlord) => (

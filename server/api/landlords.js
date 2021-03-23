@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 const router = require("express").Router();
 const { Landlord, Review, Building, User } = require("../db/models");
 
@@ -30,16 +31,45 @@ router.get("/:id", async (req, res, next) => {
 
 // GET /api/landlords/
 router.get("/", async (req, res, next) => {
+  console.log("req.query", req.query);
   try {
     let allLandlords = await Landlord.findAll({
       include: [Review, Building],
     });
+
     let newLandlordsArr = [];
     for (let i = 0; i < allLandlords.length; i++) {
       const landlord = allLandlords[i];
       const avgs = await landlord.getAverages();
       landlord.dataValues.avgs = avgs;
       newLandlordsArr.push(landlord);
+    }
+    if (req.query.filterBy) {
+      let grade = "";
+      if (req.query.filterBy === "1") {
+        grade = "A";
+      }
+      if (req.query.filterBy === "2") {
+        grade = "B";
+      }
+      if (req.query.filterBy === "3") {
+        grade = "C";
+      }
+      if (req.query.filterBy === "4") {
+        grade = "D";
+      }
+      if (req.query.filterBy === "5") {
+        grade = "F";
+      }
+      newLandlordsArr = newLandlordsArr.filter((landlord) => {
+        console.log(
+          "landlord.avgs.avgGrade",
+          landlord.dataValues.avgs.avgGrade
+        );
+        if (landlord.dataValues.avgs.avgGrade === grade) {
+          return landlord;
+        }
+      });
     }
     res.json(newLandlordsArr);
   } catch (err) {
