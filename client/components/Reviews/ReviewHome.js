@@ -89,12 +89,6 @@ class ReviewForm extends React.Component {
           });
     }
 
-    // let newerReview = {
-    //   ...this.props.reviews,
-    //   ...this.state,
-    //   landlordName: this.props.landlord.name,
-    //   userId: this.props.user.id,
-    // };
     this.props.addReview(newerReview);
     this.setState(defaultState);
   }
