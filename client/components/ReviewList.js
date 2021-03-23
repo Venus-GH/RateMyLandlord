@@ -2,6 +2,7 @@ import React from "react";
 import moment from "moment";
 
 const ReviewList = ({ reviews }) => {
+  console.log("reviews in review list", reviews);
   return (
     <div className="section">
       {reviews &&
