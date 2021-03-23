@@ -16,10 +16,11 @@ const setAllBuildings = (buildings) => ({
 export const fetchBuilding = (address) => {
   return async (dispatch) => {
     try {
-      const refinedAddress = address.slice(0, -5);
+      // const refinedAddress = address.slice(0, -5);
+
       // console.log('in fetchBuilding with refined address:', refinedAddress)
       const { data: building } = await axios.get("/api/buildings/search", {
-        params: { address: refinedAddress },
+        params: { address: address },
       });
       if (building) {
         const { data: landlord } = await axios.get(
