@@ -151,7 +151,12 @@ class BuildingResult extends React.Component {
                 // root={[object HTMLBodyElement]}
                 trigger={<Button node="button">Review Landlord</Button>}
               >
-                <ReviewForm address={address} landlord={landlord} />
+                <ReviewForm
+                  address={address}
+                  landlord={landlord}
+                  latitude={lat}
+                  longitude={lng}
+                />
               </Modal>
             ) : (
               <Link to="/login">Login to submit a review!</Link>

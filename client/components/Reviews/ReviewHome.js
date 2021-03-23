@@ -31,6 +31,7 @@ const defaultState = {
   comments: "",
   submitted: true,
   allowContact: false,
+  landlordName: "",
 };
 
 class ReviewForm extends React.Component {
@@ -47,6 +48,7 @@ class ReviewForm extends React.Component {
       comments: "",
       submitted: false,
       allowContact: false,
+      landlordName: "",
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -60,6 +62,8 @@ class ReviewForm extends React.Component {
   componentDidMount() {
     console.log("this.state in review form", this.state);
     this.setState({ address: this.props.address });
+    this.setState({ latitude: this.props.latitude });
+    this.setState({ longitude: this.props.longitude });
   }
   onChange(event) {
     this.setState({
@@ -68,13 +72,29 @@ class ReviewForm extends React.Component {
   }
   async onSubmit() {
     await this.setState({ tags: data });
+    let newerReview = "";
 
-    let newerReview = {
-      ...this.props.reviews,
-      ...this.state,
-      landlordName: this.props.landlord.name,
-      userId: this.props.user.id,
-    };
+    {
+      this.props.landlord.id
+        ? (newerReview = {
+            ...this.props.reviews,
+            ...this.state,
+            landlordName: this.props.landlord.name,
+            userId: this.props.user.id,
+          })
+        : (newerReview = {
+            ...this.props.reviews,
+            ...this.state,
+            userId: this.props.user.id,
+          });
+    }
+
+    // let newerReview = {
+    //   ...this.props.reviews,
+    //   ...this.state,
+    //   landlordName: this.props.landlord.name,
+    //   userId: this.props.user.id,
+    // };
     this.props.addReview(newerReview);
     this.setState(defaultState);
   }
@@ -161,6 +181,14 @@ class ReviewForm extends React.Component {
           <div id="googleAPIDiv">
             <p>this will show up where people can search </p>
           </div>
+        )}
+        {!landlord.id && (
+          <TextInput
+            id="landlordName"
+            placeholder="ex: Smith Brother Properties"
+            onChange={this.onChange}
+            value={this.state.landlordName}
+          />
         )}
         <div id="selectDiv">
           <Select
