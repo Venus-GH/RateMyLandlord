@@ -1,28 +1,21 @@
 import React from "react";
 import moment from "moment";
 import { Icon, Chip } from "react-materialize";
+import { fetchAllReviews, updateThumbs } from "../store/reviewList";
+import { connect } from "react-redux";
 
 class ReviewList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      thumbsUp: 0,
-      thumbsDown: 0,
-    };
-    this.clickThumbUp = this.clickThumbUp.bind(this);
-    this.clickThumbDown = this.clickThumbDown.bind(this);
+    this.clickThumb = this.clickThumb.bind(this);
   }
 
-  clickThumbUp() {
-    this.setState({
-      thumbsUp: this.state.thumbsUp + 1,
-    });
+  componentDidMount() {
+    this.props.fetchAllReviews(this.props.category, this.props.categoryId);
   }
 
-  clickThumbDown() {
-    this.setState({
-      thumbsDown: this.state.thumbsDown + 1,
-    });
+  async clickThumb(reviewId, direction) {
+    await this.props.changeThumbs(reviewId, direction);
   }
 
   render() {
@@ -92,13 +85,17 @@ class ReviewList extends React.Component {
                 <div className="review-buttons">
                   <div className="review-thumbs">
                     <div>
-                      <Icon onClick={this.clickThumbUp}>thumb_up</Icon>
-                      <span>{this.state.thumbsUp}</span>
+                      <Icon onClick={this.clickThumb(review.id, "up")}>
+                        thumb_up
+                      </Icon>
+                      <span>{review.thumbsUp}</span>
                     </div>
 
                     <div>
-                      <Icon onClick={this.clickThumbDown}>thumb_down</Icon>
-                      <span>{this.state.thumbsDown}</span>
+                      <Icon onClick={this.clickThumb(review.id, "down")}>
+                        thumb_down
+                      </Icon>
+                      <span>{review.thumbsDown}</span>
                     </div>
                   </div>
                   <div className="review-mail-flag">
@@ -115,7 +112,20 @@ class ReviewList extends React.Component {
   }
 }
 
-export default ReviewList;
+const mapState = (state) => {
+  console.log("state:", state);
+  return {
+    reviews: state.reviewList,
+  };
+};
+
+const mapDispatch = (dispatch) => ({
+  fetchAllReviews: (category, id) => dispatch(fetchAllReviews(category, id)),
+  updateThumbs: (reviewId, direction) =>
+    dispatch(updateThumbs(reviewId, direction)),
+});
+
+export default connect(mapState, mapDispatch)(ReviewList);
 
 /*
             <div className="card z-depth-0 blue-grey lighten-5" key={review.id}>

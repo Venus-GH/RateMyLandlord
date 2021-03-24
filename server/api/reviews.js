@@ -2,6 +2,36 @@ const router = require("express").Router();
 const { Landlord, Review, Building, User } = require("../db/models");
 module.exports = router;
 
+// GET /api/reviews/building/:buildingId
+// router.get('/building/:buildingId', async (req, res, next) => {
+//   try {
+//     const reviews = await Building.
+//   } catch (error) {
+//     console.log('there was an error in GET /api/reviews/building/:buildingId', error)
+//     next(error);
+//   }
+// })
+
+// GET /api/reviews/landlord/:landlordId
+// router.get('/landlord/:landlordId', async (req, res, next) => {
+//   try {
+
+//   } catch (error) {
+//     console.log('there was an error in GET /api/reviews/landlord/:landlordId', error)
+//     next(error);
+//   }
+// })
+
+// GET /api/reviews/user/:userId
+// router.get('/user/:userId', async (req, res, next) => {
+//   try {
+
+//   } catch (error) {
+//     console.log('there was an error in GET /api/reviews/user/:userId', error)
+//     next(error);
+//   }
+// })
+
 // POST /api/reviews/
 router.post("/", async (req, res, next) => {
   try {
@@ -30,19 +60,13 @@ router.post("/", async (req, res, next) => {
     const landlord = await Landlord.findOrCreate({
       where: { name: landlordName },
     });
-    console.log("landlord ------>", landlord);
-    console.log("landlordid---->", landlord[0].id);
 
     // find or create building – address, landlordId
     const building = await Building.findOrCreate({
       where: { address: address },
       defaults: { landlordId: landlord[0].id, latitude, longitude, borough },
     });
-    console.log("building ------>", building);
-    // create review -
-    // (landlordName), grade, responsiveness, pestControl,
-    // kindness, maintenance, bedrooms, rent, leaseLength, startDate,
-    // comments, wouldRecommend, tags, userId, landlordId, buildingId
+
     const user = await User.findOne({
       where: { id: userId },
     });
@@ -65,10 +89,26 @@ router.post("/", async (req, res, next) => {
       buildingId: building[0].id,
       allowContact,
     });
-    console.log("review ------>", review);
 
     res.json(review);
   } catch (error) {
+    console.log("there was an error in POST /api/reviews/");
+    next(error);
+  }
+});
+
+// PUT /api/reviews/:id/thumbs
+router.put("/:id/thumbs", async (req, res, next) => {
+  try {
+    // pass new number or just increment by 1??
+    const review = await Review.findByPk(req.params.id);
+    if (req.body.direction === "up")
+      review.update({ thumbsUp: review.thumbsUp + 1 });
+    else review.update({ thumbsDown: review.thumbsDown + 1 });
+    console.log("updated review:", review);
+    res.json(review);
+  } catch (error) {
+    console.log("there was an error in PUT /api/reviews/:id");
     next(error);
   }
 });

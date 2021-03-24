@@ -7,6 +7,7 @@ import allLandlords from "./landlords";
 import reviews from "./reviews";
 import landlord from "./singleLandlord";
 import buildings from "./buildings";
+import reviewList from "./reviewList";
 
 const reducer = combineReducers({
   user,
@@ -14,6 +15,7 @@ const reducer = combineReducers({
   landlord,
   reviews,
   buildings,
+  reviewList,
 });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
