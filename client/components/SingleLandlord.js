@@ -1,5 +1,5 @@
 /* eslint-disable complexity */
-import React, { Component, useState, useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { fetchSingleLandlord } from "../store/singleLandlord";
 import { Link } from "react-router-dom";
@@ -11,7 +11,7 @@ import { Button, Modal } from "react-materialize";
 import ReviewHome from "./Reviews/ReviewHome";
 import { setReviews } from "../store/reviewList";
 
-class SingleLandlord extends Component {
+class SingleLandlord extends React.Component {
   async componentDidMount() {
     await this.props.getSingleLandlord(this.props.match.params.landlordId);
   }
@@ -30,7 +30,6 @@ class SingleLandlord extends Component {
     const avgs = this.props.landlord.avgs || {};
     const mktAvgs = this.props.landlord.mktAvgs || {};
     const avgWouldRecommend = avgs.avgWouldRecommend || {};
-    const landlordId = this.props.landlord.id;
     const user = this.props.user;
     console.log("reviews in single landlord", reviews);
 
@@ -148,11 +147,7 @@ class SingleLandlord extends Component {
         <div className="divider" />
         <div>
           <h5>{reviews.length} reviews</h5>
-          {reviews.length > 0 ? (
-            <ReviewList className="landlord-review-list" />
-          ) : (
-            ""
-          )}
+          {reviews.length > 0 ? <ReviewList landlordPage={true} /> : ""}
         </div>
       </div>
     );
@@ -174,31 +169,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleLandlord);
-
-//TODO:
-// const SingleLandlord = (props) => {
-//   console.log("props-->", props);
-//   const landlordId = props.match.params.landlordId;
-//   const { landlord, getSingleLandlord } = props;
-//   const { name, rating, reviews } = landlord;
-
-//   useEffect(() => {
-//     getSingleLandlord(landlordId);
-//   }, []);
-
-//   return (
-//     <div className="container">
-//       <h4>Landlord Summary</h4>
-//       <div>
-//         <p>Name: {name}</p>
-//         <p>Overall Rating: {rating}</p>
-//         <p>Total Reviews: {reviews.length}</p>
-//         <p>Total Buildings: [Placeholder]</p>
-//       </div>
-//       <h4>Tag Cloud</h4>
-//       <div>
-//         <TagCloud minSize={12} maxSize={35} tags={reviews} />
-//       </div>
-//     </div>
-//   );
-// };

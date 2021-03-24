@@ -31,7 +31,13 @@ class ReviewList extends React.Component {
     console.log("reviews in review list:", this.props.reviews);
     const grade = { 1: "F", 2: "D", 3: "C", 4: "B", 5: "A" };
     return (
-      <div>
+      <div
+        className={
+          this.props.landlordPage
+            ? "landlord-review-list"
+            : "building-review-list"
+        }
+      >
         {reviews.map((review) => {
           return (
             <div key={review.id} className="review-card">
