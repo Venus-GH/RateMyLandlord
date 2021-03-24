@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import React from "react";
 import { connect } from "react-redux";
 
@@ -124,7 +125,23 @@ class ReviewForm extends React.Component {
     let landlord = this.props.landlord || {};
     let landlordBuildings = this.props.landlord.buildings || [];
     console.log("this.props in review home", this.props);
+    let reviews = this.props.reviews;
+    let reviewsKeys = this.props.reviews.keys || [];
+    console.log(
+      "this.props.reviews.keys",
+      Object.keys(this.props.reviews).length
+    );
 
+    const isEnabled = () => {
+      if (
+        Object.keys(this.props.reviews).length > 3 &&
+        this.state.grade !== ""
+      ) {
+        return true;
+      } else return false;
+    };
+    console.log("isenabled", isEnabled());
+    console.log(reviewsKeys.length, "reviewsKeys.length");
     return (
       <div id="reviewForm">
         {!this.props.address && (
@@ -293,6 +310,7 @@ class ReviewForm extends React.Component {
           }}
         />
         <Button
+          disabled={!isEnabled()}
           onClick={this.onSubmit}
           node="button"
           style={{
