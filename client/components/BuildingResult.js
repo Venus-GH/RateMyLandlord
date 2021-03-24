@@ -31,7 +31,14 @@ class BuildingResult extends React.Component {
     });
   }
 
-  componentDidUpdate(prev) {
+  async componentDidUpdate(prevProps) {
+    const { address } = this.props.location.state;
+    const prevAddress = prevProps.location.state.address;
+    if (address !== prevAddress) {
+      this.setState({ isLoading: true });
+      await this.props.fetchBuilding(address);
+      this.setState({ isLoading: false });
+    }
     if (JSON.stringify(this.props.reviews) !== JSON.stringify(prev.reviews)) {
       this.props.setReviews(this.props.reviews);
     }
@@ -43,7 +50,11 @@ class BuildingResult extends React.Component {
     const { landlord, user, reviews } = this.props || {};
     const coord = { lat, lng };
 
-    return (
+    return isLoading ? (
+      <div className="loading-screen">
+        <img src="/loading.gif" />
+      </div>
+    ) : (
       <div className="results-view">
         {landlord.name ? (
           <h6 id="results-header">
