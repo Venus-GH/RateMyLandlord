@@ -6,7 +6,7 @@ import PestReview from "./PestReview";
 import KindnessReview from "./KindnessReview";
 import ResponsivenessReview from "./ResponsivenessReview";
 import MaintenanceReview from "./MaintenanceReview";
-
+import { LoadScript, Autocomplete } from "@react-google-maps/api";
 import { addReview } from "../../store/reviews";
 
 import {
@@ -61,6 +61,9 @@ class ReviewForm extends React.Component {
     this.onNo = this.onNo.bind(this);
     this.onCheck = this.onCheck.bind(this);
     this.handleProperty = this.handleProperty.bind(this);
+    this.onLoad = this.onLoad.bind(this);
+    this.onPlaceChanged = this.onPlaceChanged.bind(this);
+    this.autocomplete = null;
   }
   componentDidMount() {
     console.log("this.state in review form", this.state);
@@ -73,6 +76,25 @@ class ReviewForm extends React.Component {
       [event.target.id]: event.target.value,
     });
   }
+
+  onLoad(autocomplete) {
+    console.log("in onload");
+    this.autocomplete = autocomplete;
+  }
+
+  onPlaceChanged() {
+    if (this.autocomplete !== null) {
+      const place = this.autocomplete.getPlace();
+      this.setState({
+        lat: place.geometry.location.lat(),
+        lng: place.geometry.location.lng(),
+        address: place.formatted_address,
+      });
+    } else {
+      console.log("Autocomplete is not loaded yet!");
+    }
+  }
+
   async onSubmit() {
     await this.setState({ tags: data });
     let newerReview = "";
@@ -195,11 +217,22 @@ class ReviewForm extends React.Component {
             </Select>
           </div>
         )}
-        {this.state.address === "none" && (
-          <div id="googleAPIDiv">
-            <p>this will show up where people can search </p>
-          </div>
-        )}
+        <LoadScript
+          googleMapsApiKey="AIzaSyCOopGii1dRKKnMTLI00ilvrrKW64KKLfk"
+          libraries={["places"]}
+        >
+          {this.state.address === "none" && (
+            // <div id="googleAPIDiv">
+            <Autocomplete
+              onLoad={this.onLoad}
+              onPlaceChanged={this.onPlaceChanged}
+            >
+              <input placeholder="Find address by building" />
+            </Autocomplete>
+
+            // </div>
+          )}
+        </LoadScript>
         {!landlord.id && (
           <TextInput
             id="landlordName"

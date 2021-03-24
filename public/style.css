@@ -249,6 +249,10 @@ form div {
   margin-bottom: 1em;
 }
 
+.pac-container {
+  z-index: 1051 !important;
+}
+
 .review-buttons {
   display: flex;
   flex-direction: row;
