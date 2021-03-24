@@ -28,11 +28,11 @@ class RentPricesHome extends Component {
     // console.log("roomType", this.state.roomType);
     return (
       <div>
-        <h5 className="center">Rent Prices by Borough</h5>
+        <h5 className="center">Median Asking Rent Prices by Borough</h5>
         <p className="center">
           2010 through 2020 by Month
           <br />
-          <em>Note: 0 means there was no data available</em>
+          <em>(Note: 0 means there was no data available)</em>
           <br />
           <Link to="/explore">
             <button
@@ -44,8 +44,9 @@ class RentPricesHome extends Component {
             </button>
           </Link>
         </p>
-        <label>View by Room Type</label>
+        <label>Room Type</label>
         <select className="browser-default" onChange={this.handleRoomType}>
+          <option value="">Choose an option</option>
           <option value="studio">Studio</option>
           <option value="oneBd">One-Bed</option>
           <option value="twoBd">Two-Bed</option>
@@ -61,7 +62,7 @@ class RentPricesHome extends Component {
               ? twoBdData
               : this.state.roomType === "threePlusBd"
               ? threePlusBdData
-              : studioData
+              : []
           }
         />
       </div>
