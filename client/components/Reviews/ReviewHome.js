@@ -33,6 +33,7 @@ const defaultState = {
   submitted: true,
   allowContact: false,
   landlordName: "",
+  address: "",
 };
 
 class ReviewForm extends React.Component {
@@ -50,6 +51,7 @@ class ReviewForm extends React.Component {
       submitted: false,
       allowContact: false,
       landlordName: "",
+      address: "",
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -125,23 +127,28 @@ class ReviewForm extends React.Component {
     let landlord = this.props.landlord || {};
     let landlordBuildings = this.props.landlord.buildings || [];
     console.log("this.props in review home", this.props);
-    let reviews = this.props.reviews;
-    let reviewsKeys = this.props.reviews.keys || [];
-    console.log(
-      "this.props.reviews.keys",
-      Object.keys(this.props.reviews).length
-    );
 
     const isEnabled = () => {
-      if (
-        Object.keys(this.props.reviews).length > 3 &&
-        this.state.grade !== ""
-      ) {
-        return true;
-      } else return false;
+      console.log("!this.props.address", !this.props.address);
+      console.log("this.state", this.state);
+      if (!this.props.address) {
+        if (
+          Object.keys(this.props.reviews).length > 3 &&
+          this.state.grade !== "" &&
+          this.state.address !== undefined
+        ) {
+          return true;
+        } else return false;
+      }
+      if (this.props.address) {
+        if (
+          Object.keys(this.props.reviews).length > 3 &&
+          this.state.grade !== ""
+        ) {
+          return true;
+        } else return false;
+      }
     };
-    console.log("isenabled", isEnabled());
-    console.log(reviewsKeys.length, "reviewsKeys.length");
     return (
       <div id="reviewForm">
         {!this.props.address && (
