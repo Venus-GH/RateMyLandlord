@@ -117,20 +117,24 @@ class Home extends Component {
                     alignment: "center",
                     constrainWidth: false,
                   }}
-                  trigger={
-                    <div className="select-landlord">
-                      Select from our records
-                    </div>
-                  }
+                  trigger={<input placeholder="Search our database" />}
                 >
                   <div className="select-option">
                     <div>Don't see who you're looking for?</div>
-                    <a href="/review">Add</a>
+                    <button type="button" className="btn-small" href="/review">
+                      Add
+                    </button>
                   </div>
                   {landlords.map((landlord) => (
                     <div className="select-option">
                       <div>{landlord.name}</div>
-                      <a href={`/landlords/${landlord.id}`}>-></a>
+                      <button
+                        type="button"
+                        className="btn-small"
+                        href={`/landlords/${landlord.id}`}
+                      >
+                        Search
+                      </button>
                     </div>
                   ))}
                 </Dropdown>
