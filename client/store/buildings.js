@@ -22,15 +22,17 @@ export const fetchBuilding = (address) => {
       const { data: building } = await axios.get("/api/buildings/search", {
         params: { address: address },
       });
+      console.log("IN THUNK", building);
       if (building) {
         const { data: landlord } = await axios.get(
           `/api/landlords/${building.landlordId}`
         );
         building.reviews = landlord.reviews;
         console.log("new building with landlord:", building);
+        dispatch(setBuilding(building));
+      } else {
+        dispatch(setBuilding({ landlord: { name: null }, reviews: null }));
       }
-
-      dispatch(setBuilding(building));
     } catch (error) {
       console.log("Error fetching building");
     }

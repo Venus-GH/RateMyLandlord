@@ -61,7 +61,7 @@ form div {
 
 .map-container {
   position: relative;
-  min-height: 100vh;
+  min-height: 800px;
   min-width: 100vh;
   width: 100%;
   top: 0;
@@ -88,6 +88,20 @@ form div {
   height: 35px;
   display: flex;
   flex-direction: column;
+}
+
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.loading-screen img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .home-input div {
@@ -249,6 +263,10 @@ form div {
   margin-bottom: 1em;
 }
 
+.pac-container {
+  z-index: 1051 !important;
+}
+
 .review-buttons {
   display: flex;
   flex-direction: row;
@@ -275,4 +293,17 @@ form div {
 
 .explore-card {
   height: 15px;
+}
+
+.auth-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-width: 992px) {
+  nav .brand-logo {
+    font-size: 1rem;
+  }
 }
