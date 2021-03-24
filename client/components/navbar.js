@@ -4,62 +4,116 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
 import { LoadScript, Autocomplete } from "@react-google-maps/api";
+import "materialize-css";
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
-  <div className="navbar">
-    <nav>
-      <div className="nav-wrapper grey darken-4">
-        <Link to="/" className="brand-logo">
-          Rate My Landlord
-        </Link>
-        {isLoggedIn ? (
-          <ul id="nav-mobile" className="right hide-on-med-and-down">
-            {/* The navbar will show these links after you log in */}
+class Navbar extends React.Component {
+  componentDidMount() {
+    document.addEventListener("DOMContentLoaded", function () {
+      var elems = document.querySelectorAll(".sidenav");
+      var instances = M.Sidenav.init(elems);
+    });
+  }
+
+  render() {
+    const { handleClick, isLoggedIn } = this.props;
+    return (
+      <div className="navbar">
+        <nav>
+          <div className="nav-wrapper grey darken-4">
+            <Link to="/" className="brand-logo">
+              Rate My Landlord
+            </Link>
+            <a href="#" data-target="mobile-demo" className="sidenav-trigger">
+              <i className="material-icons">menu</i>
+            </a>
+            {isLoggedIn ? (
+              <ul id="nav-mobile" className="right hide-on-med-and-down">
+                {/* The navbar will show these links after you log in */}
+                <li>
+                  <Link to="/home">Home</Link>
+                </li>
+                <li>
+                  <Link to="/explore">Explore</Link>
+                </li>
+                <li>
+                  <Link to="/landlords">Landlords</Link>
+                </li>
+                <li>
+                  <a href="#" onClick={handleClick}>
+                    Logout
+                  </a>
+                </li>
+              </ul>
+            ) : (
+              <ul id="nav-mobile" className="right hide-on-med-and-down">
+                {/* The navbar will show these links before you log in */}
+                <li>
+                  <form>
+                    <div className="input-field">
+                      <input id="search" type="search" required />
+                      <label className="label-icon" htmlFor="search">
+                        <i className="material-icons">search</i>
+                      </label>
+                      <i className="material-icons">close</i>
+                    </div>
+                  </form>
+                </li>
+                <li>
+                  <Link to="/explore">Explore</Link>
+                </li>
+                <li>
+                  <Link to="/landlords">Landlords</Link>
+                </li>
+                <li>
+                  <Link to="/login">Login</Link>
+                </li>
+                <li>
+                  <Link to="/signup">Sign Up</Link>
+                </li>
+              </ul>
+            )}
+          </div>
+        </nav>
+
+        <ul className="sidenav" id="mobile-demo">
+          {isLoggedIn && (
             <li>
-              {" "}
               <Link to="/landlords">Landlords</Link>
             </li>
+          )}
+          {isLoggedIn && (
             <li>
               <Link to="/home">Home</Link>
             </li>
+          )}
+          <li>
+            <Link to="/explore">Explore</Link>
+          </li>
+          <li>
+            <Link to="/landlords">Landlords</Link>
+          </li>
+          {isLoggedIn && (
             <li>
               <a href="#" onClick={handleClick}>
                 Logout
               </a>
             </li>
-          </ul>
-        ) : (
-          <ul id="nav-mobile" className="right hide-on-med-and-down">
-            {/* The navbar will show these links before you log in */}
-            <li>
-              <form>
-                <div className="input-field">
-                  <input id="search" type="search" required />
-                  <label className="label-icon" htmlFor="search">
-                    <i className="material-icons">search</i>
-                  </label>
-                  <i className="material-icons">close</i>
-                </div>
-              </form>
-            </li>
-            <li>
-              <Link to="/explore">Explore</Link>
-            </li>
-            <li>
-              <Link to="/landlords">Landlords</Link>
-            </li>
+          )}
+          {!isLoggedIn && (
             <li>
               <Link to="/login">Login</Link>
             </li>
+          )}
+          {!isLoggedIn && (
             <li>
               <Link to="/signup">Sign Up</Link>
             </li>
-          </ul>
-        )}
+          )}
+        </ul>
       </div>
-    </nav>
-  </div>
-);
+    );
+  }
+}
 
 /**
  * CONTAINER

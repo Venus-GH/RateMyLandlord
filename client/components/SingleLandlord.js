@@ -141,7 +141,7 @@ class SingleLandlord extends Component {
         <div className="divider" />
         <div>
           <h5>{reviews.length} reviews</h5>
-          <ReviewList reviews={reviews} />
+          <ReviewList reviews={reviews} user={user} />
         </div>
       </div>
     );
