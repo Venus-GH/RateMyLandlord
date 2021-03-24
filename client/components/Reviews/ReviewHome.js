@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import React from "react";
 import { connect } from "react-redux";
 
@@ -32,6 +33,7 @@ const defaultState = {
   submitted: true,
   allowContact: false,
   landlordName: "",
+  address: "",
 };
 
 class ReviewForm extends React.Component {
@@ -49,6 +51,7 @@ class ReviewForm extends React.Component {
       submitted: false,
       allowContact: false,
       landlordName: "",
+      address: "",
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -125,6 +128,27 @@ class ReviewForm extends React.Component {
     let landlordBuildings = this.props.landlord.buildings || [];
     console.log("this.props in review home", this.props);
 
+    const isEnabled = () => {
+      console.log("!this.props.address", !this.props.address);
+      console.log("this.state", this.state);
+      if (!this.props.address) {
+        if (
+          Object.keys(this.props.reviews).length > 3 &&
+          this.state.grade !== "" &&
+          this.state.address !== undefined
+        ) {
+          return true;
+        } else return false;
+      }
+      if (this.props.address) {
+        if (
+          Object.keys(this.props.reviews).length > 3 &&
+          this.state.grade !== ""
+        ) {
+          return true;
+        } else return false;
+      }
+    };
     return (
       <div id="reviewForm">
         {!this.props.address && (
@@ -293,6 +317,7 @@ class ReviewForm extends React.Component {
           }}
         />
         <Button
+          disabled={!isEnabled()}
           onClick={this.onSubmit}
           node="button"
           style={{
