@@ -30,15 +30,27 @@ class BuildingResult extends React.Component {
     });
   }
 
+  async componentDidUpdate(prevProps) {
+    const { address } = this.props.location.state;
+    const prevAddress = prevProps.location.state.address;
+    if (address !== prevAddress) {
+      this.setState({ isLoading: true });
+      await this.props.fetchBuilding(address);
+      this.setState({ isLoading: false });
+    }
+  }
+
   render() {
     const { address, lat, lng } = this.props.location.state;
     const { isLoading } = this.state;
     const { landlord, reviews, user } = this.props;
     const coord = { lat, lng };
 
-    console.log("in building result", user);
-
-    return (
+    return isLoading ? (
+      <div className="loading-screen">
+        <img src="/loading.gif" />
+      </div>
+    ) : (
       <div className="results-view">
         {landlord.name ? (
           <h6 id="results-header">

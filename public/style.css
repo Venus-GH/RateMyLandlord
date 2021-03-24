@@ -7,6 +7,7 @@
 
 body {
   font-family: "Space Mono";
+  background-color: grey;
 }
 
 a {
@@ -88,6 +89,20 @@ form div {
   height: 35px;
   display: flex;
   flex-direction: column;
+}
+
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.loading-screen img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .home-input div {
