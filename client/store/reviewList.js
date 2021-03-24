@@ -5,7 +5,7 @@ const SET_REVIEWS = "SET_REVIEWS";
 const SET_THUMBS = "SET_THUMBS";
 
 // ACTION CREATORS
-const setReviews = (reviews) => ({
+export const setReviews = (reviews) => ({
   type: SET_REVIEWS,
   reviews,
 });
@@ -27,7 +27,7 @@ export const fetchAllReviews = (category, id) => {
       dispatch(setReviews(reviews));
     } catch (error) {
       console.log(
-        "there was an error getting reviews in fetchAllReviews thunk"
+        "there was an error getting reviews in fetchAllReviews thunk "
       );
     }
   };
@@ -36,10 +36,9 @@ export const fetchAllReviews = (category, id) => {
 export const updateThumbs = (reviewId, direction) => {
   return async (dispatch) => {
     try {
-      const { data: updatedReview } = await axios.put(
-        `/api/reviews/${reviewId}/thumbs`,
-        direction
-      );
+      const {
+        data: updatedReview,
+      } = await axios.put(`/api/reviews/${reviewId}/thumbs`, { direction });
       dispatch(setThumbs(updatedReview));
     } catch (error) {
       console.log(

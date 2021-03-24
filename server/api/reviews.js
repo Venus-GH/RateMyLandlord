@@ -2,36 +2,6 @@ const router = require("express").Router();
 const { Landlord, Review, Building, User } = require("../db/models");
 module.exports = router;
 
-// GET /api/reviews/building/:buildingId
-// router.get('/building/:buildingId', async (req, res, next) => {
-//   try {
-//     const reviews = await Building.
-//   } catch (error) {
-//     console.log('there was an error in GET /api/reviews/building/:buildingId', error)
-//     next(error);
-//   }
-// })
-
-// GET /api/reviews/landlord/:landlordId
-// router.get('/landlord/:landlordId', async (req, res, next) => {
-//   try {
-
-//   } catch (error) {
-//     console.log('there was an error in GET /api/reviews/landlord/:landlordId', error)
-//     next(error);
-//   }
-// })
-
-// GET /api/reviews/user/:userId
-// router.get('/user/:userId', async (req, res, next) => {
-//   try {
-
-//   } catch (error) {
-//     console.log('there was an error in GET /api/reviews/user/:userId', error)
-//     next(error);
-//   }
-// })
-
 // POST /api/reviews/
 router.post("/", async (req, res, next) => {
   try {
@@ -105,7 +75,6 @@ router.put("/:id/thumbs", async (req, res, next) => {
     if (req.body.direction === "up")
       review.update({ thumbsUp: review.thumbsUp + 1 });
     else review.update({ thumbsDown: review.thumbsDown + 1 });
-    console.log("updated review:", review);
     res.json(review);
   } catch (error) {
     console.log("there was an error in PUT /api/reviews/:id");

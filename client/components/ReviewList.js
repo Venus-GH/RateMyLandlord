@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import { fetchAllReviews, updateThumbs } from "../store/reviewList";
+import { setReviews, updateThumbs } from "../store/reviewList";
 import { connect } from "react-redux";
 import { Modal, Button, Icon, Chip } from "react-materialize";
 import { Link } from "react-router-dom";
@@ -13,17 +13,22 @@ class ReviewList extends React.Component {
     this.clickThumb = this.clickThumb.bind(this);
   }
 
-  componentDidMount() {
-    this.props.fetchAllReviews(this.props.category, this.props.categoryId);
-  }
+  // componentDidUpdate(prev) {
+  //   if (
+  //     JSON.stringify(this.props.reviewsProp) !==
+  //     JSON.stringify(prev.reviewsProp)
+  //   ) {
+  //     this.props.setReviews(this.props.reviewsProp);
+  //   }
+  // }
 
-  async clickThumb(reviewId, direction) {
-    await this.props.changeThumbs(reviewId, direction);
+  clickThumb(reviewId, direction) {
+    this.props.changeThumbs(reviewId, direction);
   }
 
   render() {
-    const { reviews, user } = this.props;
-    console.log("reviews:", reviews);
+    const { reviews, user } = this.props || [];
+    console.log("reviews in review list:", this.props.reviews);
     const grade = { 1: "F", 2: "D", 3: "C", 4: "B", 5: "A" };
     return (
       <div>
@@ -88,16 +93,24 @@ class ReviewList extends React.Component {
                 <div className="review-buttons">
                   <div className="review-thumbs">
                     <div>
-                      <Icon onClick={this.clickThumb(review.id, "up")}>
-                        thumb_up
-                      </Icon>
+                      <button
+                        className="transparent-button"
+                        type="button"
+                        onClick={() => this.clickThumb(review.id, "up")}
+                      >
+                        <Icon>thumb_up</Icon>
+                      </button>
                       <span>{review.thumbsUp}</span>
                     </div>
 
                     <div>
-                      <Icon onClick={this.clickThumb(review.id, "down")}>
-                        thumb_down
-                      </Icon>
+                      <button
+                        className="transparent-button"
+                        type="button"
+                        onClick={() => this.clickThumb(review.id, "down")}
+                      >
+                        <Icon>thumb_down</Icon>
+                      </button>
                       <span>{review.thumbsDown}</span>
                     </div>
                   </div>
@@ -134,7 +147,10 @@ class ReviewList extends React.Component {
                         }}
                         // root={[object HTMLBodyElement]}
                         trigger={
-                          <Button tooltip="Contact this user">
+                          <Button
+                            tooltip="Contact this user"
+                            className="transparent-button"
+                          >
                             <Icon>email</Icon>
                           </Button>
                         }
@@ -179,7 +195,7 @@ class ReviewList extends React.Component {
                       }}
                       // root={[object HTMLBodyElement]}
                       trigger={
-                        <Button tooltip="Report">
+                        <Button className="transparent-button" tooltip="Report">
                           <Icon>flag</Icon>
                         </Button>
                       }
@@ -207,12 +223,13 @@ const mapState = (state) => {
   console.log("state:", state);
   return {
     reviews: state.reviewList,
+    user: state.user,
   };
 };
 
 const mapDispatch = (dispatch) => ({
-  fetchAllReviews: (category, id) => dispatch(fetchAllReviews(category, id)),
-  updateThumbs: (reviewId, direction) =>
+  setReviews: (reviews) => dispatch(setReviews(reviews)),
+  changeThumbs: (reviewId, direction) =>
     dispatch(updateThumbs(reviewId, direction)),
 });
 

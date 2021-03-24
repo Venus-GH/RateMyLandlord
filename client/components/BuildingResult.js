@@ -36,7 +36,7 @@ class BuildingResult extends React.Component {
     const { landlord, reviews, user } = this.props;
     const coord = { lat, lng };
 
-    console.log("in building result", user);
+    console.log("this.props in Building result", this.props);
 
     return (
       <div className="results-view">
@@ -163,7 +163,10 @@ class BuildingResult extends React.Component {
             ) : landlord.name ? (
               <div>
                 <h6>{reviews.length} Reviews</h6>
-                <ReviewList reviews={reviews} user={user} />
+                <ReviewList
+                  reviews={reviews}
+                  classname="building-review-list"
+                />
               </div>
             ) : (
               <div>No reviews yet... Add a review to get started.</div>

@@ -261,12 +261,17 @@ form div {
 .review-thumbs {
   display: flex;
   justify-content: space-between;
-  width: 5.5em;
+  width: 8em;
 }
 
 .review-mail-flag {
   display: flex;
   justify-content: space-between;
+}
+
+.transparent-button {
+  background-color: transparent;
+  border: none;
 }
 
 /* RentHistory */

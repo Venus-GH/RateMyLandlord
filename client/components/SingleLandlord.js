@@ -9,10 +9,17 @@ import BuildingByLandlord from "./BuildingByLandlord";
 import BarChart from "./BarChart";
 import { Button, Modal } from "react-materialize";
 import ReviewHome from "./Reviews/ReviewHome";
+import { setReviews } from "../store/reviewList";
 
 class SingleLandlord extends Component {
   async componentDidMount() {
     await this.props.getSingleLandlord(this.props.match.params.landlordId);
+  }
+
+  componentDidUpdate(prev) {
+    if (JSON.stringify(this.props.landlord) !== JSON.stringify(prev.landlord)) {
+      this.props.setReviews(this.props.landlord.reviews);
+    }
   }
 
   render() {
@@ -25,7 +32,7 @@ class SingleLandlord extends Component {
     const avgWouldRecommend = avgs.avgWouldRecommend || {};
     const landlordId = this.props.landlord.id;
     const user = this.props.user;
-    console.log("landlord", this.props.landlord);
+    console.log("reviews in single landlord", reviews);
 
     const customRenderer = (tag, size, color) => (
       <span
@@ -141,7 +148,11 @@ class SingleLandlord extends Component {
         <div className="divider" />
         <div>
           <h5>{reviews.length} reviews</h5>
-          <ReviewList reviews={reviews} user={user} />
+          {reviews.length > 0 ? (
+            <ReviewList className="landlord-review-list" />
+          ) : (
+            ""
+          )}
         </div>
       </div>
     );
@@ -158,6 +169,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getSingleLandlord: (id) => dispatch(fetchSingleLandlord(id)),
+    setReviews: (reviews) => dispatch(setReviews(reviews)),
   };
 };
 
