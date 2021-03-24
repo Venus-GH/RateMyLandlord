@@ -1,5 +1,7 @@
 import React from "react";
 import moment from "moment";
+import { setReviews, updateThumbs } from "../store/reviewList";
+import { connect } from "react-redux";
 import { Modal, Button, Icon, Chip } from "react-materialize";
 import { Link } from "react-router-dom";
 import ContactForm from "./ContactForm";
@@ -8,32 +10,34 @@ import ReportForm from "./ReportForm";
 class ReviewList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      thumbsUp: 0,
-      thumbsDown: 0,
-    };
-    this.clickThumbUp = this.clickThumbUp.bind(this);
-    this.clickThumbDown = this.clickThumbDown.bind(this);
+    this.clickThumb = this.clickThumb.bind(this);
   }
 
-  clickThumbUp() {
-    this.setState({
-      thumbsUp: this.state.thumbsUp + 1,
-    });
-  }
+  // componentDidUpdate(prev) {
+  //   if (
+  //     JSON.stringify(this.props.reviewsProp) !==
+  //     JSON.stringify(prev.reviewsProp)
+  //   ) {
+  //     this.props.setReviews(this.props.reviewsProp);
+  //   }
+  // }
 
-  clickThumbDown() {
-    this.setState({
-      thumbsDown: this.state.thumbsDown + 1,
-    });
+  clickThumb(reviewId, direction) {
+    this.props.changeThumbs(reviewId, direction);
   }
 
   render() {
-    const { reviews, user } = this.props;
-    console.log("reviews:", reviews);
+    const { reviews, user } = this.props || [];
+    console.log("reviews in review list:", this.props.reviews);
     const grade = { 1: "F", 2: "D", 3: "C", 4: "B", 5: "A" };
     return (
-      <div>
+      <div
+        className={
+          this.props.landlordPage
+            ? "landlord-review-list"
+            : "building-review-list"
+        }
+      >
         {reviews.map((review) => {
           return (
             <div key={review.id} className="review-card">
@@ -51,7 +55,9 @@ class ReviewList extends React.Component {
               </div>
               <div className="review-body">
                 <div className="review-address-date">
-                  {/* <div className="review-address">{review.address}</div> */}
+                  <div className="review-address">
+                    {review.building.address}
+                  </div>
                   <div className="review-date">
                     {moment(review.createdAt).format("LL")}
                   </div>
@@ -93,13 +99,25 @@ class ReviewList extends React.Component {
                 <div className="review-buttons">
                   <div className="review-thumbs">
                     <div>
-                      <Icon onClick={this.clickThumbUp}>thumb_up</Icon>
-                      <span>{this.state.thumbsUp}</span>
+                      <button
+                        className="transparent-button"
+                        type="button"
+                        onClick={() => this.clickThumb(review.id, "up")}
+                      >
+                        <Icon>thumb_up</Icon>
+                      </button>
+                      <span>{review.thumbsUp}</span>
                     </div>
 
                     <div>
-                      <Icon onClick={this.clickThumbDown}>thumb_down</Icon>
-                      <span>{this.state.thumbsDown}</span>
+                      <button
+                        className="transparent-button"
+                        type="button"
+                        onClick={() => this.clickThumb(review.id, "down")}
+                      >
+                        <Icon>thumb_down</Icon>
+                      </button>
+                      <span>{review.thumbsDown}</span>
                     </div>
                   </div>
                   <div className="review-mail-flag">
@@ -135,7 +153,10 @@ class ReviewList extends React.Component {
                         }}
                         // root={[object HTMLBodyElement]}
                         trigger={
-                          <Button tooltip="Contact this user">
+                          <Button
+                            tooltip="Contact this user"
+                            className="transparent-button"
+                          >
                             <Icon>email</Icon>
                           </Button>
                         }
@@ -180,7 +201,7 @@ class ReviewList extends React.Component {
                       }}
                       // root={[object HTMLBodyElement]}
                       trigger={
-                        <Button tooltip="Report">
+                        <Button className="transparent-button" tooltip="Report">
                           <Icon>flag</Icon>
                         </Button>
                       }
@@ -204,4 +225,34 @@ class ReviewList extends React.Component {
   }
 }
 
-export default ReviewList;
+const mapState = (state) => {
+  console.log("state:", state);
+  return {
+    reviews: state.reviewList,
+    user: state.user,
+  };
+};
+
+const mapDispatch = (dispatch) => ({
+  setReviews: (reviews) => dispatch(setReviews(reviews)),
+  changeThumbs: (reviewId, direction) =>
+    dispatch(updateThumbs(reviewId, direction)),
+});
+
+export default connect(mapState, mapDispatch)(ReviewList);
+
+/*
+            <div className="card z-depth-0 blue-grey lighten-5" key={review.id}>
+              <div className="card-content grey-text text-darken-4">
+                <p className="grey-text">
+                  {review.user.preferredName
+                    ? review.user.preferredName
+                    : "Anonymous"}
+                </p>
+                <p className="grey-text">
+                  {moment(review.createdAt).format("LL")}
+                </p>
+                <p className="grey-text">{review.comments}</p>
+              </div>
+            </div>
+*/

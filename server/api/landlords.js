@@ -12,7 +12,7 @@ router.get("/:id", async (req, res, next) => {
       where: { id: id },
       include: {
         model: Review,
-        include: User,
+        include: [User, Building],
       },
     });
     const avgs = await singleLandlord.getAverages();

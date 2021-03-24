@@ -180,15 +180,24 @@ form div {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   margin: 2em;
+  height: 300px;
+  padding: 1.5em;
+}
+
+.building-review-list {
+  max-width: 65em;
+}
+
+.landlord-review-list {
   max-width: 80em;
-  padding: 1em;
 }
 
 .review-boxes {
   display: flex;
   flex-direction: column;
   width: 8em;
-  margin-right: 1.5em;
+  margin-top: 1em;
+  margin-right: 1em;
 }
 
 .review-box {
@@ -213,14 +222,13 @@ form div {
   justify-content: center;
   align-items: center;
   background-color: salmon;
-  width: 6vw;
-  height: 6vw;
-  min-height: 80px;
-  min-width: 80px;
+  width: 80px;
+  height: 80px;
 }
 
 .review-body {
   width: 65em;
+  /* font-size: large; */
   max-width: 6;
   display: flex;
   flex-direction: column;
@@ -231,8 +239,9 @@ form div {
   display: flex;
   flex-direction: row;
   font-weight: bolder;
-  justify-content: flex-end;
-  margin-bottom: 2em;
+  font-size: large;
+  justify-content: space-between;
+  margin-bottom: 0.5em;
 }
 
 .review-ratings {
@@ -256,7 +265,8 @@ form div {
 }
 
 .review-comments {
-  min-height: 10em;
+  font-size: large;
+  min-height: 6em;
 }
 
 .review-tags {
@@ -276,12 +286,17 @@ form div {
 .review-thumbs {
   display: flex;
   justify-content: space-between;
-  width: 6em;
+  width: 8em;
 }
 
 .review-mail-flag {
   display: flex;
   justify-content: space-between;
+}
+
+.transparent-button {
+  background-color: transparent;
+  border: none;
 }
 
 /* RentHistory */

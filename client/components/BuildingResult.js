@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import ReviewList from "./ReviewList";
 import ReviewForm from "./Reviews/ReviewHome";
 import { Modal, Button, Tabs, Tab } from "react-materialize";
+import { setReviews } from "../store/reviewList";
 
 class BuildingResult extends React.Component {
   constructor() {
@@ -38,12 +39,15 @@ class BuildingResult extends React.Component {
       await this.props.fetchBuilding(address);
       this.setState({ isLoading: false });
     }
+    if (JSON.stringify(this.props.reviews) !== JSON.stringify(prev.reviews)) {
+      this.props.setReviews(this.props.reviews);
+    }
   }
 
   render() {
     const { address, lat, lng } = this.props.location.state;
     const { isLoading } = this.state;
-    const { landlord, reviews, user } = this.props;
+    const { landlord, user, reviews } = this.props || {};
     const coord = { lat, lng };
 
     return isLoading ? (
@@ -62,7 +66,8 @@ class BuildingResult extends React.Component {
           </h6>
         ) : (
           <h5 id="results-header">
-            No reviews "(yet!)" for <span id="results-address">{address}</span>
+            {"No reviews (yet!) for"}{" "}
+            <span id="results-address">{address}</span>
           </h5>
         )}
 
@@ -175,7 +180,7 @@ class BuildingResult extends React.Component {
             ) : landlord.name ? (
               <div>
                 <h6>{reviews.length} Reviews</h6>
-                <ReviewList reviews={reviews} user={user} />
+                {reviews.length > 0 ? <ReviewList landlordPage={false} /> : ""}
               </div>
             ) : (
               <div>No reviews yet... Add a review to get started.</div>
@@ -201,6 +206,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     fetchBuilding: (address) => dispatch(fetchBuilding(address)),
+    setReviews: (reviews) => dispatch(setReviews(reviews)),
   };
 };
 
