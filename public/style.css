@@ -163,9 +163,8 @@ form div {
 .review-boxes {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   width: 8em;
-  margin-right: 2em;
+  margin-right: 1.5em;
 }
 
 .review-box {
@@ -173,6 +172,7 @@ form div {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 2em;
   /* align-items: center;*/
   margin-right: 2em;
 }
@@ -206,6 +206,7 @@ form div {
 .review-address-date {
   display: flex;
   flex-direction: row;
+  font-weight: bolder;
   justify-content: flex-end;
   margin-bottom: 2em;
 }
@@ -214,8 +215,20 @@ form div {
   /* width: 30vw; */
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   margin-bottom: 1em;
+}
+
+.review-rating {
+  margin-left: 2em;
+}
+
+.review-rating-name {
+  font-weight: bolder;
+}
+
+.review-rating-num {
+  font-size: x-large;
+  font-weight: bolder;
 }
 
 .review-comments {
@@ -231,6 +244,19 @@ form div {
   flex-direction: row;
   justify-content: space-between;
 }
+
+.review-thumbs {
+  display: flex;
+  justify-content: space-between;
+  width: 6em;
+}
+
+.review-mail-flag {
+  display: flex;
+  justify-content: space-between;
+  width: 5em;
+}
+
 /* RentHistory */
 /* body { background-color: #30303d; color: #fff; } */
 #chartdiv {
