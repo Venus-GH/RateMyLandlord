@@ -264,7 +264,6 @@ form div {
 .review-mail-flag {
   display: flex;
   justify-content: space-between;
-  width: 5em;
 }
 
 /* RentHistory */

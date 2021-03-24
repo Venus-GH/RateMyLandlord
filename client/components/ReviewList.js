@@ -3,6 +3,7 @@ import moment from "moment";
 import { Modal, Button, Icon, Chip } from "react-materialize";
 import { Link } from "react-router-dom";
 import ContactForm from "./ContactForm";
+import ReportForm from "./ReportForm";
 
 class ReviewList extends React.Component {
   constructor(props) {
@@ -189,10 +190,7 @@ class ReviewList extends React.Component {
                           <Link to="/login">Login</Link> to report this review!
                         </p>
                       ) : (
-                        <ContactForm
-                          to_email={review.user.email}
-                          reply_to={user.email}
-                        />
+                        <ReportForm reply_to={user.email} />
                       )}
                     </Modal>
                   </div>
