@@ -48,7 +48,9 @@ class ReviewList extends React.Component {
               </div>
               <div className="review-body">
                 <div className="review-address-date">
-                  {/* <div className="review-address">{review.address}</div> */}
+                  <div className="review-address">
+                    {review.building.address}
+                  </div>
                   <div className="review-date">
                     {moment(review.createdAt).format("LL")}
                   </div>
