@@ -78,6 +78,11 @@ class Navbar extends React.Component {
         <ul className="sidenav" id="mobile-demo">
           {isLoggedIn && (
             <li>
+              <Link to="/landlords">Landlords</Link>
+            </li>
+          )}
+          {isLoggedIn && (
+            <li>
               <Link to="/home">Home</Link>
             </li>
           )}
@@ -89,7 +94,9 @@ class Navbar extends React.Component {
           </li>
           {isLoggedIn && (
             <li>
-              <Link to="/logout">Logout</Link>
+              <a href="#" onClick={handleClick}>
+                Logout
+              </a>
             </li>
           )}
           {!isLoggedIn && (

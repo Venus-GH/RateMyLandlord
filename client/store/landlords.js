@@ -26,7 +26,7 @@ export const fetchLandlords = () => {
 export const filterLandlords = (filter) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`/api/products?filterBy=${filter}`);
+      const { data } = await axios.get(`/api/landlords?filterBy=${filter}`);
       dispatch(_filterLandlords(data));
     } catch (error) {
       console.log("Error fetching filtered landlords from the server");

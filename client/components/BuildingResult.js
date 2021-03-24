@@ -17,9 +17,7 @@ class BuildingResult extends React.Component {
     super();
     this.state = {
       isLoading: true,
-      streetView: true,
     };
-    this.handleClick = this.handleClick.bind(this);
   }
 
   async componentDidMount() {
@@ -30,12 +28,6 @@ class BuildingResult extends React.Component {
       var elems = document.querySelectorAll(".modal");
       M.Modal.init(elems, options);
     });
-  }
-
-  handleClick() {
-    this.state.streetView === true
-      ? this.setState({ streetView: false })
-      : this.setState({ streetView: true });
   }
 
   render() {
