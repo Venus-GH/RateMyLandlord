@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { Tabs, Tab } from "react-materialize";
 import { Icon } from "leaflet";
 import BuildingList from "./BuildingList";
 
@@ -14,38 +15,62 @@ const BuildingByLandlord = ({ buildings }) => {
   return (
     <div className="section">
       <div className="col s12 m8 l7">
-        <MapContainer
-          center={[40.758436620589, -73.95404343903151]}
-          zoom={11}
-          scrollWheelZoom={true}
-        >
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          />
-
-          {buildings.map((building) => (
-            <Marker
-              key={building.id}
-              icon={icon}
-              position={[building.latitude, building.longitude]}
+        <Tabs className="tab-demo z-depth-1">
+          <Tab
+            options={{
+              duration: 300,
+              onShow: null,
+              responsiveThreshold: Infinity,
+              swipeable: false,
+            }}
+            title="Map"
+          >
+            <MapContainer
+              center={[40.758436620589, -73.95404343903151]}
+              zoom={11}
+              scrollWheelZoom={true}
             >
-              <Popup
-                onOpen={() => setActiveBuilding(building)}
-                onClose={() => {
-                  setActiveBuilding(null);
-                }}
-              >
-                {building.address}
-                <br />
-                {building.borough}
-              </Popup>
-            </Marker>
-          ))}
-        </MapContainer>
-      </div>
-      <div className="col s12 m4 l5">
-        <BuildingList buildings={buildings} activeBuilding={activeBuilding} />
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+              />
+
+              {buildings.map((building) => (
+                <Marker
+                  key={building.id}
+                  icon={icon}
+                  position={[building.latitude, building.longitude]}
+                >
+                  <Popup
+                    onOpen={() => setActiveBuilding(building)}
+                    onClose={() => {
+                      setActiveBuilding(null);
+                    }}
+                  >
+                    {building.address}
+                    <br />
+                    {building.borough}
+                  </Popup>
+                </Marker>
+              ))}
+            </MapContainer>
+          </Tab>
+          <Tab
+            active
+            options={{
+              duration: 300,
+              onShow: null,
+              responsiveThreshold: Infinity,
+              swipeable: false,
+            }}
+            title="List of Buildings"
+          >
+            <BuildingList
+              buildings={buildings}
+              activeBuilding={activeBuilding}
+            />
+          </Tab>
+        </Tabs>
       </div>
     </div>
   );

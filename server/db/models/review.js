@@ -133,6 +133,14 @@ const Review = db.define("review", {
   allowContact: {
     type: Sequelize.BOOLEAN,
   },
+  thumbsUp: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+  },
+  thumbsDown: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+  },
 });
 
 module.exports = Review;
