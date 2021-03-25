@@ -22,7 +22,7 @@ router.get("/:id/reviews", async (req, res, next) => {
   try {
     const reviews = await Review.findAll({
       where: { userId: req.params.id },
-      include: [Building, Landlord],
+      include: [Building, Landlord, User],
     });
     res.json(reviews);
   } catch (err) {

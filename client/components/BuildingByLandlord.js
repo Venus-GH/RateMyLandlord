@@ -39,7 +39,10 @@ const BuildingByLandlord = ({ buildings }) => {
                 <Marker
                   key={building.id}
                   icon={icon}
-                  position={[building.latitude, building.longitude]}
+                  position={[
+                    Number(building.latitude),
+                    Number(building.longitude),
+                  ]}
                 >
                   <Popup
                     onOpen={() => setActiveBuilding(building)}
