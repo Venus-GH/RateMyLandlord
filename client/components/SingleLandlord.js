@@ -3,13 +3,13 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchSingleLandlord } from "../store/singleLandlord";
 import { Link } from "react-router-dom";
-import { TagCloud } from "react-tagcloud";
 import ReviewList from "./ReviewList";
 import BuildingByLandlord from "./BuildingByLandlord";
 import BarChart from "./BarChart";
 import { Button, Modal } from "react-materialize";
 import ReviewHome from "./Reviews/ReviewHome";
 import { setReviews } from "../store/reviewList";
+import WordCloud from "./WordCloud";
 
 class SingleLandlord extends React.Component {
   async componentDidMount() {
@@ -31,24 +31,7 @@ class SingleLandlord extends React.Component {
     const mktAvgs = this.props.landlord.mktAvgs || {};
     const avgWouldRecommend = avgs.avgWouldRecommend || {};
     const user = this.props.user;
-    console.log("reviews in single landlord", reviews);
-
-    const customRenderer = (tag, size, color) => (
-      <span
-        key={tag.value}
-        style={{
-          animation: "blinker 3s linear infinite",
-          animationDelay: `${Math.random() * 2}s`,
-          fontSize: `${size / 5}em`,
-          margin: "3px",
-          padding: "3px",
-          display: "inline-block",
-          color: color,
-        }}
-      >
-        {tag.value}
-      </span>
-    );
+    // console.log("reviews in single landlord", reviews);
 
     return (
       <div>
@@ -121,26 +104,18 @@ class SingleLandlord extends React.Component {
                 ) : (
                   <Link to="/login">Login to submit a review!</Link>
                 )}
-                {/* <Link to="/review">
-                  Submit Review <i className="material-icons icon">send</i>
-                </Link> */}
               </div>
-            </div>
-            <div>
-              <h6>What people say about this landlord...</h6>
-              <TagCloud
-                minSize={5}
-                maxSize={10}
-                tags={tagData}
-                renderer={customRenderer}
-              />
             </div>
             <br />
             <div>
               <BarChart avgs={avgs} mktAvgs={mktAvgs} />
             </div>
           </div>
-          <div className="col s12 m8 l8">
+          <div className="col s12 m4 l4">
+            <h5>What people say about this landlord...</h5>
+            <WordCloud tagData={tagData} />
+          </div>
+          <div className="col s12 m4 l4">
             <BuildingByLandlord buildings={buildings} />
           </div>
         </div>
