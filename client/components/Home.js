@@ -126,7 +126,7 @@ class Home extends Component {
                     </button>
                   </div>
                   {landlords.map((landlord) => (
-                    <div className="select-option">
+                    <div className="select-option" key={landlord.id}>
                       <div>{landlord.name}</div>
                       <button
                         type="button"
