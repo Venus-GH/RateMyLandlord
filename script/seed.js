@@ -10,12 +10,12 @@ async function seed() {
   const users = [
     {
       email: "cody@email.com",
-      perferredName: "Cody",
+      preferredName: "Cody",
       password: "123",
     },
     {
       email: "murphy@email.com",
-      perferredName: "Murphy",
+      preferredName: "Murphy",
       password: "123",
     },
     {
