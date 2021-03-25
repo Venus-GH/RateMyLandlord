@@ -14,7 +14,7 @@ const BuildingByLandlord = ({ buildings }) => {
 
   return (
     <div className="section">
-      <div className="col s12 m8 l7">
+      <div className="col s12 m12 l12">
         <Tabs className="tab-demo z-depth-1">
           <Tab
             options={{

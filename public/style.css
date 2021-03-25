@@ -47,13 +47,6 @@ form div {
   height: 70vh;
 }
 
-/* WordCloud */
-@keyframes blinker {
-  50% {
-    opacity: 0;
-  }
-}
-
 /* Home */
 .home-view {
   height: 100%;
@@ -300,7 +293,6 @@ form div {
 }
 
 /* RentHistory */
-/* body { background-color: #30303d; color: #fff; } */
 #chartdiv {
   width: 100%;
   height: 500px;
