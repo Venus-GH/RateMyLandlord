@@ -309,6 +309,11 @@ form div {
   transform: translate(-50%, -50%);
 }
 
+#account-container {
+  margin: 100px 20vw;
+  background-color: rgb(250, 229, 229);
+}
+
 @media only screen and (max-width: 992px) {
   nav .brand-logo {
     font-size: 1rem;

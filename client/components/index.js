@@ -16,3 +16,4 @@ export { default as RentInventory } from "./RentInventory";
 export { default as RentPrices } from "./RentPrices";
 export { default as RentPricesHome } from "./RentPricesHome";
 export { default as Explore } from "./Explore";
+export { default as Account } from "./Account";

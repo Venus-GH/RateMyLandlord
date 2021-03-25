@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
 import { Icon } from "react-materialize";
-import { LoadScript, Autocomplete } from "@react-google-maps/api";
 import "materialize-css";
 
 class Navbar extends React.Component {
@@ -38,6 +37,9 @@ class Navbar extends React.Component {
                 </li>
                 <li>
                   <Link to="/landlords">Landlords</Link>
+                </li>
+                <li>
+                  <Link to="/account">Account</Link>
                 </li>
                 <li>
                   <a href="#" onClick={handleClick}>
@@ -92,6 +94,11 @@ class Navbar extends React.Component {
               <a href="#" onClick={handleClick}>
                 Logout
               </a>
+            </li>
+          )}
+          {isLoggedIn && (
+            <li>
+              <Link to="/account">Account</Link>
             </li>
           )}
           {!isLoggedIn && (
