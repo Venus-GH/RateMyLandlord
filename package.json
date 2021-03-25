@@ -79,6 +79,7 @@
     "react-router-dom": "^5.0.0",
     "react-star-rating": "^1.4.2",
     "react-tagcloud": "^2.0.0",
+    "react-webcam": "^5.2.3",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
