@@ -27,17 +27,12 @@ class ReviewList extends React.Component {
   }
 
   render() {
+    console.log("in review list with props:", this.props);
     const { reviews, user } = this.props || [];
     console.log("reviews in review list:", this.props.reviews);
     const grade = { 1: "F", 2: "D", 3: "C", 4: "B", 5: "A" };
     return (
-      <div
-        className={
-          this.props.landlordPage
-            ? "landlord-review-list"
-            : "building-review-list"
-        }
-      >
+      <div className={this.props.type}>
         {reviews.map((review) => {
           return (
             <div key={review.id} className="review-card">
@@ -55,9 +50,32 @@ class ReviewList extends React.Component {
               </div>
               <div className="review-body">
                 <div className="review-address-date">
-                  <div className="review-address">
-                    {review.building.address}
-                  </div>
+                  {this.props.type === "user-review-list" ? (
+                    <div>
+                      <Link to={`/landlords/${review.landlordId}`}>
+                        {review.landlord.name}
+                      </Link>
+                      {" – "}
+                      <Link
+                        className="user-review-address"
+                        to={{
+                          pathname: "/results",
+                          state: {
+                            address: review.building.address,
+                            lat: review.building.lat,
+                            lng: review.building.lng,
+                          },
+                        }}
+                      >
+                        {review.building.address.slice(0, -5)}
+                      </Link>
+                    </div>
+                  ) : (
+                    <div className="review-address">
+                      {review.building.address}
+                    </div>
+                  )}
+
                   <div className="review-date">
                     {moment(review.createdAt).format("LL")}
                   </div>

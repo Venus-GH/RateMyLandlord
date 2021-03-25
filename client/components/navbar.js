@@ -30,7 +30,9 @@ class Navbar extends React.Component {
               <ul id="nav-mobile" className="right hide-on-med-and-down">
                 {/* The navbar will show these links after you log in */}
                 <li>
-                  <Link to="/home">Home</Link>
+                  <Link to="/">
+                    <Icon>search</Icon>
+                  </Link>
                 </li>
                 <li>
                   <Link to="/explore">Explore</Link>

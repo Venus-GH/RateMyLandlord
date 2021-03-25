@@ -16,18 +16,11 @@ class Account extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentDidMount() {
-    this.props.getReviews(this.props.user.id);
+  async componentDidMount() {
+    console.log("component did mount");
+    await this.props.getReviews(this.props.user.id);
+    await this.props.setReviews(this.props.user.reviews);
     this.setState({ name: this.props.user.preferredName });
-  }
-
-  componentDidUpdate(prev) {
-    if (
-      JSON.stringify(this.props.user.reviews) !==
-      JSON.stringify(prev.user.reviews)
-    ) {
-      this.props.setReviews(this.props.reviews);
-    }
   }
 
   handleChange(event) {
@@ -42,7 +35,6 @@ class Account extends React.Component {
 
   render() {
     const { user } = this.props;
-    console.log("user:", user);
     return (
       <div id="account-container">
         <Tabs className="tab-demo z-depth-1" id="account-tabs">
@@ -67,7 +59,7 @@ class Account extends React.Component {
                       />
                     </td>
                   ) : (
-                    <td>{this.state.name}</td>
+                    <td>{user.preferredName}</td>
                   )}
 
                   {this.state.edit ? (
@@ -111,7 +103,7 @@ class Account extends React.Component {
               {user.reviews ? (
                 <div>
                   <h6>{user.reviews.length} Reviews</h6>
-                  <ReviewList landlordPage={false} />
+                  <ReviewList type="user-review-list" />
                 </div>
               ) : (
                 "No Reviews Yet"

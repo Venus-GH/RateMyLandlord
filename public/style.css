@@ -181,6 +181,10 @@ form div {
   max-width: 65em;
 }
 
+/* .user-review-list {
+
+} */
+
 .landlord-review-list {
   max-width: 80em;
 }
@@ -190,7 +194,6 @@ form div {
   flex-direction: column;
   width: 8em;
   margin-top: 1em;
-  margin-right: 1em;
 }
 
 .review-box {
@@ -235,6 +238,10 @@ form div {
   font-size: large;
   justify-content: space-between;
   margin-bottom: 0.5em;
+}
+
+.user-review-address {
+  font-size: smaller;
 }
 
 .review-ratings {
@@ -312,6 +319,15 @@ form div {
 #account-container {
   margin: 100px 20vw;
   background-color: rgb(250, 229, 229);
+}
+
+i.material-icons {
+  color: black;
+  /* font-size: 2rem; */
+}
+
+button.btn.transparent-button {
+  box-shadow: none;
 }
 
 @media only screen and (max-width: 992px) {

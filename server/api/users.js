@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Review } = require("../db/models");
+const { User, Review, Building, Landlord } = require("../db/models");
 module.exports = router;
 
 // GET /api/users/
@@ -22,6 +22,7 @@ router.get("/:id/reviews", async (req, res, next) => {
   try {
     const reviews = await Review.findAll({
       where: { userId: req.params.id },
+      include: [Building, Landlord],
     });
     res.json(reviews);
   } catch (err) {
