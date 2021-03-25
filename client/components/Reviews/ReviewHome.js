@@ -86,8 +86,8 @@ class ReviewForm extends React.Component {
     if (this.autocomplete !== null) {
       const place = this.autocomplete.getPlace();
       this.setState({
-        lat: place.geometry.location.lat(),
-        lng: place.geometry.location.lng(),
+        latitude: place.geometry.location.lat(),
+        longitude: place.geometry.location.lng(),
         address: place.formatted_address,
       });
     } else {
