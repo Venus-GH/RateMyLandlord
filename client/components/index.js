@@ -15,4 +15,5 @@ export { default as AddReview } from "./Reviews/ReviewHome";
 export { default as RentInventory } from "./RentInventory";
 export { default as RentPrices } from "./RentPrices";
 export { default as RentPricesHome } from "./RentPricesHome";
+export { default as NYCPopulation } from "./NYCPopulation";
 export { default as Explore } from "./Explore";

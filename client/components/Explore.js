@@ -87,6 +87,36 @@ const Explore = () => {
           </div>
         </div>
       </div>
+      <div className="col s12 m4 l4">
+        <div className="medium card">
+          <div className="card-image waves-effect waves-block waves-light">
+            <img className="activator" src="/explore3.png" />
+          </div>
+          <div className="card-content">
+            <span className="card-title activator grey-text text-darken-4">
+              NYC Population by Borough
+              <i className="small material-icons right">more_vert</i>
+            </span>
+            <p>
+              <Link to="/explore/nycpopulation">Click to View</Link>
+            </p>
+          </div>
+          <div className="card-reveal">
+            <span className="card-title grey-text text-darken-4">
+              NYC Population by Borough
+              <i className="material-icons right">close</i>
+            </span>
+            <p>
+              Data visualization on the population of each borough as a
+              percentage of NYC population over the last two decades
+            </p>
+            <br />
+            <p className="bottom">
+              Source: American Community Survey, Census Bureau, US Commerce Dept
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
