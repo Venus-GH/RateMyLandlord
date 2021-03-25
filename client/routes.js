@@ -16,6 +16,7 @@ import {
   RentPricesHome,
   Explore,
   Account,
+  NYCPopulation,
 } from "./components";
 import { me } from "./store";
 
@@ -43,6 +44,7 @@ class Routes extends Component {
         <Route exact path="/explore" component={Explore} />
         <Route path="/explore/pastrentinv" component={RentInventory} />
         <Route path="/explore/pastrentprices" component={RentPricesHome} />
+        <Route path="/explore/nycpopulation" component={NYCPopulation} />
 
         {isLoggedIn && (
           <Switch>
