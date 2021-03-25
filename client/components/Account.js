@@ -1,7 +1,7 @@
 import React from "react";
 import { Tabs, Tab, Table, TextInput } from "react-materialize";
 import { connect } from "react-redux";
-import { getReviews } from "../store/user";
+import { getReviews, updatePreferredName } from "../store/user";
 import { setReviews } from "../store/reviewList";
 import ReviewList from "./ReviewList";
 
@@ -9,28 +9,35 @@ class Account extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
+      preferredName: "",
       edit: false,
     };
-    this.changeName = this.changeName.bind(this);
+    this.handleNameSubmit = this.handleNameSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
   async componentDidMount() {
-    console.log("component did mount");
     await this.props.getReviews(this.props.user.id);
     await this.props.setReviews(this.props.user.reviews);
-    this.setState({ name: this.props.user.preferredName });
+    this.setState({ preferredName: this.props.user.preferredName });
   }
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  changeName(boolean) {
-    if (boolean === true) this.setState({ edit: true });
-    else this.setState({ edit: false });
-    // on close, set prefererd name to input value
+  handleNameSubmit(boolean) {
+    return (event) => {
+      event.preventDefault();
+      if (boolean === true) this.setState({ edit: true });
+      else {
+        this.setState({ edit: false });
+        this.props.updatePreferredName(
+          this.props.user.id,
+          this.state.preferredName
+        );
+      }
+    };
   }
 
   render() {
@@ -54,28 +61,29 @@ class Account extends React.Component {
                   {this.state.edit ? (
                     <td>
                       <TextInput
+                        name="preferredName"
                         onChange={this.handleChange}
-                        value={this.state.name}
+                        value={this.state.preferredName}
                       />
                     </td>
                   ) : (
-                    <td>{user.preferredName}</td>
+                    <td>{this.state.preferredName}</td>
                   )}
 
                   {this.state.edit ? (
                     <td>
-                      <i
-                        className="material-icons"
-                        onClick={() => this.changeName(false)}
+                      <a
+                        className="btn-floating btn-small waves-effect waves-light red"
+                        onClick={this.handleNameSubmit(false)}
                       >
-                        close
-                      </i>
+                        <i className="material-icons">close</i>
+                      </a>
                     </td>
                   ) : (
                     <td>
                       <i
                         className="material-icons"
-                        onClick={() => this.changeName(true)}
+                        onClick={this.handleNameSubmit(true)}
                       >
                         edit
                       </i>
@@ -132,6 +140,7 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => ({
   getReviews: (userId) => dispatch(getReviews(userId)),
   setReviews: (reviews) => dispatch(setReviews(reviews)),
+  updatePreferredName: (id, name) => dispatch(updatePreferredName(id, name)),
 });
 
 export default connect(mapState, mapDispatch)(Account);

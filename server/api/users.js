@@ -34,7 +34,8 @@ router.get("/:id/reviews", async (req, res, next) => {
 // PUT /api/users/:id
 router.put("/:id", async (req, res, next) => {
   try {
-    const user = await User.findByPk({
+    const user = await User.findOne({
+      where: { id: req.params.id },
       attributes: ["id", "email", "preferredName"],
     });
     user.update({ preferredName: req.body.preferredName });

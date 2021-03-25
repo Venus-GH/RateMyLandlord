@@ -7,6 +7,7 @@ import history from "../history";
 const GET_USER = "GET_USER";
 const REMOVE_USER = "REMOVE_USER";
 const SET_REVIEWS = "GET_REVIEWS";
+const UPDATE_NAME = "UPDATE_NAME";
 
 /**
  * ACTION CREATORS
@@ -16,6 +17,10 @@ const removeUser = () => ({ type: REMOVE_USER });
 const setReviews = (reviews) => ({
   type: SET_REVIEWS,
   reviews,
+});
+const updateName = (preferredName) => ({
+  type: UPDATE_NAME,
+  preferredName,
 });
 
 /**
@@ -70,6 +75,19 @@ export const getReviews = (id) => async (dispatch) => {
   }
 };
 
+export const updatePreferredName = (id, name) => async (dispatch) => {
+  try {
+    const { data: user } = await axios.put(`/api/users/${id}`, {
+      preferredName: name,
+    });
+    console.log("in updatePreferredName user:", user);
+    dispatch(updateName(user.preferredName));
+  } catch (err) {
+    console.log("there was an error updating preferred name");
+    console.error(err);
+  }
+};
+
 /**
  * REDUCER
  */
@@ -81,6 +99,9 @@ export default function (state = defaultUser, action) {
       return defaultUser;
     case SET_REVIEWS:
       state.reviews = action.reviews;
+      return state;
+    case UPDATE_NAME:
+      state.preferredName = action.preferredName;
       return state;
     default:
       return state;
