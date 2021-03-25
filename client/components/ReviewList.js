@@ -13,23 +13,12 @@ class ReviewList extends React.Component {
     this.clickThumb = this.clickThumb.bind(this);
   }
 
-  // componentDidUpdate(prev) {
-  //   if (
-  //     JSON.stringify(this.props.reviewsProp) !==
-  //     JSON.stringify(prev.reviewsProp)
-  //   ) {
-  //     this.props.setReviews(this.props.reviewsProp);
-  //   }
-  // }
-
   clickThumb(reviewId, direction) {
     this.props.changeThumbs(reviewId, direction);
   }
 
   render() {
-    console.log("in review list with props:", this.props);
     const { reviews, user } = this.props || [];
-    console.log("reviews in review list:", this.props.reviews);
     const grade = { 1: "F", 2: "D", 3: "C", 4: "B", 5: "A" };
     return (
       <div className={this.props.type}>
@@ -52,9 +41,11 @@ class ReviewList extends React.Component {
                 <div className="review-address-date">
                   {this.props.type === "user-review-list" ? (
                     <div>
-                      <Link to={`/landlords/${review.landlordId}`}>
-                        {review.landlord.name}
-                      </Link>
+                      {review.landlord.name && (
+                        <Link to={`/landlords/${review.landlordId}`}>
+                          {review.landlord.name}
+                        </Link>
+                      )}
                       {" – "}
                       <Link
                         className="user-review-address"

@@ -55,7 +55,6 @@ class Home extends Component {
   }
 
   render() {
-    console.log("in render", this.state);
     const { address, lat, lng, searchBy } = this.state;
 
     const { places, landlords } = this.props;

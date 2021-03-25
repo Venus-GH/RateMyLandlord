@@ -31,7 +31,6 @@ router.get("/:id", async (req, res, next) => {
 
 // GET /api/landlords/
 router.get("/", async (req, res, next) => {
-  console.log("req.query", req.query);
   try {
     let allLandlords = await Landlord.findAll({
       include: [Review, Building],

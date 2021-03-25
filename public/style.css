@@ -173,7 +173,7 @@ form div {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   margin: 2em;
-  height: 300px;
+  min-height: 300px;
   padding: 1.5em;
 }
 
@@ -224,11 +224,9 @@ form div {
 
 .review-body {
   width: 65em;
-  /* font-size: large; */
   max-width: 6;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-evenly; */
 }
 
 .review-address-date {
@@ -333,5 +331,68 @@ button.btn.transparent-button {
 @media only screen and (max-width: 992px) {
   nav .brand-logo {
     font-size: 1rem;
+  }
+  #account-container {
+    margin: 100px 0vw;
+  }
+  .review-card {
+    margin: 0.5em;
+    margin-bottom: 1.5em;
+  }
+}
+
+@media only screen and (min-width: 990px) and (max-width: 1300px) {
+  #account-container {
+    margin: 50px 10vw;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  nav .brand-logo {
+    font-size: 1rem;
+  }
+  #account-container {
+    margin: 25px 0vw;
+  }
+  .review-card {
+    margin: 0.5em;
+    margin-bottom: 1.5em;
+    padding: 1em;
+  }
+
+  .review-boxes {
+    flex-direction: row;
+    margin-top: 0em;
+  }
+
+  .review-address-date {
+    flex-direction: column;
+  }
+
+  .review-ratings {
+    flex-direction: column;
+    margin-left: 1em;
+  }
+
+  .review-rating {
+    margin-left: 0em;
+  }
+
+  .review-tags {
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: row;
+    max-width: 85vw;
+    flex-wrap: wrap;
+  }
+
+  .review-comments {
+    font-size: medium;
+    min-height: 6em;
+    width: 85vw;
+  }
+
+  .review-buttons {
+    width: 85vw;
   }
 }
