@@ -15,6 +15,7 @@ import {
   RentPrices,
   RentPricesHome,
   Explore,
+  Account,
   NYCPopulation,
 } from "./components";
 import { me } from "./store";
@@ -50,6 +51,7 @@ class Routes extends Component {
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
             <Route path="/landlords/:landlordId" component={SingleLandlord} />
+            <Route path="/account" component={Account} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

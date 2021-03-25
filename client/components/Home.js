@@ -55,7 +55,6 @@ class Home extends Component {
   }
 
   render() {
-    console.log("in render", this.state);
     const { address, lat, lng, searchBy } = this.state;
 
     const { places, landlords } = this.props;
@@ -126,7 +125,7 @@ class Home extends Component {
                     </button>
                   </div>
                   {landlords.map((landlord) => (
-                    <div className="select-option">
+                    <div className="select-option" key={landlord.id}>
                       <div>{landlord.name}</div>
                       <button
                         type="button"

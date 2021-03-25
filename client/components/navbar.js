@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
-import { LoadScript, Autocomplete } from "@react-google-maps/api";
+import { Icon } from "react-materialize";
 import "materialize-css";
 
 class Navbar extends React.Component {
@@ -30,13 +30,18 @@ class Navbar extends React.Component {
               <ul id="nav-mobile" className="right hide-on-med-and-down">
                 {/* The navbar will show these links after you log in */}
                 <li>
-                  <Link to="/home">Home</Link>
+                  <Link to="/">
+                    <Icon>search</Icon>
+                  </Link>
                 </li>
                 <li>
                   <Link to="/explore">Explore</Link>
                 </li>
                 <li>
                   <Link to="/landlords">Landlords</Link>
+                </li>
+                <li>
+                  <Link to="/account">Account</Link>
                 </li>
                 <li>
                   <a href="#" onClick={handleClick}>
@@ -48,15 +53,9 @@ class Navbar extends React.Component {
               <ul id="nav-mobile" className="right hide-on-med-and-down">
                 {/* The navbar will show these links before you log in */}
                 <li>
-                  <form>
-                    <div className="input-field">
-                      <input id="search" type="search" required />
-                      <label className="label-icon" htmlFor="search">
-                        <i className="material-icons">search</i>
-                      </label>
-                      <i className="material-icons">close</i>
-                    </div>
-                  </form>
+                  <Link to="/">
+                    <Icon>search</Icon>
+                  </Link>
                 </li>
                 <li>
                   <Link to="/explore">Explore</Link>
@@ -97,6 +96,11 @@ class Navbar extends React.Component {
               <a href="#" onClick={handleClick}>
                 Logout
               </a>
+            </li>
+          )}
+          {isLoggedIn && (
+            <li>
+              <Link to="/account">Account</Link>
             </li>
           )}
           {!isLoggedIn && (

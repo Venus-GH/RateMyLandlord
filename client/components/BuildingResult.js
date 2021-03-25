@@ -39,7 +39,9 @@ class BuildingResult extends React.Component {
       await this.props.fetchBuilding(address);
       this.setState({ isLoading: false });
     }
-    if (JSON.stringify(this.props.reviews) !== JSON.stringify(prev.reviews)) {
+    if (
+      JSON.stringify(this.props.reviews) !== JSON.stringify(prevProps.reviews)
+    ) {
       this.props.setReviews(this.props.reviews);
     }
   }
@@ -180,7 +182,11 @@ class BuildingResult extends React.Component {
             ) : landlord.name ? (
               <div>
                 <h6>{reviews.length} Reviews</h6>
-                {reviews.length > 0 ? <ReviewList landlordPage={false} /> : ""}
+                {reviews.length > 0 ? (
+                  <ReviewList type="building-review-list" />
+                ) : (
+                  ""
+                )}
               </div>
             ) : (
               <div>No reviews yet... Add a review to get started.</div>
