@@ -4,8 +4,6 @@ import { Bar } from "react-chartjs-2";
 const BarChart = ({ avgs, mktAvgs }) => {
   const avgValOnly = Object.values(avgs).slice(1, -1);
   const mktAvgValOnly = Object.values(mktAvgs);
-  // console.log("avgs", avgs);
-  // console.log("mktAvgs", mktAvgs);
 
   return (
     <div>
@@ -26,7 +24,7 @@ const BarChart = ({ avgs, mktAvgs }) => {
           ],
         }}
         width={100}
-        height={150}
+        height={250}
         options={{
           maintainAspectRatio: false,
           scales: {
