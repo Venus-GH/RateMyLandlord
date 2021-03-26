@@ -21,21 +21,11 @@ const NYPD = () => {
     fetchData();
   }, []);
 
-  console.log("complaints", complaints);
-
-  // const formatDataFunc = (data) =>{
-  //     let nypdData = []
-  //     for(let i = 0; i<data.length; i++){
-  //         for (let yr = 2006; yr<=2019; yr++){
-  //             nypdData.push({year: yr, Bronx: data[i].count, Brooklyn: data[i]})
-  //         }
-  //     }
-
-  // }
+  //   console.log("complaints", complaints);
 
   const complaintsData = [
     {
-      year: 2006,
+      year: "2006",
       BRONX: 111263,
       BROOKLYN: 157808,
       MANHATTAN: 127654,
@@ -43,7 +33,7 @@ const NYPD = () => {
       "STATEN ISLAND": 27022,
     },
     {
-      year: 2007,
+      year: "2007",
       BRONX: 117154,
       BROOKLYN: 155830,
       MANHATTAN: 130216,
@@ -51,7 +41,7 @@ const NYPD = () => {
       "STATEN ISLAND": 26126,
     },
     {
-      year: 2008,
+      year: "2008",
       BRONX: 114191,
       BROOKLYN: 155632,
       MANHATTAN: 128514,
@@ -59,7 +49,7 @@ const NYPD = () => {
       "STATEN ISLAND": 26735,
     },
     {
-      year: 2009,
+      year: "2009",
       BRONX: 112973,
       BROOKLYN: 150739,
       MANHATTAN: 124811,
@@ -67,7 +57,7 @@ const NYPD = () => {
       "STATEN ISLAND": 24276,
     },
     {
-      year: 2010,
+      year: "2010",
       BRONX: 111566,
       BROOKLYN: 151482,
       MANHATTAN: 121391,
@@ -75,7 +65,7 @@ const NYPD = () => {
       "STATEN ISLAND": 24114,
     },
     {
-      year: 2011,
+      year: "2011",
       BRONX: 108657,
       BROOKLYN: 151497,
       MANHATTAN: 115844,
@@ -83,7 +73,7 @@ const NYPD = () => {
       "STATEN ISLAND": 23424,
     },
     {
-      year: 2012,
+      year: "2012",
       BRONX: 106790,
       BROOKLYN: 154885,
       MANHATTAN: 119706,
@@ -91,7 +81,7 @@ const NYPD = () => {
       "STATEN ISLAND": 23614,
     },
     {
-      year: 2013,
+      year: "2013",
       BRONX: 104421,
       BROOKLYN: 150184,
       MANHATTAN: 118294,
@@ -99,7 +89,7 @@ const NYPD = () => {
       "STATEN ISLAND": 22721,
     },
     {
-      year: 2014,
+      year: "2014",
       BRONX: 105861,
       BROOKLYN: 148700,
       MANHATTAN: 113345,
@@ -107,7 +97,7 @@ const NYPD = () => {
       "STATEN ISLAND": 22846,
     },
     {
-      year: 2015,
+      year: "2015",
       BRONX: 104912,
       BROOKLYN: 143116,
       MANHATTAN: 113231,
@@ -115,7 +105,7 @@ const NYPD = () => {
       "STATEN ISLAND": 22131,
     },
     {
-      year: 2016,
+      year: "2016",
       BRONX: 106050,
       BROOKLYN: 140601,
       MANHATTAN: 115624,
@@ -123,7 +113,7 @@ const NYPD = () => {
       "STATEN ISLAND": 21831,
     },
     {
-      year: 2017,
+      year: "2017",
       BRONX: 103505,
       BROOKLYN: 137701,
       MANHATTAN: 114615,
@@ -131,7 +121,7 @@ const NYPD = () => {
       "STATEN ISLAND": 21295,
     },
     {
-      year: 2018,
+      year: "2018",
       BRONX: 101018,
       BROOKLYN: 136853,
       MANHATTAN: 114675,
@@ -139,7 +129,7 @@ const NYPD = () => {
       "STATEN ISLAND": 20851,
     },
     {
-      year: 2019,
+      year: "2019",
       BRONX: 104825,
       BROOKLYN: 138382,
       MANHATTAN: 121550,
