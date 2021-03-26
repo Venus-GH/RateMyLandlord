@@ -120,7 +120,7 @@ class SingleLandlord extends React.Component {
           </div>
         </div>
         <div className="divider" />
-        <div>
+        <div className="reviews-single-landlord-view">
           <h5>{reviews.length} reviews</h5>
           {reviews.length > 0 ? <ReviewList type="landlord-review-list" /> : ""}
         </div>
