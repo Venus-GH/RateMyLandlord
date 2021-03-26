@@ -3,6 +3,7 @@ import {
   GoogleMap,
   LoadScript,
   StreetViewPanorama,
+  Marker,
 } from "@react-google-maps/api";
 import { connect } from "react-redux";
 import { fetchBuilding } from "../store/buildings";
@@ -11,14 +12,6 @@ import ReviewList from "./ReviewList";
 import ReviewForm from "./Reviews/ReviewHome";
 import { Modal, Button, Tabs, Tab } from "react-materialize";
 import { setReviews } from "../store/reviewList";
-import Loading from "./Loading";
-import { Icon } from "leaflet";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-const libraries = ["places"];
-
-export const icon = new Icon({
-  iconUrl: "./orangemapmarker.png",
-});
 
 class BuildingResult extends React.Component {
   constructor() {
@@ -57,10 +50,12 @@ class BuildingResult extends React.Component {
     const { address, lat, lng } = this.props.location.state;
     const { isLoading } = this.state;
     const { landlord, user, reviews } = this.props || {};
-    const coord = { lat: Number(lat), lng: Number(lng) };
+    const coord = { lat, lng };
 
     return isLoading ? (
-      <Loading />
+      <div className="loading-screen">
+        <img src="/loading.gif" />
+      </div>
     ) : (
       <div className="results-view">
         {landlord.name ? (
@@ -92,10 +87,10 @@ class BuildingResult extends React.Component {
               >
                 <LoadScript
                   googleMapsApiKey="AIzaSyCOopGii1dRKKnMTLI00ilvrrKW64KKLfk"
-                  libraries={libraries}
+                  libraries={["places"]}
                 >
                   <GoogleMap
-                    className="single-building-map"
+                    mapContainerStyle={{ width: "30vw", height: "80vh" }}
                     // center={center}
                     zoom={14}
                   >
@@ -117,22 +112,7 @@ class BuildingResult extends React.Component {
                 }}
                 title="Map"
               >
-                <MapContainer
-                  center={[lat, lng]}
-                  zoom={13}
-                  className="single-building-map"
-                >
-                  <TileLayer
-                    attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
-                    url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
-                  />
-                  <Marker
-                    className="home-marker"
-                    icon={icon}
-                    position={[Number(lat), Number(lng)]}
-                  />
-                </MapContainer>
-                {/* <LoadScript
+                <LoadScript
                   googleMapsApiKey="AIzaSyCOopGii1dRKKnMTLI00ilvrrKW64KKLfk"
                   libraries={["places"]}
                 >
@@ -143,7 +123,7 @@ class BuildingResult extends React.Component {
                   >
                     <Marker position={coord} />
                   </GoogleMap>
-                </LoadScript> */}
+                </LoadScript>
               </Tab>
             </Tabs>
           </div>
