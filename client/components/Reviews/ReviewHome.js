@@ -86,8 +86,8 @@ class ReviewForm extends React.Component {
     if (this.autocomplete !== null) {
       const place = this.autocomplete.getPlace();
       this.setState({
-        lat: place.geometry.location.lat(),
-        lng: place.geometry.location.lng(),
+        latitude: place.geometry.location.lat(),
+        longitutude: place.geometry.location.lng(),
         address: place.formatted_address,
       });
     } else {
@@ -147,7 +147,7 @@ class ReviewForm extends React.Component {
   };
   render() {
     let landlord = this.props.landlord || {};
-    let landlordBuildings = this.props.landlord.buildings || [];
+    let landlordBuildings = landlord.buildings || [];
     console.log("this.props in review home", this.props);
 
     const isEnabled = () => {
@@ -217,22 +217,22 @@ class ReviewForm extends React.Component {
             </Select>
           </div>
         )}
-        <LoadScript
+        {/* <LoadScript
           googleMapsApiKey="AIzaSyCOopGii1dRKKnMTLI00ilvrrKW64KKLfk"
           libraries={["places"]}
-        >
-          {this.state.address === "none" && (
-            // <div id="googleAPIDiv">
-            <Autocomplete
-              onLoad={this.onLoad}
-              onPlaceChanged={this.onPlaceChanged}
-            >
-              <input placeholder="Find address by building" />
-            </Autocomplete>
+        > */}
+        {this.state.address === "none" && (
+          // <div id="googleAPIDiv">
+          <Autocomplete
+            onLoad={this.onLoad}
+            onPlaceChanged={this.onPlaceChanged}
+          >
+            <input placeholder="Find address by building" />
+          </Autocomplete>
 
-            // </div>
-          )}
-        </LoadScript>
+          // </div>
+        )}
+        {/* </LoadScript> */}
         {!landlord.id && (
           <TextInput
             id="landlordName"
