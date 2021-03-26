@@ -13,6 +13,7 @@ import { Modal, Button, Tabs, Tab } from "react-materialize";
 import { setReviews } from "../store/reviewList";
 import { Icon } from "leaflet";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import Loading from "./Loading";
 
 export const icon = new Icon({
   iconUrl: "./img/orangemapmarker.png",
@@ -55,12 +56,11 @@ class BuildingResult extends React.Component {
     const { address, lat, lng } = this.props.location.state;
     const { isLoading } = this.state;
     const { landlord, user, reviews } = this.props || {};
-    const coord = { lat, lng };
+    const coord = { lat: Number(lat), lng: Number(lng) };
+    console.log("in building result reviews", reviews);
 
     return isLoading ? (
-      <div className="loading-screen">
-        <img src="/img/loading.gif" />
-      </div>
+      <Loading />
     ) : (
       <div className="results-view">
         {landlord.name ? (
@@ -90,22 +90,17 @@ class BuildingResult extends React.Component {
                 }}
                 title="Street View"
               >
-                <LoadScript
-                  googleMapsApiKey="AIzaSyCOopGii1dRKKnMTLI00ilvrrKW64KKLfk"
-                  libraries={["places"]}
+                <GoogleMap
+                  mapContainerStyle={{ width: "30vw", height: "80vh" }}
+                  // center={center}
+                  // zoom={14}
                 >
-                  <GoogleMap
-                    // mapContainerStyle={{ width: "30vw", height: "80vh" }}
-                    // center={center}
-                    zoom={14}
-                  >
-                    <StreetViewPanorama
-                      // address={this.state.address}
-                      position={coord}
-                      visible={true}
-                    />
-                  </GoogleMap>
-                </LoadScript>
+                  <StreetViewPanorama
+                    // address={this.state.address}
+                    position={{ lat: Number(lat), lng: Number(lng) }}
+                    visible={true}
+                  />
+                </GoogleMap>
               </Tab>
               <Tab
                 active
@@ -211,8 +206,8 @@ class BuildingResult extends React.Component {
 const mapState = (state) => {
   return {
     building: state.buildings.single,
-    landlord: state.buildings.landlord,
-    reviews: state.buildings.reviews,
+    landlord: state.landlord,
+    reviews: state.reviewList,
     user: state.user,
   };
 };

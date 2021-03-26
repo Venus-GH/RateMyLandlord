@@ -2,12 +2,18 @@ import axios from "axios";
 
 // ACTION TYPES
 const SET_REVIEWS = "SET_REVIEWS";
+const ADD_REVIEW = "ADD_REVIEW";
 const SET_THUMBS = "SET_THUMBS";
 
 // ACTION CREATORS
 export const setReviews = (reviews) => ({
   type: SET_REVIEWS,
   reviews,
+});
+
+export const _addReview = (review) => ({
+  type: ADD_REVIEW,
+  review,
 });
 
 const setThumbs = (updatedReview) => ({
@@ -54,6 +60,8 @@ export default function (state = initialState, action) {
   switch (action.type) {
     case SET_REVIEWS:
       return action.reviews;
+    case ADD_REVIEW:
+      return [...state, action.review];
     case SET_THUMBS:
       // find review in arr by id
       // update thumbsUp and down

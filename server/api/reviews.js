@@ -60,7 +60,14 @@ router.post("/", async (req, res, next) => {
       allowContact,
     });
 
-    res.json(review);
+    const newReview = await Review.findOne({
+      where: {
+        id: review.id,
+      },
+      include: [Building, User],
+    });
+
+    res.json(newReview);
   } catch (error) {
     console.log("there was an error in POST /api/reviews/");
     next(error);
