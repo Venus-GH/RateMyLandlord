@@ -241,6 +241,9 @@ form div {
   margin: 2em;
   min-height: 300px;
   padding: 1.5em;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
 }
 
 .building-review-list {
