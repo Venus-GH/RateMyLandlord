@@ -157,7 +157,8 @@ class ReviewForm extends React.Component {
         if (
           Object.keys(this.props.reviews).length > 3 &&
           this.state.grade !== "" &&
-          this.state.address !== undefined
+          this.state.address !== undefined &&
+          this.state.wouldRecommend !== null
         ) {
           return true;
         } else return false;
@@ -165,7 +166,8 @@ class ReviewForm extends React.Component {
       if (this.props.address) {
         if (
           Object.keys(this.props.reviews).length > 3 &&
-          this.state.grade !== ""
+          this.state.grade !== "" &&
+          this.state.wouldRecommend !== null
         ) {
           return true;
         } else return false;
