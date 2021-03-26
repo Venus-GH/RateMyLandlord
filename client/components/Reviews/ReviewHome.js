@@ -40,18 +40,18 @@ class ReviewForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      bedrooms: "",
-      wouldRecommend: "",
-      grade: "",
-      rent: "",
-      startDate: "",
-      leaseLength: "",
+      bedrooms: null,
+      wouldRecommend: null,
+      grade: null,
+      rent: null,
+      startDate: null,
+      leaseLength: null,
       tags: [],
-      comments: "",
+      comments: null,
       submitted: false,
       allowContact: false,
-      landlordName: "",
-      address: "",
+      landlordName: null,
+      address: null,
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);

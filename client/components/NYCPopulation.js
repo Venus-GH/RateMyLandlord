@@ -2,11 +2,15 @@ import React from "react";
 import { useState } from "react";
 import { PieChart } from "react-minimal-pie-chart";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { action } from "@storybook/addon-actions";
 
 const NYCPopulation = (props) => {
   const [show, setShow] = useState(true);
   const [secondshow, setSecondShow] = useState(false);
   const [thirdshow, setThirdShow] = useState(false);
+  //   const [selected, setSelected] = useState < 0 || undefined > 0;
+  //   const [hovered, setHovered] = (useState < 0) | (undefined > undefined);
   // another year set?
   // NYC  pop = 8560072
   let pop = [
@@ -154,6 +158,16 @@ const NYCPopulation = (props) => {
       <div className="inline-container">
         <h5 className="center">Population by Borough</h5>
       </div>
+      <br />
+      <Link to="/explore" className="center">
+        <button
+          className=" btn btn-small waves-effect waves-light teal lighten-4 black-text"
+          type="button"
+        >
+          Back to Explore
+          <i className="material-icons left center">arrow_back</i>
+        </button>
+      </Link>
       <div>
         <div onClick={(e) => setShow(!show)}>
           {" "}
@@ -179,6 +193,18 @@ const NYCPopulation = (props) => {
           <>
             <div className="chart-container">
               <PieChart
+                // onClick={console.log("hi")}
+                // segmentsStyle={{ transition: "stroke .3s", cursor: "pointer" }}
+                // segmentsShift={(index) => (index === selected ? 6 : 1)}
+                // onClick={(event, index) => {
+                //   action("CLICK")(event, index);
+                //   console.log("CLICK", { event, index });
+                //   setSelected(index === selected ? undefined : index);
+                // }}
+                // onMouseOver={console.log("hi")}
+                // onMouseOut={() => {
+                //   setHovered(undefined);
+                // }}
                 animate
                 animationDuration={500}
                 animationEasing="ease-out"
