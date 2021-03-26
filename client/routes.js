@@ -17,6 +17,7 @@ import {
   Explore,
   Account,
   NYCPopulation,
+  NYPD,
 } from "./components";
 import { me } from "./store";
 
@@ -45,6 +46,7 @@ class Routes extends Component {
         <Route path="/explore/pastrentinv" component={RentInventory} />
         <Route path="/explore/pastrentprices" component={RentPricesHome} />
         <Route path="/explore/nycpopulation" component={NYCPopulation} />
+        <Route path="/explore/nypdcomplaints" component={NYPD} />
 
         {isLoggedIn && (
           <Switch>

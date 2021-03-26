@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Explore = () => {
   return (
     <div className="row">
-      <div className="col s12 m4 l4">
+      <div className="col s12 m3 l3">
         <div className=" medium card">
           <div className="card-image waves-effect waves-block waves-light">
             <img
@@ -35,7 +35,7 @@ const Explore = () => {
         </div>
       </div>
 
-      <div className="col s12 m4 l4">
+      <div className="col s12 m3 l3">
         <div className="medium card">
           <div className="card-image waves-effect waves-block waves-light">
             <img className="activator" src="/explore.jpg" />
@@ -63,31 +63,35 @@ const Explore = () => {
         </div>
       </div>
 
-      <div className="col s12 m4 l4">
+      <div className="col s12 m3 l3">
         <div className="medium card">
           <div className="card-image waves-effect waves-block waves-light">
             <img className="activator" src="/explore2.jpg" />
           </div>
           <div className="card-content">
             <span className="card-title activator grey-text text-darken-4">
-              Businesses by Borough
+              NYPD Complaints
               <i className="small material-icons right">more_vert</i>
             </span>
             <p>
-              <Link to="/explore/pastrentprices">Click to View</Link>
+              <Link to="/explore/nypdcomplaints">Click to View</Link>
             </p>
           </div>
           <div className="card-reveal">
             <span className="card-title grey-text text-darken-4">
-              Businesses by Borough<i className="material-icons right">close</i>
+              NYPD Complaints by Borough
+              <i className="material-icons right">close</i>
             </span>
-            <p>Data visualization on different businesses in each borough</p>
+            <p>
+              Data visualization on total historic NYPD complaints received by
+              borough
+            </p>
             <br />
-            <p className="bottom">Source Data: Yelp</p>
+            <p className="bottom">Source Data: NYC Open Data</p>
           </div>
         </div>
       </div>
-      <div className="col s12 m4 l4">
+      <div className="col s12 m3 l3">
         <div className="medium card">
           <div className="card-image waves-effect waves-block waves-light">
             <img className="activator" src="/explore3.png" />
