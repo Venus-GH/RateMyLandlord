@@ -13,6 +13,7 @@ import { Modal, Button, Tabs, Tab } from "react-materialize";
 import { setReviews } from "../store/reviewList";
 import { Icon } from "leaflet";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import Loading from "./Loading";
 
 export const icon = new Icon({
   iconUrl: "./orangemapmarker.png",
@@ -58,9 +59,7 @@ class BuildingResult extends React.Component {
     const coord = { lat, lng };
 
     return isLoading ? (
-      <div className="loading-screen">
-        <img src="/loading.gif" />
-      </div>
+      <Loading />
     ) : (
       <div className="results-view">
         {landlord.name ? (
