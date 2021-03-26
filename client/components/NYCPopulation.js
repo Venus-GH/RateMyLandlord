@@ -9,7 +9,7 @@ const NYCPopulation = (props) => {
   const [show, setShow] = useState(true);
   const [secondshow, setSecondShow] = useState(false);
   const [thirdshow, setThirdShow] = useState(false);
-  const [selected, setSelected] = useState < 0 || undefined > 0;
+  //   const [selected, setSelected] = useState < 0 || undefined > 0;
   //   const [hovered, setHovered] = (useState < 0) | (undefined > undefined);
   // another year set?
   // NYC  pop = 8560072
@@ -194,13 +194,13 @@ const NYCPopulation = (props) => {
             <div className="chart-container">
               <PieChart
                 // onClick={console.log("hi")}
-                segmentsStyle={{ transition: "stroke .3s", cursor: "pointer" }}
-                segmentsShift={(index) => (index === selected ? 6 : 1)}
-                onClick={(event, index) => {
-                  action("CLICK")(event, index);
-                  console.log("CLICK", { event, index });
-                  setSelected(index === selected ? undefined : index);
-                }}
+                // segmentsStyle={{ transition: "stroke .3s", cursor: "pointer" }}
+                // segmentsShift={(index) => (index === selected ? 6 : 1)}
+                // onClick={(event, index) => {
+                //   action("CLICK")(event, index);
+                //   console.log("CLICK", { event, index });
+                //   setSelected(index === selected ? undefined : index);
+                // }}
                 // onMouseOver={console.log("hi")}
                 // onMouseOut={() => {
                 //   setHovered(undefined);
