@@ -31,7 +31,7 @@ class Navbar extends React.Component {
                 {/* The navbar will show these links after you log in */}
                 <li>
                   <Link to="/">
-                    <Icon>search</Icon>
+                    <Icon className="white-text">search</Icon>
                   </Link>
                 </li>
                 <li>
@@ -54,7 +54,7 @@ class Navbar extends React.Component {
                 {/* The navbar will show these links before you log in */}
                 <li>
                   <Link to="/">
-                    <Icon>search</Icon>
+                    <Icon className="white-text">search</Icon>
                   </Link>
                 </li>
                 <li>
