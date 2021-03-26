@@ -86,8 +86,8 @@ class ReviewForm extends React.Component {
     if (this.autocomplete !== null) {
       const place = this.autocomplete.getPlace();
       this.setState({
-        lat: place.geometry.location.lat(),
-        lng: place.geometry.location.lng(),
+        latitude: place.geometry.location.lat(),
+        longitutude: place.geometry.location.lng(),
         address: place.formatted_address,
       });
     } else {
@@ -147,7 +147,7 @@ class ReviewForm extends React.Component {
   };
   render() {
     let landlord = this.props.landlord || {};
-    let landlordBuildings = this.props.landlord.buildings || [];
+    let landlordBuildings = landlord.buildings || [];
     console.log("this.props in review home", this.props);
 
     const isEnabled = () => {

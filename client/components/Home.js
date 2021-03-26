@@ -6,7 +6,8 @@ import { fetchAllBuildings } from "../store/buildings";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Icon } from "leaflet";
 import { fetchLandlords } from "../store/landlords";
-import { Dropdown } from "react-materialize";
+import { Dropdown, Button, Modal } from "react-materialize";
+import ReviewForm from "./Reviews/ReviewHome";
 
 export const icon = new Icon({
   iconUrl: "./orangemapmarker.png",
@@ -118,14 +119,52 @@ class Home extends Component {
                   }}
                   trigger={<input placeholder="Search our database" />}
                 >
-                  <Link to="/review">
+                  <Link>
                     <div className="select-option">
                       <div>Don't see who you're looking for?</div>
-                      <button type="button" className="btn-small">
+                      <Button
+                        className="modal-trigger"
+                        href="#modal1"
+                        node="button"
+                      >
                         Add
-                      </button>
+                      </Button>
+                      <Modal
+                        actions={[
+                          <Button
+                            flat
+                            modal="close"
+                            node="button"
+                            waves="green"
+                          >
+                            Close
+                          </Button>,
+                        ]}
+                        bottomSheet={false}
+                        fixedFooter={false}
+                        header="Rate This Landlord"
+                        id="modal1"
+                        open={false}
+                        options={{
+                          dismissible: true,
+                          endingTop: "10%",
+                          inDuration: 250,
+                          onCloseEnd: null,
+                          onCloseStart: null,
+                          onOpenEnd: null,
+                          onOpenStart: null,
+                          opacity: 0.5,
+                          outDuration: 250,
+                          preventScrolling: true,
+                          startingTop: "4%",
+                        }}
+                        // root={[object HTMLBodyElement]}
+                      >
+                        <ReviewForm />
+                      </Modal>
                     </div>
                   </Link>
+
                   {landlords.map((landlord) => (
                     <Link to={`/landlords/${landlord.id}`}>
                       <div className="select-option">
