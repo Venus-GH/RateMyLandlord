@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 const Explore = () => {
   return (
     <div className="row">
+      <h4>Explore more by Borough</h4>
       <div className="col s12 m3 l3">
-        <div className=" medium card">
+        <div className="medium card">
           <div className="card-image waves-effect waves-block waves-light">
             <img
               className="activator"
@@ -14,7 +15,7 @@ const Explore = () => {
           </div>
           <div className="card-content">
             <span className="card-title activator grey-text text-darken-4">
-              Past Rent Price
+              Rent Price
               <i className="small material-icons right">more_vert</i>
             </span>
             <p>
@@ -23,14 +24,14 @@ const Explore = () => {
           </div>
           <div className="card-reveal">
             <span className="card-title grey-text text-darken-4">
-              Past Rent Price<i className="material-icons right">close</i>
+              Rent Price<i className="material-icons right">close</i>
             </span>
             <p>
               Data visualization on the median asking rent price by borough from
               2010 to 2020
             </p>
             <br />
-            <p className="bottom">Source Data: StreetEasy</p>
+            <p className="bottom">Source: StreetEasy</p>
           </div>
         </div>
       </div>
@@ -45,7 +46,7 @@ const Explore = () => {
           </div>
           <div className="card-content">
             <span className="card-title activator grey-text text-darken-4">
-              Past Rent Inventory
+              Rent Inventory
               <i className="small material-icons right">more_vert</i>
             </span>
             <p>
@@ -54,14 +55,14 @@ const Explore = () => {
           </div>
           <div className="card-reveal">
             <span className="card-title grey-text text-darken-4">
-              Past Rent Inventory<i className="material-icons right">close</i>
+              Rent Inventory<i className="material-icons right">close</i>
             </span>
             <p>
               Data visualization on the total rent inventory by borough from
               2010 to 2020
             </p>
             <br />
-            <p className="bottom">Source Data: StreetEasy</p>
+            <p className="bottom">Source: StreetEasy</p>
           </div>
         </div>
       </div>
@@ -82,7 +83,7 @@ const Explore = () => {
           </div>
           <div className="card-reveal">
             <span className="card-title grey-text text-darken-4">
-              NYPD Complaints by Borough
+              NYPD Complaints
               <i className="material-icons right">close</i>
             </span>
             <p>
@@ -90,7 +91,7 @@ const Explore = () => {
               borough
             </p>
             <br />
-            <p className="bottom">Source Data: NYC Open Data</p>
+            <p className="bottom">Source: NYC Open Data</p>
           </div>
         </div>
       </div>
@@ -101,7 +102,7 @@ const Explore = () => {
           </div>
           <div className="card-content">
             <span className="card-title activator grey-text text-darken-4">
-              NYC Population by Borough
+              NYC Population
               <i className="small material-icons right">more_vert</i>
             </span>
             <p>
@@ -110,7 +111,7 @@ const Explore = () => {
           </div>
           <div className="card-reveal">
             <span className="card-title grey-text text-darken-4">
-              NYC Population by Borough
+              NYC Population
               <i className="material-icons right">close</i>
             </span>
             <p>
