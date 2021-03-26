@@ -43,6 +43,10 @@ const orderBy = (order, landlords) => {
   }
 };
 
+const rating = (num) => {
+  return String(num).length > 1 ? num.toFixed(1) : num;
+};
+
 class AllLandlords extends React.Component {
   constructor() {
     super();
@@ -67,11 +71,8 @@ class AllLandlords extends React.Component {
   render() {
     let landlords = this.props.landlords || [];
     if (this.state.order.length > 0) {
-      console.log("state length:", this.state.order);
       landlords = orderBy(this.state.order, landlords);
     }
-
-    console.log("landlords", landlords);
 
     return (
       <div>
@@ -176,28 +177,28 @@ class AllLandlords extends React.Component {
                   <div className="landlords-rating-category">
                     <span className="rating-name">Kindness: </span>
                     <span className="rating-value">
-                      {landlord.avgs.avgKindness.toFixed(1)}
+                      {rating(landlord.avgs.avgKindness)}
                     </span>
                     /5
                   </div>
                   <div className="landlords-rating-category">
                     <span className="rating-name">Maintenance: </span>
                     <span className="rating-value">
-                      {landlord.avgs.avgMaintenance.toFixed(1)}
+                      {rating(landlord.avgs.avgMaintenance)}
                     </span>
                     /5
                   </div>
                   <div className="landlords-rating-category">
                     <span className="rating-name">Responsiveness: </span>
                     <span className="rating-value">
-                      {landlord.avgs.avgResponsiveness.toFixed(1)}
+                      {rating(landlord.avgs.avgResponsiveness)}
                     </span>
                     /5
                   </div>
                   <div className="landlords-rating-category">
                     <span className="rating-name">Pest Control: </span>
                     <span className="rating-value">
-                      {landlord.avgs.avgPestControl.toFixed(1)}
+                      {rating(landlord.avgs.avgPestControl)}
                     </span>
                     /5
                   </div>
