@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { LoadScript, Autocomplete } from "@react-google-maps/api";
+import {
+  LoadScript,
+  Autocomplete,
+  useLoadScript,
+} from "@react-google-maps/api";
 import { fetchAllBuildings } from "../store/buildings";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Icon } from "leaflet";
 import { fetchLandlords } from "../store/landlords";
 import { Dropdown } from "react-materialize";
+import GoogleSearchBar from "./GoogleSearchBar";
 
 export const icon = new Icon({
   iconUrl: "./orangemapmarker.png",
@@ -88,14 +93,14 @@ class Home extends Component {
             <div className="home-input">
               <div>
                 <a
-                  className="btn-small"
+                  className="btn-small searchby"
                   name="address"
                   onClick={this.handleSearchOption}
                 >
                   Search by Address
                 </a>
                 <a
-                  className="btn-small"
+                  className="btn-small searchby"
                   name="landlord"
                   onClick={this.handleSearchOption}
                 >
@@ -114,27 +119,28 @@ class Home extends Component {
                   className="home-dropdown"
                   option={{
                     alignment: "center",
-                    constrainWidth: false,
+                    constrainWidth: true,
                   }}
                   trigger={<input placeholder="Search our database" />}
                 >
-                  <div className="select-option">
-                    <div>Don't see who you're looking for?</div>
-                    <button type="button" className="btn-small" href="/review">
-                      Add
-                    </button>
-                  </div>
-                  {landlords.map((landlord) => (
-                    <div className="select-option" key={landlord.id}>
-                      <div>{landlord.name}</div>
-                      <button
-                        type="button"
-                        className="btn-small"
-                        href={`/landlords/${landlord.id}`}
-                      >
-                        Search
+                  <Link to="/review">
+                    <div className="select-option">
+                      <div>Don't see who you're looking for?</div>
+                      <button type="button" className="btn-small">
+                        Add
                       </button>
                     </div>
+                  </Link>
+                  {landlords.map((landlord) => (
+                    <Link to={`/landlords/${landlord.id}`}>
+                      <div className="select-option">
+                        <div>{landlord.name}</div>
+
+                        <button type="button" className="btn-small">
+                          Search
+                        </button>
+                      </div>
+                    </Link>
                   ))}
                 </Dropdown>
               )}
