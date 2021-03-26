@@ -1,4 +1,6 @@
 import axios from "axios";
+import { _addReview } from "./reviewList";
+import { fetchSingleLandlord } from "./singleLandlord";
 
 const ADD_REVIEW = "ADD_REVIEW";
 
@@ -27,20 +29,21 @@ export const _addMaintenanceReview = (maintenance) => ({
   maintenance,
 });
 
-export const _addReview = (review) => ({
-  type: ADD_REVIEW,
-  review,
-});
+// export const _addReview = (review) => ({
+//   type: ADD_REVIEW,
+//   review,
+// });
 
 export const addReview = (review) => {
   return async (dispatch) => {
     try {
       const added = (await axios.post("/api/reviews", review)).data;
       // will need to do this to add to the page?
-      // dispatch(_addReview(added))
-      res.send("review added");
+      console.log("ADDED!!!", added);
+      dispatch(_addReview(added));
+      dispatch(fetchSingleLandlord(added.landlordId));
     } catch (error) {
-      console.log("error adding review");
+      console.log(error, "---->>>>error adding review");
     }
   };
 };

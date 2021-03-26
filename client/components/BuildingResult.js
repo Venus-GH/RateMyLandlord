@@ -57,6 +57,7 @@ class BuildingResult extends React.Component {
     const { isLoading } = this.state;
     const { landlord, user, reviews } = this.props || {};
     const coord = { lat, lng };
+    console.log("in building result reviews", reviews);
 
     return isLoading ? (
       <Loading />
@@ -210,8 +211,8 @@ class BuildingResult extends React.Component {
 const mapState = (state) => {
   return {
     building: state.buildings.single,
-    landlord: state.buildings.landlord,
-    reviews: state.buildings.reviews,
+    landlord: state.landlord,
+    reviews: state.reviewList,
     user: state.user,
   };
 };
