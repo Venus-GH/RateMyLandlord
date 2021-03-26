@@ -10,6 +10,15 @@ const urlsToCache = [
 ];
 
 //cache size limit function
+const limitCacheSize = (name, size) => {
+  caches.open(name).then((cache) => {
+    cache.keys().then((keys) => {
+      if (keys.length > size) {
+        cache.delete(keys[0]).then(limitCacheSize(name, size));
+      }
+    });
+  });
+};
 
 //install service worker
 self.addEventListener("install", (evt) => {
@@ -24,7 +33,16 @@ self.addEventListener("install", (evt) => {
 
 //activate sw
 self.addEventListener("activate", (evt) => {
-  console.log("sw has beeen activated");
+  //   console.log("sw has beeen activated");
+  evt.waitUntil(
+    caches.keys().then((keys) => {
+      return Promise.all(
+        keys
+          .filter((key) => key !== staticCacheName && key !== dynamicCacheName)
+          .map((key) => caches.delete(key))
+      );
+    })
+  );
 });
 
 //fetch event
@@ -39,7 +57,7 @@ self.addEventListener("fetch", (evt) => {
           fetch(evt.request).then((fetchResponse) => {
             return caches.open(dynamicCacheName).then((cache) => {
               cache.put(evt.request.url, fetchResponse.clone());
-              //   limitCacheSize(dynamicCacheName, 30);
+              limitCacheSize(dynamicCacheName, 30);
               return fetchResponse;
             });
           })
