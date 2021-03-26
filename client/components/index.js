@@ -18,3 +18,4 @@ export { default as RentPricesHome } from "./RentPricesHome";
 export { default as NYCPopulation } from "./NYCPopulation";
 export { default as Explore } from "./Explore";
 export { default as Account } from "./Account";
+export { default as NYPD } from "./NYPD";

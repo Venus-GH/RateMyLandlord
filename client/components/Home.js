@@ -88,14 +88,14 @@ class Home extends Component {
             <div className="home-input">
               <div>
                 <a
-                  className="btn-small"
+                  className="btn-small searchBy"
                   name="address"
                   onClick={this.handleSearchOption}
                 >
                   Search by Address
                 </a>
                 <a
-                  className="btn-small"
+                  className="btn-small searchBy"
                   name="landlord"
                   onClick={this.handleSearchOption}
                 >
@@ -118,23 +118,24 @@ class Home extends Component {
                   }}
                   trigger={<input placeholder="Search our database" />}
                 >
-                  <div className="select-option">
-                    <div>Don't see who you're looking for?</div>
-                    <button type="button" className="btn-small" href="/review">
-                      Add
-                    </button>
-                  </div>
-                  {landlords.map((landlord) => (
-                    <div className="select-option" key={landlord.id}>
-                      <div>{landlord.name}</div>
-                      <button
-                        type="button"
-                        className="btn-small"
-                        href={`/landlords/${landlord.id}`}
-                      >
-                        Search
+                  <Link to="/review">
+                    <div className="select-option">
+                      <div>Don't see who you're looking for?</div>
+                      <button type="button" className="btn-small">
+                        Add
                       </button>
                     </div>
+                  </Link>
+                  {landlords.map((landlord) => (
+                    <Link to={`/landlords/${landlord.id}`}>
+                      <div className="select-option">
+                        <div>{landlord.name}</div>
+
+                        <button type="button" className="btn-small">
+                          Search
+                        </button>
+                      </div>
+                    </Link>
                   ))}
                 </Dropdown>
               )}

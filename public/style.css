@@ -77,8 +77,8 @@ form div {
   left: 50%;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
-  width: 500px;
-  height: 35px;
+  /* width: 500px;
+  height: 35px; */
   display: flex;
   flex-direction: column;
 }
@@ -102,7 +102,7 @@ form div {
   justify-content: space-between;
 }
 
-.home-input a {
+.home-input .searchBy {
   width: 50%;
 }
 
@@ -141,12 +141,47 @@ form div {
   width: 300px;
 }
 
+.results-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 5em;
+  margin-right: 5em;
+}
+
+.results-maps {
+  margin: 1em;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.results-reviews {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1em;
+}
+
+.reviews-single-landlord-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #results-header {
   background-color: lightgray;
   margin-left: 2em;
   margin-bottom: 1em;
   padding: 0.8em;
   width: 46vw;
+}
+
+.single-building-map {
+  min-width: 30vw;
+  min-height: 40vh;
 }
 
 #results-num-reviews {
@@ -331,6 +366,30 @@ button.btn.transparent-button {
 @media only screen and (max-width: 992px) {
   nav .brand-logo {
     font-size: 1rem;
+  }
+
+  .home-input {
+    max-width: 90%;
+    font-size: 1rem;
+  }
+
+  .home-input input {
+    max-width: 100%;
+  }
+
+  .nav {
+    position: fixed;
+    top: 0;
+    z-index: 2;
+  }
+
+  .searchby {
+    font-size: 0.8rem;
+  }
+
+  .results-container {
+    display: flex;
+    flex-direction: column;
   }
   #account-container {
     margin: 100px 0vw;
