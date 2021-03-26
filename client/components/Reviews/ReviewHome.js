@@ -307,7 +307,7 @@ class ReviewForm extends React.Component {
           onChange={this.onChange}
           value={this.state.leaseLength}
         />
-        <p>Would you recommend this landlord to a friend?</p>
+        <p>Would you recommend this landlord to a friend? *Required</p>
         <div>
           <Button onClick={this.onYes}>Yes</Button>
           <Button onClick={this.onNo}>No</Button>
