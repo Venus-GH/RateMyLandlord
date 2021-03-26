@@ -60,17 +60,24 @@ router.get("/", async (req, res, next) => {
       if (req.query.filterBy === "5") {
         grade = "F";
       }
-      newLandlordsArr = newLandlordsArr.filter((landlord) => {
-        console.log(
-          "landlord.avgs.avgGrade",
-          landlord.dataValues.avgs.avgGrade
-        );
-        if (landlord.dataValues.avgs.avgGrade === grade) {
-          return landlord;
-        }
-      });
+      if (req.query.filterBy === "all") {
+        res.json(newLandlordsArr);
+      } else {
+        newLandlordsArr = newLandlordsArr.filter((landlord) => {
+          console.log(
+            "landlord.avgs.avgGrade",
+            landlord.dataValues.avgs.avgGrade
+          );
+          if (landlord.dataValues.avgs.avgGrade === grade) {
+            return landlord;
+          }
+        });
+
+        res.json(newLandlordsArr);
+      }
+    } else {
+      res.json(newLandlordsArr);
     }
-    res.json(newLandlordsArr);
   } catch (err) {
     next(err);
   }

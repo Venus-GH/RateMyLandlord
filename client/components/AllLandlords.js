@@ -104,6 +104,7 @@ class AllLandlords extends React.Component {
             <option disabled value="">
               Filter by Grade
             </option>
+            <option value="all">See all</option>
             <option value="1">A</option>
             <option value="2">B</option>
             <option value="3">C</option>
