@@ -29,5 +29,24 @@ self.addEventListener("activate", (evt) => {
 
 //fetch event
 self.addEventListener("fetch", (evt) => {
-  console.log("fetch event", evt);
+  //   console.log("fetch event", evt);
+  evt.respondWith(
+    caches
+      .match(evt.request)
+      .then((cacheResponse) => {
+        return (
+          cacheResponse ||
+          fetch(evt.request).then((fetchResponse) => {
+            return caches.open(dynamicCacheName).then((cache) => {
+              cache.put(evt.request.url, fetchResponse.clone());
+              //   limitCacheSize(dynamicCacheName, 30);
+              return fetchResponse;
+            });
+          })
+        );
+      })
+      .catch(() => {
+        return caches.match("/offline.html");
+      })
+  );
 });
