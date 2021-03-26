@@ -34,6 +34,7 @@ const defaultState = {
   allowContact: false,
   landlordName: "",
   address: "",
+  autocomplete: false,
 };
 
 class ReviewForm extends React.Component {
@@ -143,7 +144,11 @@ class ReviewForm extends React.Component {
     this.setState({ grade: e.target.value });
   };
   handleProperty = (e) => {
-    this.setState({ address: e.target.value });
+    if (e.target.value === "autocomplete") {
+      this.setState({ autocomplete: true });
+    } else {
+      this.setState({ address: e.target.value });
+    }
   };
   render() {
     let landlord = this.props.landlord || {};
@@ -213,7 +218,10 @@ class ReviewForm extends React.Component {
               ) : (
                 <option>Whoops, no properties here.</option>
               )}
-              <option value="none"> I don't see my building here</option>
+              <option value="autocomplete">
+                {" "}
+                I don't see my building here
+              </option>
             </Select>
           </div>
         )}
@@ -221,7 +229,7 @@ class ReviewForm extends React.Component {
           googleMapsApiKey="AIzaSyCOopGii1dRKKnMTLI00ilvrrKW64KKLfk"
           libraries={["places"]}
         > */}
-        {this.state.address === "none" && (
+        {this.state.autocomplete && (
           // <div id="googleAPIDiv">
           <Autocomplete
             onLoad={this.onLoad}
