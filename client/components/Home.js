@@ -82,125 +82,120 @@ class Home extends Component {
               </Marker>
             ))}
           </MapContainer>
-          <LoadScript
+          {/* <LoadScript
             googleMapsApiKey="AIzaSyCOopGii1dRKKnMTLI00ilvrrKW64KKLfk"
             libraries={["places"]}
-          >
-            <div className="home-input">
-              <div>
-                <a
-                  className="btn-small searchBy"
-                  name="address"
-                  onClick={this.handleSearchOption}
-                >
-                  Search by Address
-                </a>
-                <a
-                  className="btn-small searchBy"
-                  name="landlord"
-                  onClick={this.handleSearchOption}
-                >
-                  Search by Landlord
-                </a>
-              </div>
-              {searchBy === "address" ? (
-                <Autocomplete
-                  onLoad={this.onLoad}
-                  onPlaceChanged={this.onPlaceChanged}
-                >
-                  <input placeholder="Enter an address to get started" />
-                </Autocomplete>
-              ) : (
-                <Dropdown
-                  className="home-dropdown"
-                  option={{
-                    alignment: "center",
-                    constrainWidth: false,
-                  }}
-                  trigger={<input placeholder="Search our database" />}
-                >
-                  <Link>
+          > */}
+          <div className="home-input">
+            <div>
+              <a
+                className="btn-small searchBy"
+                name="address"
+                onClick={this.handleSearchOption}
+              >
+                Search by Address
+              </a>
+              <a
+                className="btn-small searchBy"
+                name="landlord"
+                onClick={this.handleSearchOption}
+              >
+                Search by Landlord
+              </a>
+            </div>
+            {searchBy === "address" ? (
+              <Autocomplete
+                onLoad={this.onLoad}
+                onPlaceChanged={this.onPlaceChanged}
+              >
+                <input placeholder="Enter an address to get started" />
+              </Autocomplete>
+            ) : (
+              <Dropdown
+                className="home-dropdown"
+                option={{
+                  alignment: "center",
+                  constrainWidth: false,
+                }}
+                trigger={<input placeholder="Search our database" />}
+              >
+                <Link>
+                  <div className="select-option">
+                    <div>Don't see who you're looking for?</div>
+                    <Button
+                      className="modal-trigger"
+                      href="#modal1"
+                      node="button"
+                    >
+                      Add
+                    </Button>
+                    <Modal
+                      actions={[
+                        <Button flat modal="close" node="button" waves="green">
+                          Close
+                        </Button>,
+                      ]}
+                      bottomSheet={false}
+                      fixedFooter={false}
+                      header="Rate This Landlord"
+                      id="modal1"
+                      open={false}
+                      options={{
+                        dismissible: true,
+                        endingTop: "10%",
+                        inDuration: 250,
+                        onCloseEnd: null,
+                        onCloseStart: null,
+                        onOpenEnd: null,
+                        onOpenStart: null,
+                        opacity: 0.5,
+                        outDuration: 250,
+                        preventScrolling: true,
+                        startingTop: "4%",
+                      }}
+                      // root={[object HTMLBodyElement]}
+                    >
+                      <ReviewForm />
+                    </Modal>
+                  </div>
+                </Link>
+
+                {landlords.map((landlord) => (
+                  <Link to={`/landlords/${landlord.id}`}>
                     <div className="select-option">
-                      <div>Don't see who you're looking for?</div>
-                      <Button
-                        className="modal-trigger"
-                        href="#modal1"
-                        node="button"
-                      >
-                        Add
-                      </Button>
-                      <Modal
-                        actions={[
-                          <Button
-                            flat
-                            modal="close"
-                            node="button"
-                            waves="green"
-                          >
-                            Close
-                          </Button>,
-                        ]}
-                        bottomSheet={false}
-                        fixedFooter={false}
-                        header="Rate This Landlord"
-                        id="modal1"
-                        open={false}
-                        options={{
-                          dismissible: true,
-                          endingTop: "10%",
-                          inDuration: 250,
-                          onCloseEnd: null,
-                          onCloseStart: null,
-                          onOpenEnd: null,
-                          onOpenStart: null,
-                          opacity: 0.5,
-                          outDuration: 250,
-                          preventScrolling: true,
-                          startingTop: "4%",
-                        }}
-                        // root={[object HTMLBodyElement]}
-                      >
-                        <ReviewForm />
-                      </Modal>
+                      <div>{landlord.name}</div>
+
+                      <button type="button" className="btn-small">
+                        Search
+                      </button>
                     </div>
                   </Link>
-
-                  {landlords.map((landlord) => (
-                    <Link to={`/landlords/${landlord.id}`}>
-                      <div className="select-option">
-                        <div>{landlord.name}</div>
-
-                        <button type="button" className="btn-small">
-                          Search
-                        </button>
-                      </div>
-                    </Link>
-                  ))}
-                </Dropdown>
-              )}
-              {address.length ? (
-                <Link
-                  to={{
-                    pathname: "/results",
-                    state: {
-                      address,
-                      lat,
-                      lng,
-                    },
-                  }}
+                ))}
+              </Dropdown>
+            )}
+            {address.length ? (
+              <Link
+                to={{
+                  pathname: "/results",
+                  state: {
+                    address,
+                    lat,
+                    lng,
+                  },
+                }}
+              >
+                <button
+                  type="button"
+                  className="waves-effect waves-light btn-small"
                 >
-                  <button
-                    type="button"
-                    className="waves-effect waves-light btn-small"
-                  >
-                    Search
-                  </button>
-                </Link>
-              ) : (
-                ""
-              )}
-            </div>
-          </LoadScript>
+                  Search
+                </button>
+              </Link>
+            ) : (
+              ""
+            )}
+          </div>
+          {/* </LoadScript> */}
         </div>
       </div>
     );

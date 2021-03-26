@@ -64,7 +64,7 @@ router.post("/", async (req, res, next) => {
       where: {
         id: review.id,
       },
-      include: Building,
+      include: [Building, User],
     });
 
     res.json(newReview);

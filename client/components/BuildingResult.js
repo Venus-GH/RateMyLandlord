@@ -56,7 +56,7 @@ class BuildingResult extends React.Component {
     const { address, lat, lng } = this.props.location.state;
     const { isLoading } = this.state;
     const { landlord, user, reviews } = this.props || {};
-    const coord = { lat, lng };
+    const coord = { lat: Number(lat), lng: Number(lng) };
     console.log("in building result reviews", reviews);
 
     return isLoading ? (
@@ -90,22 +90,17 @@ class BuildingResult extends React.Component {
                 }}
                 title="Street View"
               >
-                <LoadScript
-                  googleMapsApiKey="AIzaSyCOopGii1dRKKnMTLI00ilvrrKW64KKLfk"
-                  libraries={["places"]}
+                <GoogleMap
+                  mapContainerStyle={{ width: "30vw", height: "80vh" }}
+                  // center={center}
+                  // zoom={14}
                 >
-                  <GoogleMap
-                    // mapContainerStyle={{ width: "30vw", height: "80vh" }}
-                    // center={center}
-                    zoom={14}
-                  >
-                    <StreetViewPanorama
-                      // address={this.state.address}
-                      position={coord}
-                      visible={true}
-                    />
-                  </GoogleMap>
-                </LoadScript>
+                  <StreetViewPanorama
+                    // address={this.state.address}
+                    position={{ lat: Number(lat), lng: Number(lng) }}
+                    visible={true}
+                  />
+                </GoogleMap>
               </Tab>
               <Tab
                 active

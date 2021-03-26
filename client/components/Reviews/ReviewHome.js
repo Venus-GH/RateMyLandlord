@@ -217,22 +217,22 @@ class ReviewForm extends React.Component {
             </Select>
           </div>
         )}
-        <LoadScript
+        {/* <LoadScript
           googleMapsApiKey="AIzaSyCOopGii1dRKKnMTLI00ilvrrKW64KKLfk"
           libraries={["places"]}
-        >
-          {this.state.address === "none" && (
-            // <div id="googleAPIDiv">
-            <Autocomplete
-              onLoad={this.onLoad}
-              onPlaceChanged={this.onPlaceChanged}
-            >
-              <input placeholder="Find address by building" />
-            </Autocomplete>
+        > */}
+        {this.state.address === "none" && (
+          // <div id="googleAPIDiv">
+          <Autocomplete
+            onLoad={this.onLoad}
+            onPlaceChanged={this.onPlaceChanged}
+          >
+            <input placeholder="Find address by building" />
+          </Autocomplete>
 
-            // </div>
-          )}
-        </LoadScript>
+          // </div>
+        )}
+        {/* </LoadScript> */}
         {!landlord.id && (
           <TextInput
             id="landlordName"
