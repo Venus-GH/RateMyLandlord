@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Explore = () => {
   return (
     <div className="row">
-      <h4>Explore more by Borough</h4>
+      <h4>Explore by Borough</h4>
       <div className="col s12 m3 l3">
         <div className="medium card">
           <div className="card-image waves-effect waves-block waves-light">
@@ -70,7 +70,7 @@ const Explore = () => {
       <div className="col s12 m3 l3">
         <div className="medium card">
           <div className="card-image waves-effect waves-block waves-light">
-            <img className="activator" src="/explore2.png" />
+            <img className="activator" src="/img/explore2.png" />
           </div>
           <div className="card-content">
             <span className="card-title activator grey-text text-darken-4">
@@ -98,7 +98,7 @@ const Explore = () => {
       <div className="col s12 m3 l3">
         <div className="medium card">
           <div className="card-image waves-effect waves-block waves-light">
-            <img className="activator" src="/explore3.png" />
+            <img className="activator" src="/img/explore3.png" />
           </div>
           <div className="card-content">
             <span className="card-title activator grey-text text-darken-4">

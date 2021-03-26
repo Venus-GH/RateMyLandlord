@@ -9,7 +9,7 @@ import { fetchLandlords } from "../store/landlords";
 import { Dropdown } from "react-materialize";
 
 export const icon = new Icon({
-  iconUrl: "./orangemapmarker.png",
+  iconUrl: "./img/orangemapmarker.png",
 });
 
 class Home extends Component {

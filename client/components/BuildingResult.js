@@ -15,7 +15,7 @@ import { Icon } from "leaflet";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
 export const icon = new Icon({
-  iconUrl: "./orangemapmarker.png",
+  iconUrl: "./img/orangemapmarker.png",
 });
 
 class BuildingResult extends React.Component {
@@ -59,7 +59,7 @@ class BuildingResult extends React.Component {
 
     return isLoading ? (
       <div className="loading-screen">
-        <img src="/loading.gif" />
+        <img src="/img/loading.gif" />
       </div>
     ) : (
       <div className="results-view">
