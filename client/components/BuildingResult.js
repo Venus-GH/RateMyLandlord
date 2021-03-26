@@ -3,7 +3,6 @@ import {
   GoogleMap,
   LoadScript,
   StreetViewPanorama,
-  Marker,
 } from "@react-google-maps/api";
 import { connect } from "react-redux";
 import { fetchBuilding } from "../store/buildings";
@@ -12,6 +11,12 @@ import ReviewList from "./ReviewList";
 import ReviewForm from "./Reviews/ReviewHome";
 import { Modal, Button, Tabs, Tab } from "react-materialize";
 import { setReviews } from "../store/reviewList";
+import { Icon } from "leaflet";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+
+export const icon = new Icon({
+  iconUrl: "./orangemapmarker.png",
+});
 
 class BuildingResult extends React.Component {
   constructor() {
@@ -90,7 +95,7 @@ class BuildingResult extends React.Component {
                   libraries={["places"]}
                 >
                   <GoogleMap
-                    mapContainerStyle={{ width: "30vw", height: "80vh" }}
+                    // mapContainerStyle={{ width: "30vw", height: "80vh" }}
                     // center={center}
                     zoom={14}
                   >
@@ -112,18 +117,21 @@ class BuildingResult extends React.Component {
                 }}
                 title="Map"
               >
-                <LoadScript
-                  googleMapsApiKey="AIzaSyCOopGii1dRKKnMTLI00ilvrrKW64KKLfk"
-                  libraries={["places"]}
+                <MapContainer
+                  center={[lat, lng]}
+                  zoom={13}
+                  className="single-building-map"
                 >
-                  <GoogleMap
-                    mapContainerStyle={{ width: "30vw", height: "80vh" }}
-                    center={coord}
-                    zoom={14}
-                  >
-                    <Marker position={coord} />
-                  </GoogleMap>
-                </LoadScript>
+                  <TileLayer
+                    attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+                    url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
+                  />
+                  <Marker
+                    className="home-marker"
+                    icon={icon}
+                    position={[Number(lat), Number(lng)]}
+                  />
+                </MapContainer>
               </Tab>
             </Tabs>
           </div>
