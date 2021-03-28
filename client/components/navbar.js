@@ -24,7 +24,7 @@ class Navbar extends React.Component {
               Rate My Landlord
             </Link>
             <a href="#" data-target="mobile-demo" className="sidenav-trigger">
-              <i className="material-icons">menu</i>
+              <i className="material-icons white-text">menu</i>
             </a>
             {isLoggedIn ? (
               <ul id="nav-mobile" className="right hide-on-med-and-down">
