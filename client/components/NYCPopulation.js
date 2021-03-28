@@ -156,19 +156,22 @@ const NYCPopulation = (props) => {
   return (
     <div id="outside-container">
       <div className="inline-container">
-        <h5 className="center">Population by Borough</h5>
+        <h5 className="center">
+          Population by Borough <br />
+          <br />
+          <Link to="/explore" className="center">
+            <button
+              className=" btn btn-small waves-effect waves-light teal lighten-4 black-text"
+              type="button"
+            >
+              Back to Explore
+              <i className="material-icons left center">arrow_back</i>
+            </button>
+          </Link>
+        </h5>
       </div>
-      <div className="center">
-        <Link to="/explore">
-          <button
-            className=" btn btn-small waves-effect waves-light teal lighten-4 black-text"
-            type="button"
-          >
-            Back to Explore
-            <i className="material-icons left center">arrow_back</i>
-          </button>
-        </Link>
-      </div>
+      <br />
+
       <div>
         <div onClick={(e) => setShow(!show)}>
           {" "}

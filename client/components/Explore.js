@@ -8,10 +8,13 @@ const Explore = () => {
       <div className="col s12 m3 l3">
         <div className="medium card">
           <div className="card-image waves-effect waves-block waves-light">
-            <img
-              className="activator"
-              src="https://images.squarespace-cdn.com/content/v1/57265384b09f951c90d0fed2/1528842793819-R1WBWNQ8SXG7F21KCUQ7/ke17ZwdGBToddI8pDm48kOQuQVqsivNiP1OgHcJ5kmdZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpzHCD3tzD6kBZWhVB-BibHm7yS6OS0-U0aUFLk6gVSFFA72rbKQGJ4J8Eiv7MnIPvE/graphs.jpg"
-            />
+            <Link to="/explore/pastrentprices">
+              {" "}
+              <img
+                className="activator"
+                src="https://images.squarespace-cdn.com/content/v1/57265384b09f951c90d0fed2/1528842793819-R1WBWNQ8SXG7F21KCUQ7/ke17ZwdGBToddI8pDm48kOQuQVqsivNiP1OgHcJ5kmdZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpzHCD3tzD6kBZWhVB-BibHm7yS6OS0-U0aUFLk6gVSFFA72rbKQGJ4J8Eiv7MnIPvE/graphs.jpg"
+              />
+            </Link>
           </div>
           <div className="card-content">
             <span className="card-title activator grey-text text-darken-4">
@@ -39,10 +42,13 @@ const Explore = () => {
       <div className="col s12 m3 l3">
         <div className="medium card">
           <div className="card-image waves-effect waves-block waves-light">
-            <img
-              className="activator"
-              src="https://about.infogr.am/wp-content/uploads/2015/10/bar-charts-header.jpg"
-            />
+            <Link to="/explore/pastrentinv">
+              {" "}
+              <img
+                className="activator"
+                src="https://about.infogr.am/wp-content/uploads/2015/10/bar-charts-header.jpg"
+              />
+            </Link>
           </div>
           <div className="card-content">
             <span className="card-title activator grey-text text-darken-4">
@@ -70,7 +76,9 @@ const Explore = () => {
       <div className="col s12 m3 l3">
         <div className="medium card">
           <div className="card-image waves-effect waves-block waves-light">
-            <img className="activator" src="/img/explore2.png" />
+            <Link to="/explore/nypdcomplaints">
+              <img className="activator" src="/img/explore2.png" />
+            </Link>
           </div>
           <div className="card-content">
             <span className="card-title activator grey-text text-darken-4">
@@ -98,7 +106,9 @@ const Explore = () => {
       <div className="col s12 m3 l3">
         <div className="medium card">
           <div className="card-image waves-effect waves-block waves-light">
-            <img className="activator" src="/img/explore3.png" />
+            <Link to="/explore/nycpopulation">
+              <img className="activator" src="/img/explore3.png" />
+            </Link>
           </div>
           <div className="card-content">
             <span className="card-title activator grey-text text-darken-4">
