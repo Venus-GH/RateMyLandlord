@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { fetchLandlords, filterLandlords } from "../store/landlords";
 import { Link } from "react-router-dom";
 import "materialize-css";
+import M from "materialize-css";
 import { Select, Col, CardPanel } from "react-materialize";
 
 const orderBy = (order, landlords) => {
@@ -72,21 +73,30 @@ class AllLandlords extends React.Component {
   constructor() {
     super();
     this.state = {
-      A: false,
-      B: false,
-      C: false,
-      D: false,
-      F: false,
-      true: false,
-      false: false,
+      landlords: [],
       order: "",
+      filters: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleOrderChange = this.handleOrderChange.bind(this);
     this.handleFilterChange = this.handleFilterChange.bind(this);
   }
-  componentDidMount() {
-    this.props.getLandlords();
+  async componentDidMount() {
+    await this.props.getLandlords();
+    this.setState({ landlords: this.props.landlords });
+  }
+
+  async componentDidUpdate(prevProps, prevState) {
+    if (this.state.order !== prevState.order) {
+      const ordered = await orderBy(this.state.order, this.state.landlords);
+      this.setState({ landlords: ordered });
+    }
+    // if (
+    //   JSON.stringify(this.state.filters) !== JSON.stringify(prevState.filters)
+    // ) {
+    //   const filtered = await filterBy(this.state.filters, this.state.landlords);
+    //   this.setState({ landlords: filtered });
+    // }
   }
 
   handleChange = (e) => {
@@ -94,12 +104,10 @@ class AllLandlords extends React.Component {
   };
 
   handleFilterChange = (e) => {
-    e.persist();
-    console.log("event:", e.target);
-    // on click change e.target.value to !value
-    this.setState((prevState) => ({
-      [e.target.value]: !prevState[e.target.value],
-    }));
+    const instance = M.FormSelect.getInstance(e.target);
+    const selectedValues = instance.getSelectedValues();
+    // this.setState({ filters: selectedValues });
+    console.log(selectedValues);
   };
 
   handleOrderChange = (e) => {
@@ -107,13 +115,7 @@ class AllLandlords extends React.Component {
   };
 
   render() {
-    let landlords = this.props.landlords || [];
-    if (this.state.order.length > 0) {
-      landlords = orderBy(this.state.order, landlords);
-    }
-    // if (this.state.filter.length > 1) {
-    //   landlords = filterBy(this.state.filter, landlords);
-    // }
+    let landlords = this.state.landlords;
 
     return (
       <div>
@@ -189,6 +191,7 @@ class AllLandlords extends React.Component {
           </Select>
           <Select
             id="Select-9"
+            onChange={this.handleFilterChange}
             multiple
             options={{
               classes: "",
@@ -212,13 +215,17 @@ class AllLandlords extends React.Component {
             <option disabled value="">
               Filter Results
             </option>
-            <option value="A">Grade A</option>
-            <option value="B">Grade B</option>
-            <option value="C">Grade C</option>
-            <option value="D">Grade D</option>
-            <option value="F">Grade F</option>
-            <option value="true">Recommended</option>
-            <option value="false">Not Recommended</option>
+            <optgroup label="Grade">
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="F">F</option>
+            </optgroup>
+            <optgroup label="Would Recommend">
+              <option value="true">Recommended</option>
+              <option value="false">Not Recommended</option>
+            </optgroup>
           </Select>
         </div>
         {landlords.length === 0 && <div>Sorry, no landlords found.</div>}
