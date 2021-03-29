@@ -10,7 +10,7 @@ import { Dropdown, Button, Modal } from "react-materialize";
 import ReviewForm from "./Reviews/ReviewHome";
 
 export const icon = new Icon({
-  iconUrl: "./orangemapmarker.png",
+  iconUrl: "./img/orangemapmarker.png",
 });
 
 class Home extends Component {

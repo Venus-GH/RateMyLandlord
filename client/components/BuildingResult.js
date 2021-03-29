@@ -16,7 +16,7 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import Loading from "./Loading";
 
 export const icon = new Icon({
-  iconUrl: "./orangemapmarker.png",
+  iconUrl: "./img/orangemapmarker.png",
 });
 
 class BuildingResult extends React.Component {

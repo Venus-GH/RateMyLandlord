@@ -5,7 +5,7 @@ import { Icon } from "leaflet";
 import BuildingList from "./BuildingList";
 
 export const icon = new Icon({
-  iconUrl: "/mapmarker.png",
+  iconUrl: "/img/mapmarker.png",
   iconSize: [40, 40],
 });
 

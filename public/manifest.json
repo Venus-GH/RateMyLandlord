@@ -1,0 +1,22 @@
+{
+  "name": "Rate My Landlord",
+  "short_name": "Rate My Landlord",
+  "icons": [
+    {
+      "src": "/img/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/img/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#373737",
+  "background_color": "#515151",
+  "orientation": "portrait-primary"
+}
