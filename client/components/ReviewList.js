@@ -19,6 +19,7 @@ class ReviewList extends React.Component {
 
   render() {
     const { reviews, user } = this.props || [];
+    console.log("in review list render", reviews);
     const grade = { 1: "F", 2: "D", 3: "C", 4: "B", 5: "A" };
     return (
       <div className={this.props.type}>

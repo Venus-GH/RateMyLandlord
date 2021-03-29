@@ -46,9 +46,10 @@ class BuildingResult extends React.Component {
       this.setState({ isLoading: false });
     }
     if (
-      JSON.stringify(this.props.reviews) !== JSON.stringify(prevProps.reviews)
+      JSON.stringify(this.props.building.reviews) !==
+      JSON.stringify(prevProps.views)
     ) {
-      this.props.setReviews(this.props.reviews);
+      this.props.setReviews(this.props.building.reviews);
     }
   }
 
@@ -206,7 +207,7 @@ class BuildingResult extends React.Component {
 const mapState = (state) => {
   return {
     building: state.buildings.single,
-    landlord: state.landlord,
+    landlord: state.buildings.landlord,
     reviews: state.reviewList,
     user: state.user,
   };
