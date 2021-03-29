@@ -88,28 +88,6 @@ class BuildingResult extends React.Component {
                   responsiveThreshold: Infinity,
                   swipeable: false,
                 }}
-                title="Street View"
-              >
-                <GoogleMap
-                  mapContainerStyle={{ width: "30vw", height: "80vh" }}
-                  // center={center}
-                  // zoom={14}
-                >
-                  <StreetViewPanorama
-                    // address={this.state.address}
-                    position={{ lat: Number(lat), lng: Number(lng) }}
-                    visible={true}
-                  />
-                </GoogleMap>
-              </Tab>
-              <Tab
-                active
-                options={{
-                  duration: 300,
-                  onShow: null,
-                  responsiveThreshold: Infinity,
-                  swipeable: false,
-                }}
                 title="Map"
               >
                 <MapContainer
@@ -127,6 +105,25 @@ class BuildingResult extends React.Component {
                     position={[Number(lat), Number(lng)]}
                   />
                 </MapContainer>
+              </Tab>
+              <Tab
+                active
+                options={{
+                  duration: 300,
+                  onShow: null,
+                  responsiveThreshold: Infinity,
+                  swipeable: false,
+                }}
+                title="Street View"
+              >
+                <GoogleMap
+                  mapContainerStyle={{ width: "30vw", height: "80vh" }}
+                >
+                  <StreetViewPanorama
+                    position={{ lat: Number(lat), lng: Number(lng) }}
+                    visible={true}
+                  />
+                </GoogleMap>
               </Tab>
             </Tabs>
           </div>
@@ -164,7 +161,6 @@ class BuildingResult extends React.Component {
                   preventScrolling: true,
                   startingTop: "4%",
                 }}
-                // root={[object HTMLBodyElement]}
                 trigger={<Button node="button">Review Landlord</Button>}
               >
                 <ReviewForm
@@ -195,8 +191,6 @@ class BuildingResult extends React.Component {
               <div>No reviews yet... Add a review to get started.</div>
             )}
           </div>
-          {/* <div className="result-map">
-          </div> */}
         </div>
       </div>
     );
