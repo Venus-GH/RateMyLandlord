@@ -162,7 +162,8 @@ class ReviewForm extends React.Component {
         if (
           Object.keys(this.props.reviews).length > 3 &&
           this.state.grade !== "" &&
-          this.state.address !== undefined
+          this.state.address !== undefined &&
+          this.state.wouldRecommend !== null
         ) {
           return true;
         } else return false;
@@ -170,7 +171,8 @@ class ReviewForm extends React.Component {
       if (this.props.address) {
         if (
           Object.keys(this.props.reviews).length > 3 &&
-          this.state.grade !== ""
+          this.state.grade !== "" &&
+          this.state.wouldRecommend !== null
         ) {
           return true;
         } else return false;
@@ -315,7 +317,7 @@ class ReviewForm extends React.Component {
           onChange={this.onChange}
           value={this.state.leaseLength}
         />
-        <p>Would you recommend this landlord to a friend?</p>
+        <p>Would you recommend this landlord to a friend? *Required</p>
         <div>
           <Button onClick={this.onYes}>Yes</Button>
           <Button onClick={this.onNo}>No</Button>
