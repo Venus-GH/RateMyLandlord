@@ -45,24 +45,25 @@ const orderBy = (order, landlords) => {
 };
 
 const filterBy = (filters, landlords) => {
-  let filteredByGrade = landlords;
+  console.log("in filterBy:", filters, landlords);
+  let filtered = landlords;
   if (filters.some((filter) => ["A", "B", "C", "D", "F"].includes(filter))) {
-    filteredByGrade = landlords.filter((landlord) =>
-      filters.includes(landlord.avgGrade)
+    filtered = landlords.filter((landlord) =>
+      filters.includes(landlord.avgs.avgGrade)
     );
   }
   if (filters.includes("true") && filters.includes("false")) {
-    return filteredByGrade;
+    return filtered;
   } else if (filters.includes("true") || filters.includes("false")) {
     let thisFilter = filters.find((filter) => filter.length > 1);
     let otherFilter = thisFilter === "true" ? "false" : "true";
-    return filteredByGrade.filter(
+    filtered = filtered.filter(
       (landlord) =>
-        landlord.avgWouldRecommend[thisFilter] >
-        landlord.avgWouldRecommend[otherFilter]
+        landlord.avgs.avgWouldRecommend[thisFilter] >
+        landlord.avgs.avgWouldRecommend[otherFilter]
     );
   }
-  return filteredByGrade;
+  return filtered;
 };
 
 const rating = (num) => {
@@ -75,12 +76,13 @@ class AllLandlords extends React.Component {
     this.state = {
       landlords: [],
       order: "",
-      filters: [],
+      // filters: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleOrderChange = this.handleOrderChange.bind(this);
     this.handleFilterChange = this.handleFilterChange.bind(this);
   }
+
   async componentDidMount() {
     await this.props.getLandlords();
     this.setState({ landlords: this.props.landlords });
@@ -94,20 +96,37 @@ class AllLandlords extends React.Component {
     // if (
     //   JSON.stringify(this.state.filters) !== JSON.stringify(prevState.filters)
     // ) {
-    //   const filtered = await filterBy(this.state.filters, this.state.landlords);
-    //   this.setState({ landlords: filtered });
-    // }
+
+    // document.addEventListener("DOMContentLoaded", function () {
+    //   const selects = document.querySelector("select");
+    //   console.log("in eevent listener, selects:", selects);
+    //   const instances = M.FormSelect.init(selects, {});
+    //   console.log("in eevent listener, instances:", instances);
+    //   const selectOption = document.querySelector("#option-select");
+    //   console.log("in eevent listener, selectOption:", selectOption);
+
+    //   selectOption.addEventListener("change", function () {
+    //     const instance = M.FormSelect.getInstance(selectOption);
+    //     console.log("in eevent listener, instance:", instance);
+    //     const selectedValues = instance.getSelectedValues();
+    //     console.log("selected vals in component did update", selectedValues);
+    //   });
+    // });
+    // const filtered = await filterBy(this.state.filters, this.state.landlords);
+    // this.setState({ landlords: filtered });
   }
 
   handleChange = (e) => {
     this.props.filter(e.target.value);
   };
 
-  handleFilterChange = (e) => {
+  handleFilterChange = async (e) => {
     const instance = M.FormSelect.getInstance(e.target);
     const selectedValues = instance.getSelectedValues();
-    // this.setState({ filters: selectedValues });
     console.log(selectedValues);
+    const filtered = await filterBy(selectedValues, this.state.landlords);
+    console.log("filtered:", filtered);
+    // this.setState({ landlords: filtered });
   };
 
   handleOrderChange = (e) => {
@@ -241,9 +260,31 @@ class AllLandlords extends React.Component {
                     </Link>
                   </h5>
                   <div className="landlords-grade-recommend">
-                    <span className="landlords-grade">
-                      {landlord.avgs.avgGrade}
-                    </span>{" "}
+                    {landlord.avgs.avgGrade === "A" && (
+                      <span className="landlords-grade grade-a">
+                        {landlord.avgs.avgGrade}
+                      </span>
+                    )}
+                    {landlord.avgs.avgGrade === "B" && (
+                      <span className="landlords-grade grade-b">
+                        {landlord.avgs.avgGrade}
+                      </span>
+                    )}
+                    {landlord.avgs.avgGrade === "C" && (
+                      <span className="landlords-grade grade-c">
+                        {landlord.avgs.avgGrade}
+                      </span>
+                    )}
+                    {landlord.avgs.avgGrade === "D" && (
+                      <span className="landlords-grade grade-d">
+                        {landlord.avgs.avgGrade}
+                      </span>
+                    )}
+                    {landlord.avgs.avgGrade === "F" && (
+                      <span className="landlords-grade grade-f">
+                        {landlord.avgs.avgGrade}
+                      </span>
+                    )}{" "}
                     {landlord.avgs.avgWouldRecommend.true >
                     landlord.avgs.avgWouldRecommend.false ? (
                       <span className="landlords-recommend">Recommended</span>
