@@ -6,66 +6,6 @@ import "materialize-css";
 import M from "materialize-css";
 import { Select, Col, CardPanel } from "react-materialize";
 
-const orderBy = (order, landlords) => {
-  if (order === "grade") {
-    return landlords.sort((a, b) =>
-      a.avgs.avgGrade < b.avgs.avgGrade ? -1 : 1
-    );
-  }
-  if (order === "kindness") {
-    return landlords.sort((a, b) =>
-      a.avgs.avgKindness > b.avgs.avgKindness ? -1 : 1
-    );
-  }
-  if (order === "maintenance") {
-    return landlords.sort((a, b) =>
-      a.avgs.avgMaintenance > b.avgs.avgMaintenance ? -1 : 1
-    );
-  }
-  if (order === "responsiveness") {
-    return landlords.sort((a, b) =>
-      a.avgs.avgResponsiveness > b.avgs.avgResponsiveness ? -1 : 1
-    );
-  }
-  if (order === "pest-control") {
-    return landlords.sort((a, b) =>
-      a.avgs.avgPestControl > b.avgs.avgPestControl ? -1 : 1
-    );
-  }
-  if (order === "most-reviews") {
-    return landlords.sort((a, b) =>
-      a.reviews.length > b.reviews.length ? -1 : 1
-    );
-  }
-  if (order === "least-reviews") {
-    return landlords.sort((a, b) =>
-      a.reviews.length < b.reviews.length ? -1 : 1
-    );
-  }
-};
-
-const filterBy = (filters, landlords) => {
-  console.log("in filterBy:", filters, landlords);
-  let filtered = landlords;
-  if (filters.some((filter) => ["A", "B", "C", "D", "F"].includes(filter))) {
-    filtered = landlords.filter((landlord) =>
-      filters.includes(landlord.avgs.avgGrade)
-    );
-  }
-  if (filters.includes("true") && filters.includes("false")) {
-    return filtered;
-  } else if (filters.includes("true") || filters.includes("false")) {
-    let thisFilter = filters.find((filter) => filter.length > 1);
-    let otherFilter = thisFilter === "true" ? "false" : "true";
-    filtered = filtered.filter(
-      (landlord) =>
-        landlord.avgs.avgWouldRecommend[thisFilter] >
-        landlord.avgs.avgWouldRecommend[otherFilter]
-    );
-  }
-  return filtered;
-};
-
 const rating = (num) => {
   return String(num).length > 1 ? num.toFixed(1) : num;
 };
@@ -74,9 +14,8 @@ class AllLandlords extends React.Component {
   constructor() {
     super();
     this.state = {
-      landlords: [],
       order: "",
-      // filters: [],
+      filters: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleOrderChange = this.handleOrderChange.bind(this);
@@ -85,9 +24,10 @@ class AllLandlords extends React.Component {
 
   async componentDidMount() {
     await this.props.getLandlords();
-    this.setState({ landlords: this.props.landlords });
+    // this.setState({ landlords: this.props.landlords });
   }
 
+  /*
   async componentDidUpdate(prevProps, prevState) {
     if (this.state.order !== prevState.order) {
       const ordered = await orderBy(this.state.order, this.state.landlords);
@@ -115,6 +55,7 @@ class AllLandlords extends React.Component {
     // const filtered = await filterBy(this.state.filters, this.state.landlords);
     // this.setState({ landlords: filtered });
   }
+  */
 
   handleChange = (e) => {
     this.props.filter(e.target.value);
@@ -124,17 +65,20 @@ class AllLandlords extends React.Component {
     const instance = M.FormSelect.getInstance(e.target);
     const selectedValues = instance.getSelectedValues();
     console.log(selectedValues);
-    const filtered = await filterBy(selectedValues, this.state.landlords);
-    console.log("filtered:", filtered);
-    // this.setState({ landlords: filtered });
+    // const filtered = await filterBy(selectedValues, this.state.landlords);
+    // console.log("filtered:", filtered);
+    this.setState({ filters: selectedValues.join(",") });
+    // console.log("filters selected:", this.state.filters);
   };
 
   handleOrderChange = (e) => {
-    this.setState({ order: e.target.value });
+    this.setState({ order: [e.target.value] });
+    this.props.filter(this.state.order, this.state.filters);
+    // this.props.filter(e.target.value, this.state.filters);
   };
 
   render() {
-    let landlords = this.state.landlords;
+    let landlords = this.props.landlords || [];
 
     return (
       <div>
@@ -209,7 +153,7 @@ class AllLandlords extends React.Component {
             <option value="least-reviews">Least Reviews</option>
           </Select>
           <Select
-            id="Select-9"
+            id="Select-9 landlords-filter"
             onChange={this.handleFilterChange}
             multiple
             options={{
