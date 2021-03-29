@@ -8,6 +8,7 @@ const BarChart = ({ avgs, mktAvgs }) => {
   return (
     <div>
       <Bar
+        id="single-landlord-bar-chart"
         data={{
           labels: ["Kindness", "Responsiveness", "Maintenance", "Pest Control"],
           datasets: [
@@ -23,7 +24,7 @@ const BarChart = ({ avgs, mktAvgs }) => {
             },
           ],
         }}
-        width={100}
+        width={400}
         height={250}
         options={{
           maintainAspectRatio: false,
