@@ -5,11 +5,6 @@ import { Link } from "react-router-dom";
 import "materialize-css";
 import M from "materialize-css";
 import { Select, Col, CardPanel } from "react-materialize";
-import { filter } from "compression";
-
-const rating = (num) => {
-  return String(num).length > 1 ? num.toFixed(1) : num;
-};
 
 class AllLandlords extends React.Component {
   constructor() {
@@ -25,7 +20,6 @@ class AllLandlords extends React.Component {
 
   async componentDidMount() {
     await this.props.getLandlords();
-    // this.setState({ landlords: this.props.landlords });
   }
 
   handleChange = async (e) => {
@@ -55,15 +49,6 @@ class AllLandlords extends React.Component {
 
   render() {
     let landlords = this.props.landlords || [];
-    const options = [
-      { id: 1, value: "A", label: "A" },
-      { id: 2, value: "B", label: "B" },
-      { id: 3, value: "C", label: "C" },
-      { id: 4, value: "D", label: "D" },
-      { id: 5, value: "F", label: "F" },
-      { id: 6, value: "true", label: "true" },
-      { id: 7, value: "false", label: "false" },
-    ];
 
     return (
       <div>
@@ -214,7 +199,7 @@ class AllLandlords extends React.Component {
                         {landlord.avgs.avgGrade}
                       </span>
                     )}{" "}
-                    {landlord.avgs.avgWouldRecommend.true >
+                    {landlord.avgs.avgWouldRecommend.true >=
                     landlord.avgs.avgWouldRecommend.false ? (
                       <span className="landlords-recommend">Recommended</span>
                     ) : (
@@ -226,28 +211,28 @@ class AllLandlords extends React.Component {
                   <div className="landlords-rating-category">
                     <span className="rating-name">Kindness: </span>
                     <span className="rating-value">
-                      {rating(landlord.avgs.avgKindness)}
+                      {landlord.avgs.avgKindness}
                     </span>
                     /5
                   </div>
                   <div className="landlords-rating-category">
                     <span className="rating-name">Maintenance: </span>
                     <span className="rating-value">
-                      {rating(landlord.avgs.avgMaintenance)}
+                      {landlord.avgs.avgMaintenance}
                     </span>
                     /5
                   </div>
                   <div className="landlords-rating-category">
                     <span className="rating-name">Responsiveness: </span>
                     <span className="rating-value">
-                      {rating(landlord.avgs.avgResponsiveness)}
+                      {landlord.avgs.avgResponsiveness}
                     </span>
                     /5
                   </div>
                   <div className="landlords-rating-category">
                     <span className="rating-name">Pest Control: </span>
                     <span className="rating-value">
-                      {rating(landlord.avgs.avgPestControl)}
+                      {landlord.avgs.avgPestControl}
                     </span>
                     /5
                   </div>

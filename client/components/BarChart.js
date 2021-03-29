@@ -6,9 +6,9 @@ const BarChart = ({ avgs, mktAvgs }) => {
   const mktAvgValOnly = Object.values(mktAvgs);
 
   return (
-    <div>
+    <div id="landlord-bar-chart">
       <Bar
-        id="single-landlord-bar-chart"
+        // id="single-landlord-bar-chart"
         data={{
           labels: ["Kindness", "Responsiveness", "Maintenance", "Pest Control"],
           datasets: [
