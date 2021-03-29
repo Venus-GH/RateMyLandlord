@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import "materialize-css";
 import M from "materialize-css";
 import { Select, Col, CardPanel } from "react-materialize";
+import { filter } from "compression";
 
 const rating = (num) => {
   return String(num).length > 1 ? num.toFixed(1) : num;
@@ -27,65 +28,49 @@ class AllLandlords extends React.Component {
     // this.setState({ landlords: this.props.landlords });
   }
 
-  /*
-  async componentDidUpdate(prevProps, prevState) {
-    if (this.state.order !== prevState.order) {
-      const ordered = await orderBy(this.state.order, this.state.landlords);
-      this.setState({ landlords: ordered });
-    }
-    // if (
-    //   JSON.stringify(this.state.filters) !== JSON.stringify(prevState.filters)
-    // ) {
-
-    // document.addEventListener("DOMContentLoaded", function () {
-    //   const selects = document.querySelector("select");
-    //   console.log("in eevent listener, selects:", selects);
-    //   const instances = M.FormSelect.init(selects, {});
-    //   console.log("in eevent listener, instances:", instances);
-    //   const selectOption = document.querySelector("#option-select");
-    //   console.log("in eevent listener, selectOption:", selectOption);
-
-    //   selectOption.addEventListener("change", function () {
-    //     const instance = M.FormSelect.getInstance(selectOption);
-    //     console.log("in eevent listener, instance:", instance);
-    //     const selectedValues = instance.getSelectedValues();
-    //     console.log("selected vals in component did update", selectedValues);
-    //   });
-    // });
-    // const filtered = await filterBy(this.state.filters, this.state.landlords);
-    // this.setState({ landlords: filtered });
-  }
-  */
-
-  handleChange = (e) => {
-    this.props.filter(e.target.value);
+  handleChange = async (e) => {
+    await this.setState({ filters: [e.target.value] });
+    this.props.filter(this.state.order, this.state.filters);
   };
 
   handleFilterChange = async (e) => {
     const instance = M.FormSelect.getInstance(e.target);
     const selectedValues = instance.getSelectedValues();
     console.log(selectedValues);
-    // const filtered = await filterBy(selectedValues, this.state.landlords);
-    // console.log("filtered:", filtered);
-    this.setState({ filters: selectedValues.join(",") });
+    const filters =
+      selectedValues.length > 1 ? selectedValues.join(",") : selectedValues[0];
+    const selected = document.querySelectorAll(".optgroup-option.selected");
+    console.log("current order:", this.state.order);
+    const values = Array.from(selected).map((node) => node.innerText);
+    console.log("selected values:", values);
+    // this.props.filter(this.state.order, values);
+    // await this.setState({ filters: filters });
     // console.log("filters selected:", this.state.filters);
   };
 
-  handleOrderChange = (e) => {
-    this.setState({ order: [e.target.value] });
+  handleOrderChange = async (e) => {
+    await this.setState({ order: [e.target.value] });
     this.props.filter(this.state.order, this.state.filters);
-    // this.props.filter(e.target.value, this.state.filters);
   };
 
   render() {
     let landlords = this.props.landlords || [];
+    const options = [
+      { id: 1, value: "A", label: "A" },
+      { id: 2, value: "B", label: "B" },
+      { id: 3, value: "C", label: "C" },
+      { id: 4, value: "D", label: "D" },
+      { id: 5, value: "F", label: "F" },
+      { id: 6, value: "true", label: "true" },
+      { id: 7, value: "false", label: "false" },
+    ];
 
     return (
       <div>
         <h3>Landlords</h3>
 
         <div id="order-filter">
-          {/* <Select
+          <Select
             id="Select-9"
             multiple={false}
             onChange={this.handleChange}
@@ -112,12 +97,12 @@ class AllLandlords extends React.Component {
               Filter by Grade
             </option>
             <option value="all">See all</option>
-            <option value="1">A</option>
-            <option value="2">B</option>
-            <option value="3">C</option>
-            <option value="4">D</option>
-            <option value="5">F</option>
-          </Select> */}
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="F">F</option>
+          </Select>
           <Select
             id="Select-9"
             multiple={false}
@@ -152,7 +137,7 @@ class AllLandlords extends React.Component {
             <option value="most-reviews">Most Reviews</option>
             <option value="least-reviews">Least Reviews</option>
           </Select>
-          <Select
+          {/* <Select
             id="Select-9 landlords-filter"
             onChange={this.handleFilterChange}
             multiple
@@ -161,7 +146,7 @@ class AllLandlords extends React.Component {
               dropdownOptions: {
                 alignment: "left",
                 autoTrigger: true,
-                closeOnClick: true,
+                closeOnClick: false,
                 constrainWidth: true,
                 coverTrigger: true,
                 hover: false,
@@ -189,7 +174,7 @@ class AllLandlords extends React.Component {
               <option value="true">Recommended</option>
               <option value="false">Not Recommended</option>
             </optgroup>
-          </Select>
+          </Select> */}
         </div>
         {landlords.length === 0 && <div>Sorry, no landlords found.</div>}
 
@@ -286,7 +271,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getLandlords: () => dispatch(fetchLandlords()),
-    filter: (filter) => dispatch(filterLandlords(filter)),
+    filter: (order, filters) => dispatch(filterLandlords(order, filters)),
   };
 };
 

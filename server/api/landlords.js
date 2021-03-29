@@ -125,7 +125,7 @@ const orderBy = (order, landlords) => {
 
 const filterBy = (filters, landlords) => {
   console.log("in filterBy:", filters, landlords);
-  const filtersArr = filters.split(",");
+  const filtersArr = filters.includes(",") ? filters.split(",") : [filters];
   let filtered = landlords;
   if (filtersArr.some((filter) => ["A", "B", "C", "D", "F"].includes(filter))) {
     filtered = landlords.filter((landlord) =>

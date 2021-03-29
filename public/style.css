@@ -503,6 +503,11 @@ button.btn.transparent-button {
   #account-container {
     margin: 25px 0vw;
   }
+
+  #order-filter {
+    flex-direction: column;
+    width: 300px;
+  }
   .review-card {
     margin: 0.5em;
     margin-bottom: 1.5em;
