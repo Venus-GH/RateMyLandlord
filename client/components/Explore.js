@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 const Explore = () => {
   return (
     <div className="row">
-      <h4>Explore by Borough</h4>
+      <h4>Explore historical data by Borough</h4>
       <div className="col s12 m3 l3">
-        <div className="medium card">
+        <div className="small card">
           <div className="card-image waves-effect waves-block waves-light">
             <Link to="/explore/pastrentprices">
               {" "}
@@ -40,7 +40,7 @@ const Explore = () => {
       </div>
 
       <div className="col s12 m3 l3">
-        <div className="medium card">
+        <div className="small card">
           <div className="card-image waves-effect waves-block waves-light">
             <Link to="/explore/pastrentinv">
               {" "}
@@ -74,7 +74,7 @@ const Explore = () => {
       </div>
 
       <div className="col s12 m3 l3">
-        <div className="medium card">
+        <div className="small card">
           <div className="card-image waves-effect waves-block waves-light">
             <Link to="/explore/nypdcomplaints">
               <img className="activator" src="/img/explore2.png" />
@@ -82,7 +82,7 @@ const Explore = () => {
           </div>
           <div className="card-content">
             <span className="card-title activator grey-text text-darken-4">
-              NYPD Complaints
+              Borough Safety
               <i className="small material-icons right">more_vert</i>
             </span>
             <p>
@@ -91,12 +91,12 @@ const Explore = () => {
           </div>
           <div className="card-reveal">
             <span className="card-title grey-text text-darken-4">
-              NYPD Complaints
+              Borough Safety Measured by NYPD Complaints
               <i className="material-icons right">close</i>
             </span>
             <p>
-              Data visualization on total historic NYPD complaints received by
-              borough
+              Data visualization on total historical NYPD complaints received
+              for each borough
             </p>
             <br />
             <p className="bottom">Source: NYC Open Data</p>
@@ -104,7 +104,7 @@ const Explore = () => {
         </div>
       </div>
       <div className="col s12 m3 l3">
-        <div className="medium card">
+        <div className="small card">
           <div className="card-image waves-effect waves-block waves-light">
             <Link to="/explore/nycpopulation">
               <img className="activator" src="/img/explore3.png" />
