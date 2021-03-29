@@ -4,7 +4,7 @@ module.exports = router;
 
 router.get("/", async (req, res, next) => {
   try {
-    const url = "https://www.noellelaureano.com/";
+    const url = "https://www.renthop.com/search/nyc";
 
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
@@ -12,12 +12,15 @@ router.get("/", async (req, res, next) => {
     await page.goto(url);
 
     const text = await page.evaluate(() =>
-      Array.from(document.querySelectorAll("h2")).map((link) => ({
-        text: link.innerText,
-      }))
+      Array.from(document.querySelectorAll("div.search-listing")).map(
+        (node) => ({
+          link: node.querySelector("a").href,
+          img: node.querySelector("img").src,
+          title: node.querySelector("a.listing-title-link").innerText,
+          price: node.querySelector("span.font-size-13").innerText,
+        })
+      )
     );
-
-    // let aparts = await page.$('h2', e => {return {result: e.innerText}})
 
     await browser.close();
 
@@ -26,23 +29,3 @@ router.get("/", async (req, res, next) => {
     console.log(err);
   }
 });
-
-const getApts = async () => {
-  const url = "https://streeteasy.com/rentals";
-
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-
-  await page.goto(url, { waituntil: "networkidle2" });
-
-  let apts = await page.evaluate(() => {
-    const results = document.querySelectorAll(
-      "li.Home-apartmentForYou a.Title"
-    );
-    return results;
-  });
-
-  console.log(apts);
-
-  await browser.close();
-};
