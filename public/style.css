@@ -38,6 +38,37 @@ form div {
 }
 
 /* SingleLandlord */
+.single-landlord-info {
+  display: flex;
+  flex-direction: row;
+}
+.single-landlord-card {
+  background-color: lightgray;
+  /* border-radius:5%; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  margin: 2em;
+  min-height: 300px;
+  padding: 1.5em;
+}
+
+.single-landlord-graphs {
+  display: flex;
+}
+
+#single-landlord-bar-chart {
+  width: 25em;
+  height: 15em;
+}
+
+#single-landlord-name {
+  font-size: xx-large;
+}
+
+#single-landlord-name {
+  font-size: xx-large;
+}
+
 .icon {
   vertical-align: bottom;
 }
@@ -55,6 +86,7 @@ form div {
 .map-container {
   position: relative;
   min-height: 800px;
+  height: 100%;
   min-width: 100vh;
   width: 100%;
   top: 0;
@@ -208,7 +240,26 @@ form div {
   font-size: xx-large;
   border-radius: 50%;
   padding: 0em 0.5em;
-  background-color: rgba(255, 47, 47, 0.76);
+}
+
+.grade-a {
+  background-color: chartreuse;
+}
+
+.grade-b {
+  background-color: rgb(187, 255, 0);
+}
+
+.grade-c {
+  background-color: rgb(255, 251, 0);
+}
+
+.grade-d {
+  background-color: rgb(255, 187, 0);
+}
+
+.grade-f {
+  background-color: orangered;
 }
 
 .landlords-recommend {
@@ -241,9 +292,9 @@ form div {
   margin: 2em;
   min-height: 300px;
   padding: 1.5em;
-  white-space: nowrap;
+  /* white-space: nowrap;
   overflow: hidden !important;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; */
 }
 
 .building-review-list {
@@ -334,6 +385,7 @@ form div {
 .review-comments {
   font-size: large;
   min-height: 6em;
+  max-width: 65em;
 }
 
 .review-tags {
@@ -400,6 +452,10 @@ button.btn.transparent-button {
 @media only screen and (max-width: 992px) {
   nav .brand-logo {
     font-size: 1rem;
+  }
+
+  .single-landlord {
+    margin: 0em 10em;
   }
 
   .home-input {
