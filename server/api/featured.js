@@ -4,7 +4,8 @@ module.exports = router;
 
 router.get("/", async (req, res, next) => {
   try {
-    const url = "https://www.renthop.com/search/nyc";
+    const url =
+      "https://www.renthop.com/nyc/brooklyn-apartments/?max_price=3000";
 
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
@@ -17,6 +18,7 @@ router.get("/", async (req, res, next) => {
           link: node.querySelector("a").href,
           img: node.querySelector("img").src,
           title: node.querySelector("a.listing-title-link").innerText,
+          neighborhood: node.querySelector("div.overflow-ellipsis").innerText,
           price: node.querySelector("span.font-size-13").innerText,
         })
       )
