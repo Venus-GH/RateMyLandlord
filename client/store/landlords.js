@@ -23,13 +23,16 @@ export const fetchLandlords = () => {
   };
 };
 
-export const filterLandlords = (filter) => {
+export const filterLandlords = (order, filters) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`/api/landlords?filterBy=${filter}`);
+      console.log("in filterLandlords, order:", order, ", filters:", filters);
+      const { data } = await axios.get(
+        `/api/landlords?order=${order}&filters=${filters}`
+      );
       dispatch(_filterLandlords(data));
     } catch (error) {
-      console.log("Error fetching filtered landlords from the server");
+      console.log("Error fetching filtered landlords from the server", error);
     }
   };
 };
