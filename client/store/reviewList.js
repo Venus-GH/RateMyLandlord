@@ -64,6 +64,7 @@ export default function (state = initialState, action) {
       );
     case ADD_REVIEW:
       return [action.review, ...state];
+
     case SET_THUMBS:
       // find review in arr by id
       // update thumbsUp and down
