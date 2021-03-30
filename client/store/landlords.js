@@ -26,7 +26,6 @@ export const fetchLandlords = () => {
 export const filterLandlords = (order, filters) => {
   return async (dispatch) => {
     try {
-      console.log("in filterLandlords, order:", order, ", filters:", filters);
       const { data } = await axios.get(
         `/api/landlords?order=${order}&filters=${filters}`
       );
