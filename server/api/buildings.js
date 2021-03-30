@@ -9,7 +9,13 @@ router.get("/search", async (req, res, next) => {
       where: {
         address: req.query.address,
       },
-      include: Landlord,
+      include: [
+        Landlord,
+        {
+          model: Review,
+          include: [Building],
+        },
+      ],
     });
     res.json(building);
   } catch (error) {

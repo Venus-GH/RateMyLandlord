@@ -3,49 +3,57 @@ import { connect } from "react-redux";
 import { fetchLandlords, filterLandlords } from "../store/landlords";
 import { Link } from "react-router-dom";
 import "materialize-css";
-import M from "materialize-css";
-import { Select, Col, CardPanel } from "react-materialize";
+import { Col, CardPanel } from "react-materialize";
+import { Multiselect } from "multiselect-react-dropdown";
 
 class AllLandlords extends React.Component {
   constructor() {
     super();
     this.state = {
       order: "",
-      filters: "",
+      filters: [],
+      orderArray: [
+        { label: "Grade", key: "grade" },
+        { label: "Kindness", key: "kindness" },
+        { label: "Maintenance", key: "maintenance" },
+        { label: "Responsiveness", key: "responsiveness" },
+        { label: "Pest Control", key: "pest-control" },
+        { label: "Most Reviews", key: "most-reviews" },
+        { label: "Least Reviews", key: "least-reviews" },
+      ],
+      filterArray: [
+        { label: "A", cat: "Grade", key: "A" },
+        { label: "B", cat: "Grade", key: "B" },
+        { label: "C", cat: "Grade", key: "C" },
+        { label: "D", cat: "Grade", key: "D" },
+        { label: "F", cat: "Grade", key: "F" },
+        { label: "Recommended", cat: "Would Recommend", key: "true" },
+        { label: "Not Recommended", cat: "Would Recommend", key: "false" },
+      ],
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleOrderChange = this.handleOrderChange.bind(this);
-    this.handleFilterChange = this.handleFilterChange.bind(this);
+    this.handleFilterSelect = this.handleFilterSelect.bind(this);
+    this.handleOrderSelect = this.handleOrderSelect.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
   }
 
   async componentDidMount() {
     await this.props.getLandlords();
   }
 
-  handleChange = async (e) => {
-    await this.setState({ filters: [e.target.value] });
+  async handleOrderSelect(selectedList, selectedItem) {
+    await this.setState({ order: selectedItem.key });
     this.props.filter(this.state.order, this.state.filters);
-  };
+  }
 
-  handleFilterChange = async (e) => {
-    const instance = M.FormSelect.getInstance(e.target);
-    const selectedValues = instance.getSelectedValues();
-    console.log(selectedValues);
-    const filters =
-      selectedValues.length > 1 ? selectedValues.join(",") : selectedValues[0];
-    const selected = document.querySelectorAll(".optgroup-option.selected");
-    console.log("current order:", this.state.order);
-    const values = Array.from(selected).map((node) => node.innerText);
-    console.log("selected values:", values);
-    // this.props.filter(this.state.order, values);
-    // await this.setState({ filters: filters });
-    // console.log("filters selected:", this.state.filters);
-  };
-
-  handleOrderChange = async (e) => {
-    await this.setState({ order: [e.target.value] });
+  async handleFilterSelect(selectedList, selectedItem) {
+    await this.setState({ filters: selectedList.map((filter) => filter.key) });
     this.props.filter(this.state.order, this.state.filters);
-  };
+  }
+
+  async handleRemove(selectedList, removedItem) {
+    await this.setState({ filters: selectedList.map((filter) => filter.key) });
+    this.props.filter(this.state.order, this.state.filters);
+  }
 
   render() {
     let landlords = this.props.landlords || [];
@@ -55,111 +63,24 @@ class AllLandlords extends React.Component {
         <h3>Landlords</h3>
 
         <div id="order-filter">
-          <Select
-            id="Select-9"
-            multiple={false}
-            onChange={this.handleChange}
-            options={{
-              classes: "",
-              dropdownOptions: {
-                alignment: "left",
-                autoTrigger: true,
-                closeOnClick: true,
-                constrainWidth: true,
-                coverTrigger: true,
-                hover: false,
-                inDuration: 150,
-                onCloseEnd: null,
-                onCloseStart: null,
-                onOpenEnd: null,
-                onOpenStart: null,
-                outDuration: 250,
-              },
-            }}
-            value=""
-          >
-            <option disabled value="">
-              Filter by Grade
-            </option>
-            <option value="all">See all</option>
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-            <option value="D">D</option>
-            <option value="F">F</option>
-          </Select>
-          <Select
-            id="Select-9"
-            multiple={false}
-            onChange={this.handleOrderChange}
-            options={{
-              classes: "",
-              dropdownOptions: {
-                alignment: "left",
-                autoTrigger: true,
-                closeOnClick: true,
-                constrainWidth: true,
-                coverTrigger: true,
-                hover: false,
-                inDuration: 150,
-                onCloseEnd: null,
-                onCloseStart: null,
-                onOpenEnd: null,
-                onOpenStart: null,
-                outDuration: 250,
-              },
-            }}
-            value=""
-          >
-            <option disabled value="">
-              Sort By
-            </option>
-            <option value="grade">Grade</option>
-            <option value="kindness">Kindness</option>
-            <option value="maintenance">Maintenance</option>
-            <option value="responsiveness">Responsiveness</option>
-            <option value="pest-control">Pest Control</option>
-            <option value="most-reviews">Most Reviews</option>
-            <option value="least-reviews">Least Reviews</option>
-          </Select>
-          {/* <Select
-            id="Select-9 landlords-filter"
-            onChange={this.handleFilterChange}
-            multiple
-            options={{
-              classes: "",
-              dropdownOptions: {
-                alignment: "left",
-                autoTrigger: true,
-                closeOnClick: false,
-                constrainWidth: true,
-                coverTrigger: true,
-                hover: false,
-                inDuration: 150,
-                onCloseEnd: null,
-                onCloseStart: null,
-                onOpenEnd: null,
-                onOpenStart: null,
-                outDuration: 250,
-              },
-            }}
-            value={[""]}
-          >
-            <option disabled value="">
-              Filter Results
-            </option>
-            <optgroup label="Grade">
-              <option value="A">A</option>
-              <option value="B">B</option>
-              <option value="C">C</option>
-              <option value="D">D</option>
-              <option value="F">F</option>
-            </optgroup>
-            <optgroup label="Would Recommend">
-              <option value="true">Recommended</option>
-              <option value="false">Not Recommended</option>
-            </optgroup>
-          </Select> */}
+          <Multiselect
+            id="1"
+            options={this.state.orderArray}
+            singleSelect
+            displayValue="label"
+            onSelect={this.handleOrderSelect}
+            placeholder="Sort"
+          />
+          <Multiselect
+            id="2"
+            options={this.state.filterArray}
+            groupBy="cat"
+            displayValue="label"
+            showCheckbox={true}
+            onSelect={this.handleFilterSelect}
+            onRemove={this.handleRemove}
+            placeholder="Filter"
+          />
         </div>
         {landlords.length === 0 && <div>Sorry, no landlords found.</div>}
 

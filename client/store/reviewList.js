@@ -59,9 +59,11 @@ const initialState = [];
 export default function (state = initialState, action) {
   switch (action.type) {
     case SET_REVIEWS:
-      return action.reviews;
+      return action.reviews.sort((a, b) =>
+        a.createdAt > b.createdAt ? -1 : 1
+      );
     case ADD_REVIEW:
-      return [...state, action.review];
+      return [action.review, ...state];
     case SET_THUMBS:
       // find review in arr by id
       // update thumbsUp and down
