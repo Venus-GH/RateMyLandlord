@@ -61,10 +61,8 @@ export default function (state = initialState, action) {
     case SET_REVIEWS:
       return action.reviews;
     case ADD_REVIEW:
-      console.log("state in reviewlist reducer", state);
-      // if (state.length > 0) {
       return [action.review, ...state];
-    // } else return [action.review];
+
     case SET_THUMBS:
       // find review in arr by id
       // update thumbsUp and down

@@ -48,20 +48,18 @@ class BuildingResult extends React.Component {
       await this.props.fetchBuilding(address);
       this.setState({ isLoading: false });
     }
-    // if (
-    //   JSON.stringify(this.props.building.reviews) !==
-    //   JSON.stringify(prevProps.views)
-    // ) {
-    //   this.props.setReviews(this.props.building.reviews);
-    // }
+    if (
+      JSON.stringify(this.props.building.reviews) !==
+      JSON.stringify(prevProps.views)
+    ) {
+      this.props.setReviews(this.props.building.reviews);
+    }
   }
 
   render() {
     const { address, lat, lng } = this.props.location.state;
     const { isLoading } = this.state;
     const { landlord, user, reviews, landlords } = this.props || {};
-    const coord = { lat: Number(lat), lng: Number(lng) };
-    console.log("in building result reviews", reviews);
 
     return isLoading ? (
       <Loading />
