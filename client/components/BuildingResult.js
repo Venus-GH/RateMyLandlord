@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import React from "react";
 import { connect } from "react-redux";
 import { fetchBuilding } from "../store/buildings";
@@ -9,7 +8,6 @@ import BuildingResultsTabs from "./BuildingResultsTabs";
 import BulidingResultsReviews from "./BuildingResultsReviews";
 
 import Loading from "./Loading";
-import { fetchLandlords } from "../store/landlords";
 
 export const icon = new Icon({
   iconUrl: "./img/orangemapmarker.png",
@@ -26,7 +24,6 @@ class BuildingResult extends React.Component {
   async componentDidMount() {
     const { address } = this.props.location.state;
     await this.props.fetchBuilding(address);
-    await this.props.setLandlords();
     this.setState({ isLoading: false });
     document.addEventListener("DOMContentLoaded", function () {
       var elems = document.querySelectorAll(".modal");
@@ -53,9 +50,7 @@ class BuildingResult extends React.Component {
   render() {
     const { address, lat, lng } = this.props.location.state;
     const { isLoading } = this.state;
-
-    const { landlord, user, reviews, landlords } = this.props || {};
-
+    const { landlord, user, reviews } = this.props || {};
 
     return isLoading ? (
       <Loading />
@@ -77,121 +72,6 @@ class BuildingResult extends React.Component {
         )}
 
         <div className="results-container">
-
-          <div className="results-maps">
-            <Tabs className="tab-demo z-depth-1">
-              <Tab
-                options={{
-                  duration: 300,
-                  onShow: null,
-                  responsiveThreshold: Infinity,
-                  swipeable: false,
-                }}
-                title="Map"
-              >
-                <MapContainer
-                  center={[lat, lng]}
-                  zoom={13}
-                  className="single-building-map"
-                >
-                  <TileLayer
-                    attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
-                    url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
-                  />
-                  <Marker
-                    className="home-marker"
-                    icon={icon}
-                    position={[Number(lat), Number(lng)]}
-                  />
-                </MapContainer>
-              </Tab>
-              <Tab
-                active
-                options={{
-                  duration: 300,
-                  onShow: null,
-                  responsiveThreshold: Infinity,
-                  swipeable: false,
-                }}
-                title="Street View"
-              >
-                <GoogleMap
-                  mapContainerStyle={{ width: "30vw", height: "80vh" }}
-                >
-                  <StreetViewPanorama
-                    position={{ lat: Number(lat), lng: Number(lng) }}
-                    visible={true}
-                  />
-                </GoogleMap>
-              </Tab>
-            </Tabs>
-          </div>
-          <div className="results-reviews">
-            {landlord.name && (
-              <div>
-                <h5>
-                  See all reviews for{" "}
-                  <Link to={`/landlords/${landlord.id}`}>{landlord.name}</Link>.
-                </h5>
-              </div>
-            )}
-            {user.id ? (
-              <Modal
-                actions={[
-                  <Button flat modal="close" node="button" waves="green">
-                    Close
-                  </Button>,
-                ]}
-                bottomSheet={false}
-                fixedFooter={false}
-                header="Review Landlord"
-                id="Modal-0"
-                open={false}
-                options={{
-                  dismissible: true,
-                  endingTop: "10%",
-                  inDuration: 250,
-                  onCloseEnd: null,
-                  onCloseStart: null,
-                  onOpenEnd: null,
-                  onOpenStart: null,
-                  opacity: 0.5,
-                  outDuration: 250,
-                  preventScrolling: true,
-                  startingTop: "4%",
-                }}
-                trigger={<Button node="button">Review Landlord</Button>}
-              >
-                <ReviewForm
-                  address={address}
-                  landlord={landlord}
-                  latitude={lat}
-                  longitude={lng}
-                  landlords={landlords}
-                />
-              </Modal>
-            ) : (
-              <Link to="/login">Login to submit a review!</Link>
-            )}
-
-            {isLoading ? (
-              <div className="progress">
-                <div className="indeterminate"></div>
-              </div>
-            ) : landlord.name ? (
-              <div>
-                <h6>{reviews.length} Reviews</h6>
-                {reviews.length > 0 ? (
-                  <ReviewList type="building-review-list" />
-                ) : (
-                  ""
-                )}
-              </div>
-            ) : (
-              <div>No reviews yet... Add a review to get started.</div>
-            )}
-          </div>
-
           <BuildingResultsTabs lat={lat} lng={lng} />
           {reviews && (
             <BulidingResultsReviews
@@ -204,7 +84,6 @@ class BuildingResult extends React.Component {
               isLoading={isLoading}
             />
           )}
-
         </div>
       </div>
     );
@@ -217,7 +96,6 @@ const mapState = (state) => {
     landlord: state.buildings.landlord,
     reviews: state.reviewList,
     user: state.user,
-    landlords: state.allLandlords,
   };
 };
 
@@ -225,7 +103,6 @@ const mapDispatch = (dispatch) => {
   return {
     fetchBuilding: (address) => dispatch(fetchBuilding(address)),
     setReviews: (reviews) => dispatch(setReviews(reviews)),
-    setLandlords: () => dispatch(fetchLandlords()),
   };
 };
 
