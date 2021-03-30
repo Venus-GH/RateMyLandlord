@@ -8,6 +8,7 @@ const GET_USER = "GET_USER";
 const REMOVE_USER = "REMOVE_USER";
 const SET_REVIEWS = "GET_REVIEWS";
 const UPDATE_NAME = "UPDATE_NAME";
+const UPDATE_PREFERENCES = "UPDATE_PREFERENCES";
 
 /**
  * ACTION CREATORS
@@ -21,6 +22,11 @@ const setReviews = (reviews) => ({
 const updateName = (preferredName) => ({
   type: UPDATE_NAME,
   preferredName,
+});
+const _updatePreferences = (preferences) => ({
+  type: UPDATE_PREFERENCES,
+  preferredNeighborhood: preferences.neighborhood,
+  preferredMaxPrice: preferences.maxPrice,
 });
 
 /**
@@ -75,6 +81,16 @@ export const getReviews = (id) => async (dispatch) => {
   }
 };
 
+export const updatePreferences = (id, preferences) => async (dispatch) => {
+  try {
+    await axios.put(`/api/users/${id}`, preferences);
+    dispatch(_updatePreferences(preferences));
+  } catch (err) {
+    console.log("there was an error updating user preferences");
+    console.error(err);
+  }
+};
+
 export const updatePreferredName = (id, name) => async (dispatch) => {
   try {
     const { data: user } = await axios.put(`/api/users/${id}`, {
@@ -103,6 +119,12 @@ export default function (state = defaultUser, action) {
     case UPDATE_NAME:
       state.preferredName = action.preferredName;
       return state;
+    case UPDATE_PREFERENCES:
+      return {
+        ...state,
+        neighborhoodPreference: action.preferredNeighborhood,
+        maxPricePreference: action.preferredMaxPrice,
+      };
     default:
       return state;
   }
