@@ -14,12 +14,15 @@ class ReviewList extends React.Component {
   }
 
   clickThumb(reviewId, direction) {
+    console.log(
+      `in click thumb with review id: ${reviewId} and direction ${direction}`
+    );
     this.props.changeThumbs(reviewId, direction);
   }
 
   render() {
     const { reviews, user } = this.props || [];
-    console.log("in review list render", reviews);
+    console.log("props in reviewList", this.props);
     const grade = { 1: "F", 2: "D", 3: "C", 4: "B", 5: "A" };
     return (
       <div className={this.props.type}>
@@ -135,6 +138,7 @@ class ReviewList extends React.Component {
                       <Modal
                         actions={[
                           <Button
+                            key="1"
                             flat
                             modal="close"
                             node="button"
@@ -187,7 +191,13 @@ class ReviewList extends React.Component {
                     )}
                     <Modal
                       actions={[
-                        <Button flat modal="close" node="button" waves="green">
+                        <Button
+                          key="2"
+                          flat
+                          modal="close"
+                          node="button"
+                          waves="green"
+                        >
                           Close
                         </Button>,
                       ]}
@@ -250,19 +260,3 @@ const mapDispatch = (dispatch) => ({
 });
 
 export default connect(mapState, mapDispatch)(ReviewList);
-
-/*
-            <div className="card z-depth-0 blue-grey lighten-5" key={review.id}>
-              <div className="card-content grey-text text-darken-4">
-                <p className="grey-text">
-                  {review.user.preferredName
-                    ? review.user.preferredName
-                    : "Anonymous"}
-                </p>
-                <p className="grey-text">
-                  {moment(review.createdAt).format("LL")}
-                </p>
-                <p className="grey-text">{review.comments}</p>
-              </div>
-            </div>
-*/
