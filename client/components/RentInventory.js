@@ -68,6 +68,7 @@ class RentInventory extends Component {
     labelBullet.label.dx = 10;
 
     chart.zoomOutButton.disabled = true;
+    chart.responsive.enabled = true;
 
     series.columns.template.adapter.add("fill", function (fill, target) {
       return chart.colors.getIndex(target.dataItem.index);

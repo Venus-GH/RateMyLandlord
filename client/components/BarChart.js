@@ -44,7 +44,7 @@ const BarChart = ({ avgs, mktAvgs }) => {
           legend: {
             display: true,
             labels: {
-              fontSize: 15,
+              fontSize: 13,
               fontFamily: "Space Mono",
             },
           },

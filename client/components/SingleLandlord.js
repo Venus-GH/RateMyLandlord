@@ -114,10 +114,12 @@ class SingleLandlord extends React.Component {
               </div>
               <div id="single-landlord-ratings">{`(${reviews.length} reviews left for ${buildings.length} properties)`}</div>{" "}
             </div>
+            <h6 className="header-description">
+              What people say about this landlord...
+            </h6>
             <div className="single-landlord-graphs">
               <BarChart avgs={avgs} mktAvgs={mktAvgs} />
               {/* <div className="col s12 m4 l4"> */}
-              {/* <h5>What people say about this landlord...</h5> */}
               <WordCloud tagData={tagData} />
               {/* </div> */}
             </div>
