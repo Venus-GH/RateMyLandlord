@@ -1,3 +1,4 @@
+const { SSL_OP_NO_QUERY_MTU } = require("constants");
 const crypto = require("crypto");
 const Sequelize = require("sequelize");
 const db = require("../db");
@@ -11,6 +12,12 @@ const User = db.define("user", {
   preferredName: {
     type: Sequelize.STRING,
     allowNull: true,
+  },
+  neighborhoodPreference: {
+    type: Sequelize.STRING,
+  },
+  maxPricePreference: {
+    type: Sequelize.STRING,
   },
   isAdmin: {
     type: Sequelize.BOOLEAN,
