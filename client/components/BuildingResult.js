@@ -41,7 +41,7 @@ class BuildingResult extends React.Component {
     }
     if (
       JSON.stringify(this.props.building.reviews) !==
-      JSON.stringify(prevProps.views)
+      JSON.stringify(prevProps.reviews)
     ) {
       this.props.setReviews(this.props.building.reviews);
     }

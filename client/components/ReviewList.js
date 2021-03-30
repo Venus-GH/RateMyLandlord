@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import { setReviews, updateThumbs } from "../store/reviewList";
+import { updateThumbs } from "../store/reviewList";
 import { connect } from "react-redux";
 import { Modal, Button, Icon, Chip } from "react-materialize";
 import { Link } from "react-router-dom";
@@ -14,15 +14,11 @@ class ReviewList extends React.Component {
   }
 
   clickThumb(reviewId, direction) {
-    console.log(
-      `in click thumb with review id: ${reviewId} and direction ${direction}`
-    );
     this.props.changeThumbs(reviewId, direction);
   }
 
   render() {
     const { reviews, user } = this.props || [];
-    console.log("props in reviewList", this.props);
     const grade = { 1: "F", 2: "D", 3: "C", 4: "B", 5: "A" };
     return (
       <div className={this.props.type}>
@@ -246,7 +242,6 @@ class ReviewList extends React.Component {
 }
 
 const mapState = (state) => {
-  console.log("state:", state);
   return {
     reviews: state.reviewList,
     user: state.user,
@@ -254,7 +249,7 @@ const mapState = (state) => {
 };
 
 const mapDispatch = (dispatch) => ({
-  setReviews: (reviews) => dispatch(setReviews(reviews)),
+  // setReviews: (reviews) => dispatch(setReviews(reviews)),
   changeThumbs: (reviewId, direction) =>
     dispatch(updateThumbs(reviewId, direction)),
 });
