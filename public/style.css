@@ -180,10 +180,11 @@ div.col.s12.m12.l12 {
 }
 
 #order-filter {
-  width: 400px;
+  width: 550px;
   margin-left: 1em;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 1em;
 }
 
 #reviewForm {
@@ -265,6 +266,14 @@ div.col.s12.m12.l12 {
   border-radius: 50%;
   padding: 0em 0.5em;
 }
+
+._3vt7_Mh4hRCFbp__dFqBCI {
+  max-width: 250px;
+}
+
+/*
+._2iA8p44d0WZ-WqRBGcAuEV   -  search bar border - max height
+*/
 
 .single-landlord-grade {
   margin-right: 1em;
@@ -436,11 +445,12 @@ div.col.s12.m12.l12 {
 
 .review-comments {
   font-size: large;
-  min-height: 6em;
+  min-height: 7em;
   max-width: 65em;
 }
 
 .review-tags {
+  min-height: 37px;
   margin-bottom: 1em;
 }
 

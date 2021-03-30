@@ -49,7 +49,7 @@ class BuildingResultsTabs extends React.Component {
             }}
             title="Street View"
           >
-            <GoogleMap mapContainerStyle={{ width: "30vw", height: "80vh" }}>
+            <GoogleMap mapContainerStyle={{ width: "30vw", height: "65vh" }}>
               <StreetViewPanorama
                 position={{ lat: Number(lat), lng: Number(lng) }}
                 visible={true}
