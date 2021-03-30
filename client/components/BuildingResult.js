@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import React from "react";
 import {
   GoogleMap,
@@ -14,6 +15,7 @@ import { setReviews } from "../store/reviewList";
 import { Icon } from "leaflet";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import Loading from "./Loading";
+import { fetchLandlords } from "../store/landlords";
 
 export const icon = new Icon({
   iconUrl: "./img/orangemapmarker.png",
@@ -30,6 +32,7 @@ class BuildingResult extends React.Component {
   async componentDidMount() {
     const { address } = this.props.location.state;
     await this.props.fetchBuilding(address);
+    await this.props.setLandlords();
     this.setState({ isLoading: false });
     document.addEventListener("DOMContentLoaded", function () {
       var elems = document.querySelectorAll(".modal");
@@ -45,18 +48,18 @@ class BuildingResult extends React.Component {
       await this.props.fetchBuilding(address);
       this.setState({ isLoading: false });
     }
-    if (
-      JSON.stringify(this.props.building.reviews) !==
-      JSON.stringify(prevProps.views)
-    ) {
-      this.props.setReviews(this.props.building.reviews);
-    }
+    // if (
+    //   JSON.stringify(this.props.building.reviews) !==
+    //   JSON.stringify(prevProps.views)
+    // ) {
+    //   this.props.setReviews(this.props.building.reviews);
+    // }
   }
 
   render() {
     const { address, lat, lng } = this.props.location.state;
     const { isLoading } = this.state;
-    const { landlord, user, reviews } = this.props || {};
+    const { landlord, user, reviews, landlords } = this.props || {};
     const coord = { lat: Number(lat), lng: Number(lng) };
     console.log("in building result reviews", reviews);
 
@@ -169,6 +172,7 @@ class BuildingResult extends React.Component {
                   landlord={landlord}
                   latitude={lat}
                   longitude={lng}
+                  landlords={landlords}
                 />
               </Modal>
             ) : (
@@ -204,6 +208,7 @@ const mapState = (state) => {
     landlord: state.buildings.landlord,
     reviews: state.reviewList,
     user: state.user,
+    landlords: state.allLandlords,
   };
 };
 
@@ -211,6 +216,7 @@ const mapDispatch = (dispatch) => {
   return {
     fetchBuilding: (address) => dispatch(fetchBuilding(address)),
     setReviews: (reviews) => dispatch(setReviews(reviews)),
+    setLandlords: () => dispatch(fetchLandlords()),
   };
 };
 
