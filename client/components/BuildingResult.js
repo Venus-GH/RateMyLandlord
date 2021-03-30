@@ -1,19 +1,13 @@
 /* eslint-disable complexity */
 import React from "react";
-import {
-  GoogleMap,
-  LoadScript,
-  StreetViewPanorama,
-} from "@react-google-maps/api";
 import { connect } from "react-redux";
 import { fetchBuilding } from "../store/buildings";
 import { Link } from "react-router-dom";
-import ReviewList from "./ReviewList";
-import ReviewForm from "./Reviews/ReviewHome";
-import { Modal, Button, Tabs, Tab } from "react-materialize";
 import { setReviews } from "../store/reviewList";
 import { Icon } from "leaflet";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import BuildingResultsTabs from "./BuildingResultsTabs";
+import BulidingResultsReviews from "./BuildingResultsReviews";
+
 import Loading from "./Loading";
 import { fetchLandlords } from "../store/landlords";
 
@@ -50,7 +44,7 @@ class BuildingResult extends React.Component {
     }
     if (
       JSON.stringify(this.props.building.reviews) !==
-      JSON.stringify(prevProps.views)
+      JSON.stringify(prevProps.reviews)
     ) {
       this.props.setReviews(this.props.building.reviews);
     }
@@ -59,7 +53,9 @@ class BuildingResult extends React.Component {
   render() {
     const { address, lat, lng } = this.props.location.state;
     const { isLoading } = this.state;
+
     const { landlord, user, reviews, landlords } = this.props || {};
+
 
     return isLoading ? (
       <Loading />
@@ -81,6 +77,7 @@ class BuildingResult extends React.Component {
         )}
 
         <div className="results-container">
+
           <div className="results-maps">
             <Tabs className="tab-demo z-depth-1">
               <Tab
@@ -194,6 +191,20 @@ class BuildingResult extends React.Component {
               <div>No reviews yet... Add a review to get started.</div>
             )}
           </div>
+
+          <BuildingResultsTabs lat={lat} lng={lng} />
+          {reviews && (
+            <BulidingResultsReviews
+              user={user}
+              landlord={landlord}
+              address={address}
+              lat={lat}
+              lng={lng}
+              reviews={reviews}
+              isLoading={isLoading}
+            />
+          )}
+
         </div>
       </div>
     );

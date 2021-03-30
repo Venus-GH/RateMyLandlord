@@ -11,11 +11,6 @@ import ReviewHome from "./Reviews/ReviewHome";
 import { setReviews } from "../store/reviewList";
 import WordCloud from "./WordCloud";
 
-// const rating = (num) => {
-//   console.log("num:", num);
-//   return String(num).length > 1 ? num.toFixed(1) : num;
-// };
-
 class SingleLandlord extends React.Component {
   async componentDidMount() {
     await this.props.getSingleLandlord(this.props.match.params.landlordId);

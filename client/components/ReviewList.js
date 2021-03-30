@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import { setReviews, updateThumbs } from "../store/reviewList";
+import { updateThumbs } from "../store/reviewList";
 import { connect } from "react-redux";
 import { Modal, Button, Icon, Chip } from "react-materialize";
 import { Link } from "react-router-dom";
@@ -19,7 +19,6 @@ class ReviewList extends React.Component {
 
   render() {
     const { reviews, user } = this.props || [];
-    console.log("in review list render", reviews);
     const grade = { 1: "F", 2: "D", 3: "C", 4: "B", 5: "A" };
     return (
       <div className={this.props.type}>
@@ -135,6 +134,7 @@ class ReviewList extends React.Component {
                       <Modal
                         actions={[
                           <Button
+                            key="1"
                             flat
                             modal="close"
                             node="button"
@@ -187,7 +187,13 @@ class ReviewList extends React.Component {
                     )}
                     <Modal
                       actions={[
-                        <Button flat modal="close" node="button" waves="green">
+                        <Button
+                          key="2"
+                          flat
+                          modal="close"
+                          node="button"
+                          waves="green"
+                        >
                           Close
                         </Button>,
                       ]}
@@ -236,7 +242,6 @@ class ReviewList extends React.Component {
 }
 
 const mapState = (state) => {
-  console.log("state:", state);
   return {
     reviews: state.reviewList,
     user: state.user,
@@ -244,25 +249,9 @@ const mapState = (state) => {
 };
 
 const mapDispatch = (dispatch) => ({
-  setReviews: (reviews) => dispatch(setReviews(reviews)),
+  // setReviews: (reviews) => dispatch(setReviews(reviews)),
   changeThumbs: (reviewId, direction) =>
     dispatch(updateThumbs(reviewId, direction)),
 });
 
 export default connect(mapState, mapDispatch)(ReviewList);
-
-/*
-            <div className="card z-depth-0 blue-grey lighten-5" key={review.id}>
-              <div className="card-content grey-text text-darken-4">
-                <p className="grey-text">
-                  {review.user.preferredName
-                    ? review.user.preferredName
-                    : "Anonymous"}
-                </p>
-                <p className="grey-text">
-                  {moment(review.createdAt).format("LL")}
-                </p>
-                <p className="grey-text">{review.comments}</p>
-              </div>
-            </div>
-*/
