@@ -140,9 +140,12 @@ const NYPD = () => {
 
   return (
     <div>
-      <h5 className="center">NYPD Complaints by Borough</h5>
+      <h5 className="center">
+        Explore Safety by Borough Indicated by NYPD Complaints
+      </h5>
       <p className="center">
-        2006 through 2019
+        Below radar chart illustrates the number of compliants <br />
+        received by NYPD for each borough from 2006 to 2019.
         <br />
         <Link to="/explore">
           <button
@@ -154,7 +157,9 @@ const NYPD = () => {
           </button>
         </Link>
       </p>
-      <NYPDChart complaints={complaintsData} />
+      <div className="container">
+        <NYPDChart complaints={complaintsData} />
+      </div>
     </div>
   );
 };

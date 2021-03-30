@@ -12,25 +12,26 @@ class RentPricesHome extends Component {
   constructor() {
     super();
     this.state = {
-      roomType: "",
+      roomType: "studio",
     };
     this.handleRoomType = this.handleRoomType.bind(this);
   }
 
   handleRoomType = (event) => {
     event.persist();
-    // console.log("event.target.value", event.target.value);
     this.setState({ roomType: event.target.value });
   };
 
   render() {
-    // console.log("inside render in rentPricesHome");
-    // console.log("roomType", this.state.roomType);
+    console.log("roomType", this.state.roomType);
     return (
       <div>
-        <h5 className="center">Median Asking Rent Prices by Borough</h5>
+        <h5 className="center">Explore Rent Price Trend by Borough</h5>
         <p className="center">
-          2010 through 2020 by Month
+          Use the dropdown below to view historical median asking rent price
+          trend <br />
+          for different room types for each borough from January 2010 to
+          December 2020.
           <br />
           <em>(Note: 0 means there was no data available)</em>
           <br />
@@ -44,27 +45,28 @@ class RentPricesHome extends Component {
             </button>
           </Link>
         </p>
-        <label>Room Type</label>
-        <select className="browser-default" onChange={this.handleRoomType}>
-          <option value="">Choose an option</option>
-          <option value="studio">Studio</option>
-          <option value="oneBd">One-Bed</option>
-          <option value="twoBd">Two-Bed</option>
-          <option value="threePlusBd">Three-Plus-Bed</option>
-        </select>
-        <RentPrices
-          rentData={
-            this.state.roomType === "studio"
-              ? studioData
-              : this.state.roomType === "oneBd"
-              ? oneBdData
-              : this.state.roomType === "twoBd"
-              ? twoBdData
-              : this.state.roomType === "threePlusBd"
-              ? threePlusBdData
-              : []
-          }
-        />
+        <div className="container">
+          <label>Room Type</label>
+          <select className="browser-default" onChange={this.handleRoomType}>
+            <option value="studio">Studio</option>
+            <option value="oneBd">One-Bed</option>
+            <option value="twoBd">Two-Bed</option>
+            <option value="threePlusBd">Three-Plus-Bed</option>
+          </select>
+          <RentPrices
+            rentData={
+              this.state.roomType === "studio"
+                ? studioData
+                : this.state.roomType === "oneBd"
+                ? oneBdData
+                : this.state.roomType === "twoBd"
+                ? twoBdData
+                : this.state.roomType === "threePlusBd"
+                ? threePlusBdData
+                : studioData
+            }
+          />
+        </div>
       </div>
     );
   }
