@@ -16,6 +16,10 @@ const Landlord = db.define("landlord", {
   },
 });
 
+const rating = (num) => {
+  return String(num).length > 1 ? num.toFixed(1) : num;
+};
+
 Landlord.prototype.getAverages = async function () {
   const reviews = await Review.findAll({
     where: {
@@ -36,18 +40,22 @@ Landlord.prototype.getAverages = async function () {
           reviews.length
       )
     ];
-  const avgKindness =
+  const avgKindness = rating(
     reviews.reduce((accum, current) => accum + current.kindness, 0) /
-    reviews.length;
-  const avgResponsiveness =
+      reviews.length
+  );
+  const avgResponsiveness = rating(
     reviews.reduce((accum, current) => accum + current.responsiveness, 0) /
-    reviews.length;
-  const avgMaintenance =
+      reviews.length
+  );
+  const avgMaintenance = rating(
     reviews.reduce((accum, current) => accum + current.maintenance, 0) /
-    reviews.length;
-  const avgPestControl =
+      reviews.length
+  );
+  const avgPestControl = rating(
     reviews.reduce((accum, current) => accum + current.pestControl, 0) /
-    reviews.length;
+      reviews.length
+  );
   const avgWouldRecommend = reviews.reduce(
     (accum, current) => {
       if (current.wouldRecommend) accum.true++;

@@ -41,32 +41,55 @@ form div {
 .single-landlord-info {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
 }
+
+.single-landlord-grade-recommend {
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+}
+#single-landlord-ratings {
+  margin-top: 4em;
+}
+
+canvas.chartjs-render-monitor {
+  width: 350px;
+  height: 400px;
+}
+
 .single-landlord-card {
   background-color: lightgray;
   /* border-radius:5%; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   margin: 2em;
+  margin-bottom: 1em;
   min-height: 300px;
   padding: 1.5em;
+  padding-right: 3em;
 }
 
 .single-landlord-graphs {
   display: flex;
 }
 
-#single-landlord-bar-chart {
-  width: 25em;
-  height: 15em;
+#landlord-bar-chart {
+  -webkit-transform: scale(0.9);
+}
+
+#chartdiv {
+  width: 400px;
+  height: 400px;
 }
 
 #single-landlord-name {
   font-size: xx-large;
 }
 
-#single-landlord-name {
-  font-size: xx-large;
+div.col.s12.m12.l12 {
+  width: 40em;
+  height: 500px;
+  margin-top: 1em;
 }
 
 .icon {
@@ -75,7 +98,7 @@ form div {
 
 .leaflet-container {
   width: 100%;
-  height: 70vh;
+  height: 65vh;
 }
 
 /* Home */
@@ -236,10 +259,15 @@ form div {
 }
 
 /* All Landlords */
-.landlords-grade {
+.landlords-grade,
+.single-landlord-grade {
   font-size: xx-large;
   border-radius: 50%;
   padding: 0em 0.5em;
+}
+
+.single-landlord-grade {
+  margin-right: 1em;
 }
 
 .grade-a {
@@ -270,6 +298,29 @@ form div {
   font-style: italic;
   font-weight: bolder;
   opacity: 0.75;
+}
+
+.landlord-recommended {
+  font-size: large;
+  background-color: rgba(255, 0, 43, 0.301);
+  padding: 0.2em 0.5em;
+  /* padding-left:  */
+  font-style: italic;
+  font-weight: bolder;
+  opacity: 0.75;
+  width: 8em;
+  margin: 0.5em 0em;
+}
+
+.landlord-not-recommended {
+  font-size: large;
+  background-color: rgba(255, 0, 43, 0.301);
+  padding: 0.2em 0.5em;
+  font-style: italic;
+  font-weight: bolder;
+  opacity: 0.75;
+  width: 10em;
+  margin: 0.5em 0em;
 }
 
 .rating-value {
@@ -362,7 +413,8 @@ form div {
   font-size: smaller;
 }
 
-.review-ratings {
+.review-ratings,
+.single-landlord-ratings {
   /* width: 30vw; */
   display: flex;
   flex-direction: row;
@@ -419,10 +471,6 @@ form div {
 }
 
 /* RentHistory */
-#chartdiv {
-  width: 100%;
-  height: 500px;
-}
 
 .explore-card {
   height: 15px;
@@ -455,7 +503,7 @@ button.btn.transparent-button {
   }
 
   .single-landlord {
-    margin: 0em 10em;
+    margin: 0em;
   }
 
   .home-input {
@@ -491,12 +539,43 @@ button.btn.transparent-button {
 }
 
 @media only screen and (min-width: 990px) and (max-width: 1300px) {
+  .single-landlord-info {
+    flex-direction: column;
+  }
   #account-container {
     margin: 50px 10vw;
   }
 }
 
 @media only screen and (max-width: 400px) {
+  .single-landlord-info {
+    flex-direction: column;
+  }
+
+  #single-landlord-name {
+    font-size: x-large;
+  }
+
+  .single-landlord-graphs {
+    flex-direction: column;
+  }
+
+  .single-landlord-ratings {
+    flex-direction: column;
+  }
+
+  div.col.s12.m12.l12 {
+    width: 90vw;
+    height: 60vh;
+    margin-top: 1em;
+    margin-left: 5vw;
+  }
+
+  #chartdiv {
+    height: 40vh;
+    width: 80vw;
+  }
+
   nav .brand-logo {
     font-size: 1rem;
   }
@@ -511,43 +590,83 @@ button.btn.transparent-button {
   .review-card {
     margin: 0.5em;
     margin-bottom: 1.5em;
+    margin-left: 3vw;
     padding: 1em;
+    width: 93vw;
   }
 
   .review-boxes {
-    flex-direction: row;
-    margin-top: 0em;
+    margin-top: 1em;
+    width: 5em;
+  }
+
+  .review-box {
+    margin-right: 0em;
+  }
+
+  .box-name {
+    font-size: small;
+  }
+
+  .box-value {
+    width: 65px;
+    height: 65px;
+    font-size: x-large;
   }
 
   .review-address-date {
     flex-direction: column;
+    font-size: small;
+  }
+
+  .review-address {
+    font-size: 14px;
+  }
+
+  .review-date {
+    visibility: hidden;
+    height: 0em;
   }
 
   .review-ratings {
     flex-direction: column;
-    margin-left: 1em;
+    margin-left: 2.5em;
   }
 
   .review-rating {
     margin-left: 0em;
   }
 
+  .review-rating-num {
+    font-size: 20px;
+  }
+
+  .review-comments {
+    font-size: 14px;
+    min-height: 5em;
+    margin-left: 1em;
+    width: 60vw;
+  }
+
   .review-tags {
     margin-bottom: 1em;
     display: flex;
     flex-direction: row;
-    max-width: 85vw;
+    max-width: 60vw;
     flex-wrap: wrap;
-  }
-
-  .review-comments {
-    font-size: medium;
-    min-height: 6em;
-    width: 85vw;
   }
 
   .review-buttons {
     width: 85vw;
+    width: 65vw;
+  }
+
+  .review-thumbs {
+    width: 7.5em;
+  }
+
+  .review-mail-flag {
+    -webkit-transform: scale(1.4);
   }
 }
 

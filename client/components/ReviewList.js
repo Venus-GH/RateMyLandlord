@@ -64,7 +64,7 @@ class ReviewList extends React.Component {
                     </div>
                   ) : (
                     <div className="review-address">
-                      {review.building.address}
+                      {review.building.address.slice(0, -5)}
                     </div>
                   )}
 
