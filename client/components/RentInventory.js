@@ -225,9 +225,11 @@ class RentInventory extends Component {
   render() {
     return (
       <div>
-        <h5 className="center">Rent Inventory by Borough</h5>
+        <h5 className="center">Explore Rent Inventory Trend by Borough</h5>
         <p className="center">
-          2010 through 2020
+          Below bar chart illustrates total historical rent inventory counts
+          <br />
+          for each borough from January 2010 to December 2010.
           <br />
           <Link to="/explore">
             <button
@@ -239,7 +241,9 @@ class RentInventory extends Component {
             </button>
           </Link>
         </p>
-        <div id="chartdiv"></div>
+        <div className="container">
+          <div id="chartdiv"></div>
+        </div>
       </div>
     );
   }

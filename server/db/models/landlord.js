@@ -124,18 +124,22 @@ Landlord.prototype.getTags = async function () {
 
 Landlord.prototype.getMktAvgs = async function () {
   const reviews = await Review.findAll();
-  const avgKindness =
+  const avgKindness = rating(
     reviews.reduce((accum, current) => accum + current.kindness, 0) /
-    reviews.length;
-  const avgResponsiveness =
+      reviews.length
+  );
+  const avgResponsiveness = rating(
     reviews.reduce((accum, current) => accum + current.responsiveness, 0) /
-    reviews.length;
-  const avgMaintenance =
+      reviews.length
+  );
+  const avgMaintenance = rating(
     reviews.reduce((accum, current) => accum + current.maintenance, 0) /
-    reviews.length;
-  const avgPestControl =
+      reviews.length
+  );
+  const avgPestControl = rating(
     reviews.reduce((accum, current) => accum + current.pestControl, 0) /
-    reviews.length;
+      reviews.length
+  );
 
   return {
     avgKindness,
