@@ -35,6 +35,7 @@ const defaultState = {
   landlordName: "",
   address: "",
   autocomplete: false,
+  noMatch: false,
 };
 
 class ReviewForm extends React.Component {
@@ -67,7 +68,8 @@ class ReviewForm extends React.Component {
     this.autocomplete = null;
   }
   componentDidMount() {
-    console.log("this.state in review form", this.state);
+    // console.log("this.state in review form", this.state);
+    // this.props.getLandlords();
     this.setState({ address: this.props.address });
     this.setState({ latitude: this.props.latitude });
     this.setState({ longitude: this.props.longitude });
@@ -79,7 +81,7 @@ class ReviewForm extends React.Component {
   }
 
   onLoad(autocomplete) {
-    console.log("in onload");
+    // console.log("in onload");
     this.autocomplete = autocomplete;
   }
 
@@ -150,14 +152,22 @@ class ReviewForm extends React.Component {
       this.setState({ address: e.target.value });
     }
   };
+  handleLandlord = (e) => {
+    if (e.target.value === "noMatch") {
+      this.setState({ noMatch: true });
+    } else {
+      this.setState({ landlordName: e.target.value });
+    }
+  };
   render() {
     let landlord = this.props.landlord || {};
     let landlordBuildings = landlord.buildings || [];
+    let landlords = this.props.landlords || [];
     console.log("this.props in review home", this.props);
 
     const isEnabled = () => {
-      console.log("!this.props.address", !this.props.address);
-      console.log("this.state", this.state);
+      // console.log("!this.props.address", !this.props.address);
+      // console.log("this.state", this.state);
       if (!this.props.address) {
         if (
           Object.keys(this.props.reviews).length > 3 &&
@@ -180,6 +190,54 @@ class ReviewForm extends React.Component {
     };
     return (
       <div id="reviewForm">
+        {!this.props.landlord.name && (
+          <div>
+            <Select
+              id="Select-9"
+              multiple={false}
+              onChange={this.handleLandlord}
+              options={{
+                classes: "",
+                dropdownOptions: {
+                  alignment: "left",
+                  autoTrigger: true,
+                  closeOnClick: true,
+                  constrainWidth: true,
+                  coverTrigger: true,
+                  hover: false,
+                  inDuration: 150,
+                  onCloseEnd: null,
+                  onCloseStart: null,
+                  onOpenEnd: null,
+                  onOpenStart: null,
+                  outDuration: 250,
+                },
+              }}
+              value=""
+            >
+              <option disabled value="">
+                Which landlord?
+              </option>
+
+              {landlords.map((ldlrd) => {
+                return (
+                  <option key={ldlrd.id} value={ldlrd.name}>
+                    {ldlrd.name}
+                  </option>
+                );
+              })}
+              <option value="noMatch"> I don't see my landlord here</option>
+            </Select>
+          </div>
+        )}
+        {this.state.noMatch && (
+          <TextInput
+            id="landlordName"
+            placeholder="ex: Smith Brother Properties"
+            onChange={this.onChange}
+            value={this.state.landlordName}
+          />
+        )}
         {!this.props.address && (
           <div>
             <Select
@@ -232,7 +290,6 @@ class ReviewForm extends React.Component {
           libraries={["places"]}
         > */}
         {this.state.autocomplete && (
-          // <div id="googleAPIDiv">
           <Autocomplete
             onLoad={this.onLoad}
             onPlaceChanged={this.onPlaceChanged}
@@ -243,14 +300,7 @@ class ReviewForm extends React.Component {
           // </div>
         )}
         {/* </LoadScript> */}
-        {!landlord.id && (
-          <TextInput
-            id="landlordName"
-            placeholder="ex: Smith Brother Properties"
-            onChange={this.onChange}
-            value={this.state.landlordName}
-          />
-        )}
+
         <div id="selectDiv">
           <Select
             id="Select-9"
@@ -380,12 +430,14 @@ const mapStateToProps = (state) => {
   return {
     reviews: state.reviews,
     user: state.user,
+    landlords: state.allLandlords,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     addReview: (review) => dispatch(addReview(review)),
+    // getLandlords: () => dispatch(fetchLandlords()),
   };
 };
 

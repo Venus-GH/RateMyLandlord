@@ -8,7 +8,10 @@ am4core.useTheme(am4themes_animated);
 
 class WordCloud extends Component {
   componentDidUpdate() {
-    var chart = am4core.create("chartdiv", am4plugins_wordCloud.WordCloud);
+    var chart = am4core.create(
+      "chartdiv_wordCloud",
+      am4plugins_wordCloud.WordCloud
+    );
     var series = chart.series.push(new am4plugins_wordCloud.WordCloudSeries());
 
     series.accuracy = 4;
@@ -36,7 +39,7 @@ class WordCloud extends Component {
   }
 
   render() {
-    return <div id="chartdiv"></div>;
+    return <div id="chartdiv_wordCloud"></div>;
   }
 }
 

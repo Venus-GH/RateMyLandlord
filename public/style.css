@@ -64,7 +64,7 @@ canvas.chartjs-render-monitor {
   transition: 0.3s;
   margin: 2em;
   margin-bottom: 1em;
-  min-height: 300px;
+  min-height: 250px;
   padding: 1.5em;
   padding-right: 3em;
 }
@@ -73,13 +73,23 @@ canvas.chartjs-render-monitor {
   display: flex;
 }
 
+.header-description {
+  margin: 2em;
+  margin-bottom: 0;
+}
+
 #landlord-bar-chart {
   -webkit-transform: scale(0.9);
 }
 
 #chartdiv {
-  width: 400px;
-  height: 400px;
+  width: 100%;
+  height: 450px;
+}
+
+#chartdiv_wordCloud {
+  width: 350px;
+  height: 300px;
 }
 
 #single-landlord-name {
@@ -507,6 +517,34 @@ button.btn.transparent-button {
   box-shadow: none;
 }
 
+.scrolling-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  max-height: 33%;
+  margin: 2em;
+}
+
+.card img {
+  max-height: 200px;
+  object-fit: contain;
+  margin: 1em;
+}
+
+.card div {
+  text-align: center;
+}
+
+.select-preferences {
+  display: flex;
+}
+
 @media only screen and (max-width: 992px) {
   nav .brand-logo {
     font-size: 1rem;
@@ -581,10 +619,10 @@ button.btn.transparent-button {
     margin-left: 5vw;
   }
 
-  #chartdiv {
-    height: 40vh;
-    width: 80vw;
-  }
+  /* #chartdiv {
+    height: 50vh;
+    width: 100vw;
+  } */
 
   nav .brand-logo {
     font-size: 1rem;

@@ -38,7 +38,15 @@ router.put("/:id", async (req, res, next) => {
       where: { id: req.params.id },
       attributes: ["id", "email", "preferredName"],
     });
-    user.update({ preferredName: req.body.preferredName });
+    if (req.body.preferredName) {
+      await user.update({ preferredName: req.body.preferredName });
+    }
+    if (req.body.neighborhood) {
+      await user.update({ neighborhoodPreference: req.body.neighborhood });
+    }
+    if (req.body.maxPrice) {
+      await user.update({ maxPricePreference: req.body.maxPrice });
+    }
     res.json(user);
   } catch (err) {
     console.log("there was an error in PUT /api/users/:id");

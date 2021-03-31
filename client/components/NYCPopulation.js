@@ -9,10 +9,6 @@ const NYCPopulation = (props) => {
   const [show, setShow] = useState(true);
   const [secondshow, setSecondShow] = useState(false);
   const [thirdshow, setThirdShow] = useState(false);
-  //   const [selected, setSelected] = useState < 0 || undefined > 0;
-  //   const [hovered, setHovered] = (useState < 0) | (undefined > undefined);
-  // another year set?
-  // NYC  pop = 8560072
   let pop = [
     { key: "Bronx", population: 1455846, percentage: 17 },
     { key: "Manhattan", population: 2635121, percentage: 19.32 },
@@ -130,7 +126,6 @@ const NYCPopulation = (props) => {
       title: obj.key,
       value: obj.votes,
     };
-
     // data.push(insert);
   });
 
@@ -156,9 +151,10 @@ const NYCPopulation = (props) => {
   return (
     <div id="outside-container">
       {/* <div className="inline-container"> */}
-      <h5 className="center">Population by Borough</h5>
+      <h5 className="center">Explore NYC Population by Borough</h5>
       <p className="center">
-        2005 through 2017
+        Below pie chart illustrates what percentage <br /> each borough makes up
+        the total NYC population from 2005 to 2017.
         <br />
         <Link to="/explore" className="center">
           <button
@@ -171,9 +167,8 @@ const NYCPopulation = (props) => {
         </Link>
       </p>
       {/* </div> */}
-      <br />
-
-      <div>
+      {/* <br /> */}
+      <div className="container">
         <div onClick={(e) => setShow(!show)}>
           {" "}
           <p className="sidebar">
@@ -193,7 +188,9 @@ const NYCPopulation = (props) => {
           </p>
         </div>
       </div>
-      <div>
+      <br />
+      <br />
+      <div className="container">
         {show ? (
           <>
             <div className="chart-container">
@@ -237,7 +234,7 @@ const NYCPopulation = (props) => {
                 <tr>
                   <th>Borough</th>
                   <th>Population</th>
-                  <th>Percentage of Total NYC Population</th>
+                  <th>% of Total NYC Population</th>
                 </tr>
               </thead>
               <tbody>{renderRows}</tbody>
@@ -275,7 +272,7 @@ const NYCPopulation = (props) => {
                 <tr>
                   <th>Borough</th>
                   <th>Population</th>
-                  <th>Percentage of Total NYC Population</th>
+                  <th>% of Total NYC Population</th>
                 </tr>
               </thead>
               <tbody>{renderRows2}</tbody>
@@ -313,7 +310,7 @@ const NYCPopulation = (props) => {
                 <tr>
                   <th>Borough</th>
                   <th>Population</th>
-                  <th>Percentage of Total NYC Population</th>
+                  <th>% of Total NYC Population</th>
                 </tr>
               </thead>
               <tbody>{renderRows}</tbody>

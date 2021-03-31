@@ -8,36 +8,45 @@ const BarChart = ({ avgs, mktAvgs }) => {
   return (
     <div id="landlord-bar-chart">
       <Bar
-        // id="single-landlord-bar-chart"
         data={{
           labels: ["Kindness", "Responsiveness", "Maintenance", "Pest Control"],
           datasets: [
             {
-              label: "Landlord Avg Rating",
+              label: "Current Landlord's Avg Rating",
               data: avgValOnly,
-              backgroundColor: ["#094067", "#5f6c7b", "#3da9fc", "#ef4565"],
+              backgroundColor: ["#094067", "#094067", "#094067", "#094067"],
             },
             {
-              label: "Market Avg",
+              label: "Total Landlords' Avg Rating",
               data: mktAvgValOnly,
               backgroundColor: ["#90b4ce", "#90b4ce", "#90b4ce", "#90b4ce"],
             },
           ],
         }}
-        width={400}
-        height={250}
+        // width={50}
+        // height={250}
         options={{
           maintainAspectRatio: false,
           scales: {
+            xAxes: [{ ticks: { fontFamily: "Space Mono", fontSize: 13 } }],
             yAxes: [
               {
                 ticks: {
+                  fontFamily: "Space Mono",
+                  fontSize: 15,
                   beginAtZero: true,
                   stepSize: 1,
                   max: 5,
                 },
               },
             ],
+          },
+          legend: {
+            display: true,
+            labels: {
+              fontSize: 13,
+              fontFamily: "Space Mono",
+            },
           },
         }}
       />

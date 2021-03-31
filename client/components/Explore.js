@@ -3,8 +3,16 @@ import { Link } from "react-router-dom";
 
 const Explore = () => {
   return (
-    <div className="row">
+    <div className="row container">
       <h4>Explore historical data by Borough</h4>
+      <div>
+        Are you new to NYC or just curious about what the past trends have been
+        for each borough?
+        <br />
+        Here are some interesting data visualization you can explore based on
+        the historical data for each borough!
+      </div>
+      <p></p>
       <div className="col s12 m3 l3">
         <div className="small card">
           <div className="card-image waves-effect waves-block waves-light">
