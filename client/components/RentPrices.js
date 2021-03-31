@@ -113,6 +113,65 @@ class RentPrices extends Component {
     });
 
     // this.chart = chart;
+    //Responsiveness
+    chart.responsive.useDefault = false;
+    chart.responsive.enabled = true;
+    chart.responsive.rules.push({
+      relevant: function (target) {
+        if (target.pixelWidth <= 400) {
+          return true;
+        }
+        return false;
+      },
+      state: function (target, stateId) {
+        if (target instanceof am4charts.Chart) {
+          var state = target.states.create(stateId);
+          state.properties.paddingTop = 30;
+          state.properties.paddingRight = 60;
+          state.properties.paddingBottom = 15;
+          state.properties.paddingLeft = 12;
+          return state;
+        }
+
+        if (target instanceof am4charts.Legend) {
+          var state = target.states.create(stateId);
+          state.properties.paddingTop = 0;
+          state.properties.paddingRight = 0;
+          state.properties.paddingBottom = 0;
+          state.properties.paddingLeft = -10;
+          state.properties.marginLeft = -10;
+          return state;
+        }
+
+        if (target instanceof am4charts.AxisRendererY) {
+          var state = target.states.create(stateId);
+          state.properties.inside = true;
+          state.properties.maxLabelPosition = 0.99;
+          return state;
+        }
+
+        if (
+          target instanceof am4charts.AxisLabel &&
+          target.parent instanceof am4charts.AxisRendererY
+        ) {
+          var state = target.states.create(stateId);
+          state.properties.dy = -15;
+          state.properties.paddingTop = 3;
+          state.properties.paddingRight = 5;
+          state.properties.paddingBottom = 3;
+          state.properties.paddingLeft = 3;
+
+          // Create a separate state for background
+          target.setStateOnChildren = true;
+          var bgstate = target.background.states.create(stateId);
+          bgstate.properties.fill = am4core.color("#fff");
+          bgstate.properties.fillOpacity = 0.7;
+
+          return state;
+        }
+        return null;
+      },
+    });
   }
 
   componentDidUpdate() {
@@ -222,6 +281,66 @@ class RentPrices extends Component {
     });
 
     this.chart = chart;
+
+    //Responsiveness
+    chart.responsive.useDefault = false;
+    chart.responsive.enabled = true;
+    chart.responsive.rules.push({
+      relevant: function (target) {
+        if (target.pixelWidth <= 400) {
+          return true;
+        }
+        return false;
+      },
+      state: function (target, stateId) {
+        if (target instanceof am4charts.Chart) {
+          var state = target.states.create(stateId);
+          state.properties.paddingTop = 30;
+          state.properties.paddingRight = 60;
+          state.properties.paddingBottom = 15;
+          state.properties.paddingLeft = 12;
+          return state;
+        }
+
+        if (target instanceof am4charts.Legend) {
+          var state = target.states.create(stateId);
+          state.properties.paddingTop = 0;
+          state.properties.paddingRight = 0;
+          state.properties.paddingBottom = 0;
+          state.properties.paddingLeft = -10;
+          state.properties.marginLeft = -10;
+          return state;
+        }
+
+        if (target instanceof am4charts.AxisRendererY) {
+          var state = target.states.create(stateId);
+          state.properties.inside = true;
+          state.properties.maxLabelPosition = 0.99;
+          return state;
+        }
+
+        if (
+          target instanceof am4charts.AxisLabel &&
+          target.parent instanceof am4charts.AxisRendererY
+        ) {
+          var state = target.states.create(stateId);
+          state.properties.dy = -15;
+          state.properties.paddingTop = 3;
+          state.properties.paddingRight = 5;
+          state.properties.paddingBottom = 3;
+          state.properties.paddingLeft = 3;
+
+          // Create a separate state for background
+          target.setStateOnChildren = true;
+          var bgstate = target.background.states.create(stateId);
+          bgstate.properties.fill = am4core.color("#fff");
+          bgstate.properties.fillOpacity = 0.7;
+
+          return state;
+        }
+        return null;
+      },
+    });
   }
 
   componentWillUnmount() {

@@ -141,11 +141,12 @@ const NYPD = () => {
   return (
     <div>
       <h5 className="center">
-        Explore Safety by Borough Indicated by NYPD Complaints
+        Explore total number of NYPD Complaints received for each borough
       </h5>
       <p className="center">
-        Below radar chart illustrates the number of compliants <br />
-        received by NYPD for each borough from 2006 to 2019.
+        Below radar chart illustrates the number of compliants received by NYPD{" "}
+        <br />
+        for each borough from 2006 to 2019.
         <br />
         <Link to="/explore">
           <button

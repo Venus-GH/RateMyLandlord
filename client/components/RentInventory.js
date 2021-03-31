@@ -11,6 +11,7 @@ class RentInventory extends Component {
   componentDidMount() {
     var chart = am4core.create("chartdiv", am4charts.XYChart);
     chart.padding(40, 40, 40, 40);
+    chart.responsive.enabled = true;
 
     chart.numberFormatter.bigNumberPrefixes = [{ number: 1e3, suffix: "K" }];
 
@@ -68,7 +69,6 @@ class RentInventory extends Component {
     labelBullet.label.dx = 10;
 
     chart.zoomOutButton.disabled = true;
-    chart.responsive.enabled = true;
 
     series.columns.template.adapter.add("fill", function (fill, target) {
       return chart.colors.getIndex(target.dataItem.index);
@@ -215,6 +215,66 @@ class RentInventory extends Component {
       }, 1000);
     });
     this.chart = chart;
+
+    //Responsiveness
+    chart.responsive.useDefault = false;
+    chart.responsive.enabled = true;
+    chart.responsive.rules.push({
+      relevant: function (target) {
+        if (target.pixelWidth <= 400) {
+          return true;
+        }
+        return false;
+      },
+      state: function (target, stateId) {
+        if (target instanceof am4charts.Chart) {
+          var state = target.states.create(stateId);
+          state.properties.paddingTop = 10;
+          state.properties.paddingRight = 50;
+          state.properties.paddingBottom = 5;
+          state.properties.paddingLeft = 0;
+          return state;
+        }
+
+        if (target instanceof am4charts.Legend) {
+          var state = target.states.create(stateId);
+          state.properties.paddingTop = 0;
+          state.properties.paddingRight = 0;
+          state.properties.paddingBottom = 0;
+          state.properties.paddingLeft = 0;
+          state.properties.marginLeft = 0;
+          return state;
+        }
+
+        if (target instanceof am4charts.AxisRendererY) {
+          var state = target.states.create(stateId);
+          state.properties.inside = true;
+          state.properties.maxLabelPosition = 0.99;
+          return state;
+        }
+
+        if (
+          target instanceof am4charts.AxisLabel &&
+          target.parent instanceof am4charts.AxisRendererY
+        ) {
+          var state = target.states.create(stateId);
+          state.properties.dy = -15;
+          state.properties.paddingTop = 3;
+          state.properties.paddingRight = 20;
+          state.properties.paddingBottom = 3;
+          state.properties.paddingLeft = 5;
+
+          // Create a separate state for background
+          target.setStateOnChildren = true;
+          var bgstate = target.background.states.create(stateId);
+          bgstate.properties.fill = am4core.color("#fff");
+          bgstate.properties.fillOpacity = 0;
+
+          return state;
+        }
+        return null;
+      },
+    });
   }
 
   componentWillUnmount() {
@@ -242,7 +302,7 @@ class RentInventory extends Component {
             </button>
           </Link>
         </p>
-        <div className="container">
+        <div className="container test">
           <div id="chartdiv"></div>
         </div>
       </div>
