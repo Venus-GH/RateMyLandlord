@@ -122,8 +122,8 @@ class Account extends React.Component {
                   <tr>
                     <td>Preferences</td>
                     {this.state.preferenceEdit ? (
-                      <td className="input-field">
-                        Interested in apartments in
+                      <td className="preference-input">
+                        <span>Interested in apartments in</span>
                         <Select
                           name="neighborhood"
                           if="Select-9"
@@ -138,7 +138,7 @@ class Account extends React.Component {
                           <option value="Bronx">Bronx</option>
                           <option value="Staten-Island">Staten Island</option>
                         </Select>
-                        for under
+                        <span>for under</span>
                         <Select name="maxPrice" onChange={this.handleChange}>
                           <option disabled value="">
                             $4,000
@@ -220,7 +220,10 @@ class Account extends React.Component {
             ></Tab> */}
           </Tabs>
         </div>
-        <FeaturedListings />
+        <FeaturedListings
+          neighborhood={user.neighborhoodPreference}
+          price={user.maxPricePreference}
+        />
       </div>
     );
   }

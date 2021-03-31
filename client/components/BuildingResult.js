@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { fetchBuilding } from "../store/buildings";
 import { Link } from "react-router-dom";
 import { setReviews } from "../store/reviewList";
+import { setSingleLandlord } from "../store/singleLandlord";
 import { Icon } from "leaflet";
 import BuildingResultsTabs from "./BuildingResultsTabs";
 import BulidingResultsReviews from "./BuildingResultsReviews";
@@ -25,6 +26,7 @@ class BuildingResult extends React.Component {
     const { address } = this.props.location.state;
     await this.props.fetchBuilding(address);
     await this.props.setReviews(this.props.building.reviews);
+    await this.props.setLandlord(this.props.building.landlord);
 
     this.setState({ isLoading: false });
     document.addEventListener("DOMContentLoaded", function () {
@@ -95,7 +97,7 @@ class BuildingResult extends React.Component {
 const mapState = (state) => {
   return {
     building: state.buildings.single,
-    landlord: state.buildings.landlord,
+    landlord: state.landlord,
     reviews: state.reviewList,
     user: state.user,
   };
@@ -105,6 +107,7 @@ const mapDispatch = (dispatch) => {
   return {
     fetchBuilding: (address) => dispatch(fetchBuilding(address)),
     setReviews: (reviews) => dispatch(setReviews(reviews)),
+    setLandlord: (landlord) => dispatch(setSingleLandlord(landlord)),
   };
 };
 

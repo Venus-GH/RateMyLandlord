@@ -22,12 +22,8 @@ let chipsData = [];
 let data = [];
 
 const defaultState = {
-  bedrooms: "",
   wouldRecommend: "",
   grade: "",
-  rent: "",
-  startDate: "",
-  leaseLength: "",
   tags: [],
   comments: "",
   submitted: true,
@@ -42,12 +38,7 @@ class ReviewForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      bedrooms: null,
       wouldRecommend: null,
-      grade: null,
-      rent: null,
-      startDate: null,
-      leaseLength: null,
       tags: [],
       comments: null,
       submitted: false,
@@ -68,8 +59,6 @@ class ReviewForm extends React.Component {
     this.autocomplete = null;
   }
   componentDidMount() {
-    // console.log("this.state in review form", this.state);
-    // this.props.getLandlords();
     this.setState({ address: this.props.address });
     this.setState({ latitude: this.props.latitude });
     this.setState({ longitude: this.props.longitude });
@@ -81,7 +70,6 @@ class ReviewForm extends React.Component {
   }
 
   onLoad(autocomplete) {
-    // console.log("in onload");
     this.autocomplete = autocomplete;
   }
 
@@ -155,6 +143,7 @@ class ReviewForm extends React.Component {
   handleLandlord = (e) => {
     if (e.target.value === "noMatch") {
       this.setState({ noMatch: true });
+      this.setState({ landlordName: "" });
     } else {
       this.setState({ landlordName: e.target.value });
     }
@@ -166,8 +155,6 @@ class ReviewForm extends React.Component {
     console.log("this.props in review home", this.props);
 
     const isEnabled = () => {
-      // console.log("!this.props.address", !this.props.address);
-      // console.log("this.state", this.state);
       if (!this.props.address) {
         if (
           Object.keys(this.props.reviews).length > 3 &&
@@ -339,34 +326,7 @@ class ReviewForm extends React.Component {
         <KindnessReview />
         <ResponsivenessReview />
         <MaintenanceReview />
-        <p>How many bedrooms?</p>
-        <TextInput
-          id="bedrooms"
-          placeholder="ex: 2"
-          onChange={this.onChange}
-          value={this.state.bedrooms}
-        />
-        <p>How much was rent?</p>
-        <TextInput
-          id="rent"
-          placeholder="ex: 1500"
-          onChange={this.onChange}
-          value={this.state.rent}
-        />
-        <p>When did you move in?</p>
-        <TextInput
-          id="startDate"
-          placeholder="ex: 01/01/2021"
-          onChange={this.onChange}
-          value={this.state.startDate}
-        />
-        <p>How long was your lease length in months?</p>
-        <TextInput
-          id="leaseLength"
-          placeholder="ex: 12"
-          onChange={this.onChange}
-          value={this.state.leaseLength}
-        />
+
         <p>Would you recommend this landlord to a friend? *Required</p>
         <div>
           <Button onClick={this.onYes}>Yes</Button>
@@ -437,7 +397,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addReview: (review) => dispatch(addReview(review)),
-    // getLandlords: () => dispatch(fetchLandlords()),
   };
 };
 
