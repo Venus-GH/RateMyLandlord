@@ -163,7 +163,7 @@ class ReviewForm extends React.Component {
     let landlord = this.props.landlord || {};
     let landlordBuildings = landlord.buildings || [];
     let landlords = this.props.landlords || [];
-    // console.log("this.props in review home", this.props);
+    console.log("this.props in review home", this.props);
 
     const isEnabled = () => {
       // console.log("!this.props.address", !this.props.address);
@@ -430,7 +430,7 @@ const mapStateToProps = (state) => {
   return {
     reviews: state.reviews,
     user: state.user,
-    // landlords: state.allLandlords,
+    landlords: state.allLandlords,
   };
 };
 
