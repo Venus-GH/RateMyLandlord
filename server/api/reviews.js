@@ -74,6 +74,19 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+// PUT /api/reviews/:id
+router.put("/:id", async (req, res, next) => {
+  try {
+    // pass new number or just increment by 1??
+    const review = await Review.findByPk(req.params.id);
+    const updatedReview = await review.update(req.body);
+    res.json(updatedReview);
+  } catch (error) {
+    console.log("there was an error in PUT /api/reviews", error);
+    next(error);
+  }
+});
+
 // PUT /api/reviews/:id/thumbs
 router.put("/:id/thumbs", async (req, res, next) => {
   try {

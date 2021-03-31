@@ -209,7 +209,7 @@ class Account extends React.Component {
                 )}
               </div>
             </Tab>
-            <Tab
+            {/* <Tab
               options={{
                 duration: 300,
                 onShow: null,
@@ -217,7 +217,7 @@ class Account extends React.Component {
                 swipeable: false,
               }}
               title="Saved Items"
-            ></Tab>
+            ></Tab> */}
           </Tabs>
         </div>
         <FeaturedListings />

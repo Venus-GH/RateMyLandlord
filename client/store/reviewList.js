@@ -4,6 +4,7 @@ import axios from "axios";
 const SET_REVIEWS = "SET_REVIEWS";
 const ADD_REVIEW = "ADD_REVIEW";
 const SET_THUMBS = "SET_THUMBS";
+const EDIT_REVIEW = "EDIT_REVIEW";
 
 // ACTION CREATORS
 export const setReviews = (reviews) => ({
@@ -19,6 +20,11 @@ export const _addReview = (review) => ({
 const setThumbs = (updatedReview) => ({
   type: SET_THUMBS,
   updatedReview,
+});
+
+const updateReview = (review) => ({
+  type: EDIT_REVIEW,
+  review,
 });
 
 // THUNK CREATORS
@@ -54,6 +60,17 @@ export const updateThumbs = (reviewId, direction) => {
   };
 };
 
+export const editReview = (review) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.put(`/api/reviews/${review.id}`, review);
+      dispatch(updateReview(data));
+    } catch (error) {
+      console.log("there was an error getting reviews in editReview thunk");
+    }
+  };
+};
+
 const initialState = [];
 
 export default function (state = initialState, action) {
@@ -72,6 +89,13 @@ export default function (state = initialState, action) {
         if (review.id === action.updatedReview.id) {
           review.thumbsUp = action.updatedReview.thumbsUp;
           review.thumbsDown = action.updatedReview.thumbsDown;
+        }
+        return review;
+      });
+    case EDIT_REVIEW:
+      return state.map((review) => {
+        if (review.id === action.review.id) {
+          return action.review;
         }
         return review;
       });

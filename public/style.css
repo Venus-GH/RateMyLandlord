@@ -387,9 +387,13 @@ div#tab_tabs-111.col.s12.active {
   max-width: 65em;
 }
 
-/* .user-review-list {
+.user-review-date {
+  margin-right: 2em;
+}
 
-} */
+#user-review-date-edit {
+  display: flex;
+}
 
 .landlord-review-list {
   max-width: 80em;
@@ -504,6 +508,15 @@ div#tab_tabs-111.col.s12.active {
 .transparent-button {
   background-color: transparent;
   border: none;
+  cursor: pointer;
+}
+
+.transparent-button:hover {
+  -webkit-transform: scale(1.2);
+}
+
+#tab_tabs-111 {
+  overflow: scroll;
 }
 
 /* RentHistory */
