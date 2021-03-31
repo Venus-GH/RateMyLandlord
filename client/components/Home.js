@@ -6,8 +6,9 @@ import { fetchAllBuildings } from "../store/buildings";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Icon } from "leaflet";
 import { fetchLandlords } from "../store/landlords";
-import { Dropdown, Button, Modal } from "react-materialize";
+import { Dropdown, Button, Modal, Row, Textarea } from "react-materialize";
 import ReviewForm from "./Reviews/ReviewHome";
+import M from "materialize-css";
 
 export const icon = new Icon({
   iconUrl: "./img/orangemapmarker.png",
@@ -31,6 +32,15 @@ class Home extends Component {
   async componentDidMount() {
     await this.props.getAll();
     await this.props.getLandlords();
+    let elements = document.querySelectorAll(".fixed-action-btn");
+    M.FloatingActionButton.init(elements, {
+      hoverEnabled: false,
+      direction: "left",
+    });
+    // document.addEventListener('DOMContentLoaded', function() {
+    //   var elems = document.querySelectorAll('.fixed-action-btn');
+    //   var instances = M.FloatingActionButton.init(elems, options);
+    // });
   }
 
   onLoad(autocomplete) {
@@ -196,6 +206,43 @@ class Home extends Component {
             )}
           </div>
           {/* </LoadScript> */}
+        </div>
+
+        {/* <div>      <Button
+      className="red"
+      fab={{
+        direction: 'left',
+        hoverEnabled: false
+      }}
+      floating
+      large
+      node="button"
+    >
+    <Row>
+  <Textarea
+    id="Textarea-12"
+    l={12}
+    m={12}
+    s={12}
+    xl={12}
+  />
+</Row>
+      </Button>
+     
+     </div> */}
+        <div className="fixed-action-btn">
+          <a className="btn-floating btn-large teal">
+            <i className="large material-icons helpFAB">help_outline</i>
+          </a>
+          <ul>
+            <li>
+              <div id="helpDiv" className="btn-floating">
+                Welcome! To get started rating your landlord (or finding out
+                about a future landlord), either search above by address or by
+                landlord.
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     );

@@ -742,3 +742,27 @@ button.btn.transparent-button {
     margin-left: -5px;
   }
 }
+
+/* FAB styling */
+i.material-icons.helpFAB {
+  color: white;
+}
+
+#helpDiv {
+  background-color: black;
+  color: white;
+  height: 75px;
+  width: 800px;
+  margin-top: -150px;
+  margin-left: -400px;
+  border-radius: 0px;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  text-align: left;
+}
+
+#helpDiv:before {
+  border-radius: 0;
+}
