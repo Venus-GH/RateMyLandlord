@@ -239,7 +239,9 @@ class Home extends Component {
               <div id="helpDiv" className="btn-floating">
                 Welcome! To get started rating your landlord (or finding out
                 about a future landlord), either search above by address or by
-                landlord.
+                landlord. Are you new to NYC and just want to learn more about
+                different boroughs? <br />
+                <Link to="/explore">Check out our Explore page!</Link>
               </div>
             </li>
           </ul>
