@@ -148,6 +148,15 @@ const NYCPopulation = (props) => {
       </tr>
     );
   });
+  const renderRows3 = pop3.map((obj) => {
+    return (
+      <tr key={`group-${obj.key}`}>
+        <td>{obj.key}</td>
+        <td>{obj.population}</td>
+        <td>{obj.percentage >= 100 ? obj.percentage / 2 : obj.percentage}%</td>
+      </tr>
+    );
+  });
   return (
     <div id="outside-container">
       {/* <div className="inline-container"> */}
@@ -313,7 +322,7 @@ const NYCPopulation = (props) => {
                   <th>% of Total NYC Population</th>
                 </tr>
               </thead>
-              <tbody>{renderRows}</tbody>
+              <tbody>{renderRows3}</tbody>
             </table>
           </>
         ) : null}

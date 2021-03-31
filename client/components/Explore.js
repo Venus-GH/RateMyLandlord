@@ -90,7 +90,7 @@ const Explore = () => {
           </div>
           <div className="card-content">
             <span className="card-title activator grey-text text-darken-4">
-              Borough Safety
+              NYPD Complaints
               <i className="small material-icons right">more_vert</i>
             </span>
             <p>
@@ -99,7 +99,7 @@ const Explore = () => {
           </div>
           <div className="card-reveal">
             <span className="card-title grey-text text-darken-4">
-              Borough Safety Measured by NYPD Complaints
+              Total NYPD Complaints by Borough
               <i className="material-icons right">close</i>
             </span>
             <p>
