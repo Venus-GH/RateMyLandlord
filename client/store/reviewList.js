@@ -59,9 +59,9 @@ const initialState = [];
 export default function (state = initialState, action) {
   switch (action.type) {
     case SET_REVIEWS:
-      return action.reviews.sort((a, b) =>
-        a.createdAt > b.createdAt ? -1 : 1
-      );
+      return action.reviews
+        ? action.reviews.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1))
+        : initialState;
     case ADD_REVIEW:
       return [action.review, ...state];
 
