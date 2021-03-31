@@ -3,6 +3,13 @@ import axios from "axios";
 const SET_BUILDING = "SET_BUILDING";
 const SET_ALL_BUILDLINGS = "SET_ALL_BUILDINGS";
 
+const initialState = {
+  all: [],
+  single: {},
+  landlord: {},
+  reviews: [],
+};
+
 const setBuilding = (building) => ({
   type: SET_BUILDING,
   building,
@@ -19,9 +26,13 @@ export const fetchBuilding = (address) => {
       const { data: building } = await axios.get("/api/buildings/search", {
         params: { address: address },
       });
-      dispatch(setBuilding(building));
+      if (building) {
+        dispatch(setBuilding(building));
+      } else {
+        dispatch(setBuilding(initialState));
+      }
     } catch (error) {
-      console.log("Error fetching building");
+      console.log("Error fetching building", error);
     }
   };
 };
@@ -35,13 +46,6 @@ export const fetchAllBuildings = () => {
       console.log("Error fetching all buildings");
     }
   };
-};
-
-const initialState = {
-  all: [],
-  single: {},
-  landlord: {},
-  reviews: [],
 };
 
 export default function (state = initialState, action) {
