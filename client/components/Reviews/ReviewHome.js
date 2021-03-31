@@ -190,7 +190,7 @@ class ReviewForm extends React.Component {
     };
     return (
       <div id="reviewForm">
-        {!this.props.landlord.name && (
+        {!landlord.name && (
           <div>
             <Select
               id="Select-9"
