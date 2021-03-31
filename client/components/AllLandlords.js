@@ -73,7 +73,6 @@ class AllLandlords extends React.Component {
             style={{
               searchBox: {
                 border: "none",
-                borderTop: "1/2px solid black",
                 borderRadius: "0px",
               },
             }}
@@ -92,7 +91,6 @@ class AllLandlords extends React.Component {
             style={{
               searchBox: {
                 border: "none",
-                borderTop: "1/2px solid black",
                 borderRadius: "0px",
               },
             }}

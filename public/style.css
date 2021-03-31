@@ -44,6 +44,15 @@ form div {
   justify-content: space-evenly;
 }
 
+#single-landlord-map {
+  max-width: 40em;
+  margin: 0em;
+}
+
+#single-landlord-num-reviews {
+  margin-bottom: 1em;
+}
+
 .single-landlord-grade-recommend {
   margin-top: 0.5em;
   margin-bottom: 1em;
@@ -53,8 +62,9 @@ form div {
 }
 
 canvas.chartjs-render-monitor {
-  width: 350px;
-  height: 400px;
+  width: 450px;
+  height: 320px;
+  -webkit-transform: scale(1.1);
 }
 
 .single-landlord-card {
@@ -71,11 +81,13 @@ canvas.chartjs-render-monitor {
 
 .single-landlord-graphs {
   display: flex;
+  justify-content: space-evenly;
 }
 
 .header-description {
   margin: 2em;
   margin-bottom: 0;
+  margin-left: 3em;
 }
 
 #landlord-bar-chart {
@@ -108,7 +120,11 @@ div.col.s12.m12.l12 {
 
 .leaflet-container {
   width: 100%;
-  height: 65vh;
+  height: 600px;
+}
+
+div#tab_tabs-111.col.s12.active {
+  height: 600px;
 }
 
 /* Home */
@@ -596,6 +612,13 @@ button.btn.transparent-button {
 }
 
 @media only screen and (max-width: 400px) {
+  .leaflet-container {
+    height: 65vh;
+  }
+
+  div#tab_tabs-111.col.s12.active {
+    height: auto;
+  }
   .single-landlord-info {
     flex-direction: column;
   }

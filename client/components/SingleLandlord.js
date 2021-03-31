@@ -129,7 +129,7 @@ class SingleLandlord extends React.Component {
 
         <div className="divider" />
         <div className="reviews-single-landlord-view">
-          <h5>{reviews.length} reviews</h5>
+          <h5 id="single-landlord-num-reviews">{reviews.length} reviews</h5>
           {user.id ? (
             <div>
               <Button className="modal-trigger" href="#modal1" node="button">
