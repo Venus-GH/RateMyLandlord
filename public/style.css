@@ -504,7 +504,7 @@ div.col.s12.m12.l12 {
 }
 
 #account-container {
-  margin: 100px 20vw;
+  margin: 100px 11vw;
   background-color: rgb(250, 229, 229);
 }
 
@@ -522,27 +522,61 @@ button.btn.transparent-button {
   flex-wrap: nowrap;
   overflow-x: auto;
 }
-
-/* .card {
+.carousel-card {
   display: flex;
   flex-direction: column;
-  /* width: 33%;
-  max-height: 33%; */
-/* margin: 2em; */
-/* } */
+  width: 33%;
+  max-height: 33%;
+  margin: 2em;
+  background-color: rgba(19, 12, 12, 0.062);
+  transition: box-shadow 0.25s, -webkit-box-shadow 0.25s;
+  border-radius: 2px;
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%),
+    0 1px 5px 0 rgb(0 0 0 / 20%);
+}
 
-/* .card img {
+.carousel-card img {
   max-height: 200px;
+  width: 300px;
   object-fit: contain;
   margin: 1em;
-} */
+}
 
-/* .card div {
+.carousel-card div {
   text-align: center;
-} */
+}
 
 .select-preferences {
   display: flex;
+}
+
+.featured-loading {
+  text-align: center;
+  animation: loading03 1.3s infinite alternate;
+}
+
+.featured-container h4 {
+  text-align: center;
+}
+
+.preference-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .preference-input>span{
+  top: 50%;
+  bottom: 50%;
+} */
+
+@keyframes loading03 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.8);
+  }
 }
 
 @media only screen and (max-width: 992px) {
