@@ -122,8 +122,8 @@ class EditReviewForm extends React.Component {
 
   render() {
     const { landlord, address, review } = this.props;
-    console.log("review in edit review form", review);
-    console.log("state in edit review form", this.state);
+    // console.log("review in edit review form", review);
+    // console.log("state in edit review form", this.state);
 
     const isEnabled = () => {
       if (!this.props.address) {

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import ContactForm from "./ContactForm";
 import ReportForm from "./ReportForm";
 import EditReviewForm from "./EditReviewForm";
-import { updateThumbs } from "../store/reviewList";
+import { updateThumbs, deleteReview } from "../store/reviewList";
 import { connect } from "react-redux";
 
 class SingleReview extends React.Component {
@@ -19,6 +19,7 @@ class SingleReview extends React.Component {
     this.clickThumb = this.clickThumb.bind(this);
     this.startEdit = this.startEdit.bind(this);
     this.endEdit = this.endEdit.bind(this);
+    this.deleteReviewOnClick = this.deleteReviewOnClick.bind(this);
   }
 
   clickThumb(reviewId, direction) {
@@ -31,6 +32,11 @@ class SingleReview extends React.Component {
 
   endEdit() {
     this.setState({ edit: false });
+  }
+
+  deleteReviewOnClick(reviewId) {
+    console.log("in function - deleting review:", reviewId);
+    this.props.deleteReview(reviewId);
   }
 
   render() {
@@ -54,13 +60,13 @@ class SingleReview extends React.Component {
         <div className="review-body">
           <div className="review-address-date">
             {type === "user-review-list" ? (
-              <div>
+              <div className="user-review-landlord-address">
                 {review.landlord.name && (
                   <Link to={`/landlords/${review.landlordId}`}>
                     {review.landlord.name}
                   </Link>
                 )}
-                {" – "}
+
                 <Link
                   className="user-review-address"
                   to={{
@@ -86,7 +92,7 @@ class SingleReview extends React.Component {
                 <div className="user-review-date">
                   {moment(review.createdAt).format("LL")}
                 </div>
-                <div>
+                {/* <div>
                   <Button
                     className="modal-trigger"
                     href="#modal1"
@@ -134,14 +140,14 @@ class SingleReview extends React.Component {
                       />
                     )}
                   </Modal>
-                </div>
-                {/* <button
-                        className="transparent-button"
-                        type="button"
-                        onClick={() => this.editReview(review.id)}
-                      >
-                        <Icon>edit</Icon>
-                      </button> */}
+                </div> */}
+                <button
+                  className="transparent-button"
+                  type="button"
+                  onClick={() => this.deleteReviewOnClick(review.id)}
+                >
+                  <Icon>delete</Icon>
+                </button>
               </div>
             ) : (
               <div className="review-date">
@@ -313,6 +319,7 @@ class SingleReview extends React.Component {
 const mapDispatch = (dispatch) => ({
   changeThumbs: (reviewId, direction) =>
     dispatch(updateThumbs(reviewId, direction)),
+  deleteReview: (reviewId) => dispatch(deleteReview(reviewId)),
 });
 
 export default connect(null, mapDispatch)(SingleReview);

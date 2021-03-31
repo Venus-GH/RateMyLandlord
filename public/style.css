@@ -395,6 +395,11 @@ div#tab_tabs-111.col.s12.active {
   display: flex;
 }
 
+.user-review-landlord-address {
+  display: flex;
+  flex-direction: column;
+}
+
 .landlord-review-list {
   max-width: 80em;
 }

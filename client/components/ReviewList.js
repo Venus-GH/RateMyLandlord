@@ -15,7 +15,6 @@ class ReviewList extends React.Component {
 
   render() {
     const { reviews, user } = this.props || [];
-    console.log("this.props.type:", this.props.type);
     return (
       <div className={this.props.type}>
         {reviews.map((review) => {
