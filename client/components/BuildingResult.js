@@ -6,6 +6,7 @@ import { setReviews } from "../store/reviewList";
 import { Icon } from "leaflet";
 import BuildingResultsTabs from "./BuildingResultsTabs";
 import BulidingResultsReviews from "./BuildingResultsReviews";
+import fetchLandlords from "../store/landlords";
 
 import Loading from "./Loading";
 
@@ -24,6 +25,7 @@ class BuildingResult extends React.Component {
   async componentDidMount() {
     const { address } = this.props.location.state;
     await this.props.fetchBuilding(address);
+    await this.props.setLandlords();
     this.setState({ isLoading: false });
     document.addEventListener("DOMContentLoaded", function () {
       var elems = document.querySelectorAll(".modal");
@@ -50,7 +52,7 @@ class BuildingResult extends React.Component {
   render() {
     const { address, lat, lng } = this.props.location.state;
     const { isLoading } = this.state;
-    const { landlord, user, reviews } = this.props || {};
+    const { landlord, user, reviews, landlords } = this.props || {};
 
     return isLoading ? (
       <Loading />
@@ -82,6 +84,7 @@ class BuildingResult extends React.Component {
               lng={lng}
               reviews={reviews}
               isLoading={isLoading}
+              landlords={landlords}
             />
           )}
         </div>
@@ -96,6 +99,7 @@ const mapState = (state) => {
     landlord: state.buildings.landlord,
     reviews: state.reviewList,
     user: state.user,
+    landlords: state.allLandlords,
   };
 };
 
@@ -103,6 +107,7 @@ const mapDispatch = (dispatch) => {
   return {
     fetchBuilding: (address) => dispatch(fetchBuilding(address)),
     setReviews: (reviews) => dispatch(setReviews(reviews)),
+    setLandlords: () => dispatch(fetchLandlords()),
   };
 };
 
