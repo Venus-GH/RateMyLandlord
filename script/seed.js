@@ -215,10 +215,7 @@ async function seed() {
       pestControl: 4,
       kindness: 3,
       maintenance: 4,
-      bedrooms: 2,
-      rent: 3000,
-      leaseLength: 12,
-      startDate: "02/05/2019",
+
       comments: "HATED the landlord. Aweful.",
       wouldRecommend: false,
       tags: ["slumlord", "unfriendly", "hard to reach", "rude"],
@@ -235,10 +232,7 @@ async function seed() {
       pestControl: 3,
       kindness: 3,
       maintenance: 4,
-      bedrooms: 2,
-      rent: 3000,
-      leaseLength: 12,
-      startDate: "02/05/2019",
+
       comments:
         "Great building, awful landlord. Is the location worth dealing with management? That's for you to decide...",
       wouldRecommend: false,
@@ -256,10 +250,7 @@ async function seed() {
       pestControl: 3,
       kindness: 3,
       maintenance: 3,
-      bedrooms: 2,
-      rent: 3600,
-      leaseLength: 12,
-      startDate: "07/12/2018",
+
       comments: "Just AWFUL. Nuff said...",
       wouldRecommend: false,
       tags: ["slumlord", "unfriendly", "hard to reach", "unreliable"],
@@ -275,10 +266,7 @@ async function seed() {
       pestControl: 4,
       kindness: 3,
       maintenance: 3,
-      bedrooms: 2,
-      rent: 3500,
-      leaseLength: 12,
-      startDate: "02/01/2018",
+
       comments:
         "Not great, but not terrible. Doesn't address problems in a timely manner.",
       wouldRecommend: false,
@@ -294,10 +282,7 @@ async function seed() {
       pestControl: 4,
       kindness: 5,
       maintenance: 5,
-      bedrooms: 1,
-      rent: 2850,
-      leaseLength: 24,
-      startDate: "06/01/2019",
+
       comments:
         "Landlord was wonderful. Always responded in a timely manner. Super helpful.",
       wouldRecommend: true,
@@ -314,10 +299,7 @@ async function seed() {
       pestControl: 5,
       kindness: 5,
       maintenance: 5,
-      bedrooms: 1,
-      rent: 4200,
-      leaseLength: 12,
-      startDate: "03/15/2021",
+
       comments:
         "Second time renting from this landlord. If you have the change to live in a Related building, definitely take it!",
       wouldRecommend: true,
@@ -333,10 +315,7 @@ async function seed() {
       pestControl: 4,
       kindness: 5,
       maintenance: 5,
-      bedrooms: 1,
-      rent: 3000,
-      leaseLength: 24,
-      startDate: "05/01/2019",
+
       comments:
         "Great landlord. They do an excellent job maintaining the building and promptly responding when issues arise.",
       wouldRecommend: true,
@@ -354,10 +333,7 @@ async function seed() {
       pestControl: 4,
       kindness: 3,
       maintenance: 4,
-      bedrooms: 1,
-      rent: 2500,
-      leaseLength: 24,
-      startDate: "06/01/2019",
+
       comments:
         "Not very friendly or responsive, but they keep the building clean enough.",
       wouldRecommend: true,
@@ -374,10 +350,7 @@ async function seed() {
       pestControl: 3,
       kindness: 4,
       maintenance: 3,
-      bedrooms: 1,
-      rent: 3100,
-      leaseLength: 24,
-      startDate: "06/01/2020",
+
       comments:
         "Landlord is responsive and kind, but maintenance could be much better.",
       wouldRecommend: true,
@@ -394,10 +367,7 @@ async function seed() {
       pestControl: 5,
       kindness: 5,
       maintenance: 5,
-      bedrooms: 1,
-      rent: 3000,
-      leaseLength: 24,
-      startDate: "06/01/2020",
+
       comments: "Love my building! Good job, Blackstone!",
       wouldRecommend: true,
       tags: ["responsive", "friendly", "timely", "helpful"],
@@ -414,10 +384,7 @@ async function seed() {
       pestControl: 5,
       kindness: 4,
       maintenance: 5,
-      bedrooms: 1,
-      rent: 3000,
-      leaseLength: 12,
-      startDate: "05/15/2018",
+
       comments: "Landlord is pretty good. I am happy with my time here.",
       wouldRecommend: true,
       tags: ["responsive", "friendly", "respectful", "fair"],
@@ -432,10 +399,7 @@ async function seed() {
       pestControl: 4,
       kindness: 4,
       maintenance: 3,
-      bedrooms: 2,
-      rent: 4000,
-      leaseLength: 12,
-      startDate: "10/01/2019",
+
       comments: "Just eh... Good enough.",
       wouldRecommend: true,
       tags: ["flexible", "friendly", "respectful", "fair"],
@@ -451,10 +415,7 @@ async function seed() {
       pestControl: 4,
       kindness: 4,
       maintenance: 3,
-      bedrooms: 2,
-      rent: 4200,
-      leaseLength: 12,
-      startDate: "08/01/2019",
+
       comments: "Landlord has been great. Keep it up, A&E",
       wouldRecommend: true,
       tags: ["flexible", "friendly", "timely", "respectful", "fair"],
@@ -470,10 +431,7 @@ async function seed() {
       pestControl: 4,
       kindness: 4,
       maintenance: 3,
-      bedrooms: 2,
-      rent: 3250,
-      leaseLength: 12,
-      startDate: "04/01/2020",
+
       comments:
         "This building has such great potential that the landlord has not uncovered. A little more work would go a long way, A&E...",
       wouldRecommend: true,
@@ -489,10 +447,7 @@ async function seed() {
       pestControl: 4,
       kindness: 4,
       maintenance: 4,
-      bedrooms: 2,
-      rent: 1850,
-      leaseLength: 12,
-      startDate: "08/25/2017",
+
       comments:
         "Old, run-down building, but LeFrank was a good landlord.Whenever I had a problem, they responded promptly.",
       wouldRecommend: true,
@@ -509,10 +464,7 @@ async function seed() {
       pestControl: 3,
       kindness: 3,
       maintenance: 3,
-      bedrooms: 1,
-      rent: 1550,
-      leaseLength: 12,
-      startDate: "06/01/2019",
+
       comments: "Nice enough and prompt, but did a terrible job.",
       wouldRecommend: true,
       tags: ["flexible", "respectful", "fair", "professional", "timely"],
