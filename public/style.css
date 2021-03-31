@@ -523,23 +523,23 @@ button.btn.transparent-button {
   overflow-x: auto;
 }
 
-.card {
+/* .card {
   display: flex;
   flex-direction: column;
   /* width: 33%;
   max-height: 33%; */
-  /* margin: 2em; */
-}
+/* margin: 2em; */
+/* } */
 
-.card img {
+/* .card img {
   max-height: 200px;
   object-fit: contain;
   margin: 1em;
-}
+} */
 
-.card div {
+/* .card div {
   text-align: center;
-}
+} */
 
 .select-preferences {
   display: flex;
