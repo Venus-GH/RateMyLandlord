@@ -24,6 +24,7 @@ class BuildingResult extends React.Component {
   async componentDidMount() {
     const { address } = this.props.location.state;
     await this.props.fetchBuilding(address);
+    await this.props.setReviews(this.props.building.reviews);
 
     this.setState({ isLoading: false });
     document.addEventListener("DOMContentLoaded", function () {
@@ -40,12 +41,12 @@ class BuildingResult extends React.Component {
       await this.props.fetchBuilding(address);
       this.setState({ isLoading: false });
     }
-    if (
-      JSON.stringify(this.props.building.reviews) !==
-      JSON.stringify(prevProps.reviews)
-    ) {
-      this.props.setReviews(this.props.building.reviews);
-    }
+    // if (
+    //   JSON.stringify(this.props.building.reviews) !==
+    //   JSON.stringify(prevProps.reviews)
+    // ) {
+    //   this.props.setReviews(this.props.building.reviews);
+    // }
   }
 
   render() {
