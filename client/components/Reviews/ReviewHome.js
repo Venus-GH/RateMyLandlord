@@ -155,6 +155,7 @@ class ReviewForm extends React.Component {
   handleLandlord = (e) => {
     if (e.target.value === "noMatch") {
       this.setState({ noMatch: true });
+      this.setState({ landlordName: "" });
     } else {
       this.setState({ landlordName: e.target.value });
     }
