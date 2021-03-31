@@ -84,42 +84,7 @@ const Review = db.define("review", {
       },
     },
   },
-  bedrooms: {
-    type: Sequelize.FLOAT,
-    allowNull: true,
-    validate: {
-      min: {
-        args: [0],
-        msg: "Bedrooms must be greater than 0.",
-      },
-    },
-  },
-  rent: {
-    type: Sequelize.INTEGER,
-    allowNull: true,
-    // validate: {
-    //   min: {
-    //     args: [0],
-    //     msg: "Rent must be greater than 0.",
-    //   },
-    //   isInt: {
-    //     msg: "Rent must be an integer.",
-    //   },
-    // },
-  },
-  leaseLength: {
-    type: Sequelize.INTEGER,
-    allowNull: true,
-    // validate: {
-    //   isInt: {
-    //     msg: "Lease length must be an integer number of months.",
-    //   },
-    // },
-  },
-  startDate: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
+
   comments: {
     type: Sequelize.TEXT,
     allowNull: true,
