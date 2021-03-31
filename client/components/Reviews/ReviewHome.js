@@ -328,11 +328,11 @@ class ReviewForm extends React.Component {
             <option disabled value="">
               Overall Grade?
             </option>
-            <option value="1">A</option>
-            <option value="2">B</option>
+            <option value="5">A</option>
+            <option value="4">B</option>
             <option value="3">C</option>
-            <option value="4">D</option>
-            <option value="5">F</option>
+            <option value="2">D</option>
+            <option value="1">F</option>
           </Select>
         </div>
         <PestReview />

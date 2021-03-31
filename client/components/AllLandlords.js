@@ -70,6 +70,13 @@ class AllLandlords extends React.Component {
             displayValue="label"
             onSelect={this.handleOrderSelect}
             placeholder="Sort"
+            style={{
+              searchBox: {
+                border: "none",
+                borderTop: "1/2px solid black",
+                borderRadius: "0px",
+              },
+            }}
           />
           <Multiselect
             id="2"
@@ -79,7 +86,16 @@ class AllLandlords extends React.Component {
             showCheckbox={true}
             onSelect={this.handleFilterSelect}
             onRemove={this.handleRemove}
+            closeOnSelect={false}
             placeholder="Filter"
+            closeIcon="cancel"
+            style={{
+              searchBox: {
+                border: "none",
+                borderTop: "1/2px solid black",
+                borderRadius: "0px",
+              },
+            }}
           />
         </div>
         {landlords.length === 0 && <div>Sorry, no landlords found.</div>}
