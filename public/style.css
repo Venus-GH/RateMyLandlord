@@ -694,6 +694,15 @@ button.btn.transparent-button {
 }
 
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+   .widget-ratings {
+    margin-left: -30px;
+    width: 500px;
+  }
+  div.modal-content {
+    margin-top: -115px;
+    margin-left: -50px;
+    -webkit-transform: scale(0.75);
+  }
   .carousel-card {
     display: flex;
     flex-direction: column;
