@@ -241,6 +241,7 @@ div#tab_tabs-111.col.s12.active {
 
 .results-maps {
   margin: 1em;
+  min-width: 35vw;
 }
 
 .tabs {
@@ -700,6 +701,13 @@ button.btn.transparent-button {
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
   .row .col {
     padding: 0rem;
+  }
+
+  .preference-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   #chartdiv_wordCloud {

@@ -26,6 +26,7 @@ class SingleReview extends React.Component {
 
   render() {
     const { review, type, user } = this.props;
+    const landlord = review.landlord || {};
     const grade = { 1: "F", 2: "D", 3: "C", 4: "B", 5: "A" };
     return (
       <div key={review.id} className="review-card">
@@ -45,7 +46,7 @@ class SingleReview extends React.Component {
           <div className="review-address-date">
             {type === "user-review-list" ? (
               <div className="user-review-landlord-address">
-                {review.landlord.name && (
+                {landlord.name && (
                   <Link to={`/landlords/${review.landlordId}`}>
                     {review.landlord.name}
                   </Link>
