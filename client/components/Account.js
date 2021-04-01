@@ -1,11 +1,14 @@
 import React from "react";
 import { Tabs, Tab, Table, TextInput, Select } from "react-materialize";
 import { connect } from "react-redux";
-import { getReviews, updatePreferredName } from "../store/user";
+import {
+  getReviews,
+  updatePreferredName,
+  updatePreferences,
+} from "../store/user";
 import { setReviews } from "../store/reviewList";
 import ReviewList from "./ReviewList";
 import FeaturedListings from "./FeaturedListings";
-import { updatePreferences } from "../store/user";
 
 class Account extends React.Component {
   constructor(props) {
@@ -64,7 +67,6 @@ class Account extends React.Component {
 
   // eslint-disable-next-line complexity
   render() {
-    console.log("in render", this.state);
     const { user } = this.props;
     const reviews = user.reviews || [];
     return (
@@ -205,7 +207,6 @@ class Account extends React.Component {
                   <div>
                     <ReviewList type="user-review-list" />
                   </div>
-
                 ) : (
                   "No Reviews Yet"
                 )}

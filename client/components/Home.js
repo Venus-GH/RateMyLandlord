@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { LoadScript, Autocomplete } from "@react-google-maps/api";
+import { Autocomplete } from "@react-google-maps/api";
 import { fetchAllBuildings } from "../store/buildings";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Icon } from "leaflet";
 import { fetchLandlords } from "../store/landlords";
-import { Dropdown, Button, Modal, Row, Textarea } from "react-materialize";
+import { Dropdown, Button, Modal } from "react-materialize";
 import ReviewForm from "./Reviews/ReviewHome";
 import M from "materialize-css";
 
@@ -37,10 +37,6 @@ class Home extends Component {
       hoverEnabled: false,
       direction: "left",
     });
-    // document.addEventListener('DOMContentLoaded', function() {
-    //   var elems = document.querySelectorAll('.fixed-action-btn');
-    //   var instances = M.FloatingActionButton.init(elems, options);
-    // });
   }
 
   onLoad(autocomplete) {
@@ -67,8 +63,8 @@ class Home extends Component {
 
   render() {
     const { address, lat, lng, searchBy } = this.state;
-
     const { places, landlords } = this.props;
+
     return (
       <div className="home-view">
         <div>
@@ -92,10 +88,6 @@ class Home extends Component {
               </Marker>
             ))}
           </MapContainer>
-          {/* <LoadScript
-            googleMapsApiKey="AIzaSyCOopGii1dRKKnMTLI00ilvrrKW64KKLfk"
-            libraries={["places"]}
-          > */}
           <div className="home-input">
             <div>
               <a
@@ -205,31 +197,8 @@ class Home extends Component {
               ""
             )}
           </div>
-          {/* </LoadScript> */}
         </div>
 
-        {/* <div>      <Button
-      className="red"
-      fab={{
-        direction: 'left',
-        hoverEnabled: false
-      }}
-      floating
-      large
-      node="button"
-    >
-    <Row>
-  <Textarea
-    id="Textarea-12"
-    l={12}
-    m={12}
-    s={12}
-    xl={12}
-  />
-</Row>
-      </Button>
-     
-     </div> */}
         <div className="fixed-action-btn">
           <a className="btn-floating btn-large teal">
             <i className="large material-icons helpFAB">help_outline</i>

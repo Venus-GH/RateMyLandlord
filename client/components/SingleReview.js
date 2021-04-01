@@ -21,14 +21,12 @@ class SingleReview extends React.Component {
   }
 
   deleteReviewOnClick(reviewId) {
-    console.log("in function - deleting review:", reviewId);
     this.props.deleteReview(reviewId);
   }
 
   render() {
     const { review, type, user } = this.props;
     const grade = { 1: "F", 2: "D", 3: "C", 4: "B", 5: "A" };
-    console.log("this.props.type:", this.props.type);
     return (
       <div key={review.id} className="review-card">
         <div className="review-boxes">
@@ -176,7 +174,6 @@ class SingleReview extends React.Component {
                     preventScrolling: true,
                     startingTop: "4%",
                   }}
-                  // root={[object HTMLBodyElement]}
                   trigger={
                     <Button
                       tooltip="Contact this user"

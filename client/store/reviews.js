@@ -27,21 +27,14 @@ export const _addMaintenanceReview = (maintenance) => ({
   maintenance,
 });
 
-// export const _addReview = (review) => ({
-//   type: ADD_REVIEW,
-//   review,
-// });
-
 export const addReview = (review) => {
   return async (dispatch) => {
     try {
       const added = (await axios.post("/api/reviews", review)).data;
-      // will need to do this to add to the page?
-      console.log("ADDED!!!", added);
       dispatch(_addReview(added));
       dispatch(fetchSingleLandlord(added.landlordId));
     } catch (error) {
-      console.log(error, "---->>>>error adding review");
+      console.log(error);
     }
   };
 };
@@ -58,8 +51,6 @@ export default function (state = initialState, action) {
       return { ...state, responsiveness: action.responsiveness };
     case ADD_MAINTENANCE_REVIEW:
       return { ...state, maintenance: action.maintenance };
-    // case FILTER_LANDLORDS:
-    //   return action.landlords;
     default:
       return state;
   }

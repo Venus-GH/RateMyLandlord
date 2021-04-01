@@ -6,7 +6,7 @@ import PestReview from "./PestReview";
 import KindnessReview from "./KindnessReview";
 import ResponsivenessReview from "./ResponsivenessReview";
 import MaintenanceReview from "./MaintenanceReview";
-import { LoadScript, Autocomplete } from "@react-google-maps/api";
+import { Autocomplete } from "@react-google-maps/api";
 import { addReview } from "../../store/reviews";
 
 import {
@@ -17,7 +17,7 @@ import {
   Select,
   Checkbox,
 } from "react-materialize";
-import buildings from "../../store/buildings";
+
 let chipsData = [];
 let data = [];
 
@@ -49,7 +49,6 @@ class ReviewForm extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onChipAdd = this.onChipAdd.bind(this);
-    this.onChipDelete = this.onChipDelete.bind(this);
     this.onYes = this.onYes.bind(this);
     this.onNo = this.onNo.bind(this);
     this.onCheck = this.onCheck.bind(this);
@@ -127,9 +126,6 @@ class ReviewForm extends React.Component {
     });
     chipsData.push(chips[0].M_Chips.chipsData);
   }
-  onChipDelete() {
-    console.log("deleted");
-  }
   handleChange = (e) => {
     this.setState({ grade: e.target.value });
   };
@@ -152,7 +148,6 @@ class ReviewForm extends React.Component {
     let landlord = this.props.landlord || {};
     let landlordBuildings = landlord.buildings || [];
     let landlords = this.props.landlords || [];
-    console.log("this.props in review home", this.props);
 
     const isEnabled = () => {
       if (!this.props.address) {
@@ -363,8 +358,6 @@ class ReviewForm extends React.Component {
               },
             },
             onChipAdd: this.onChipAdd,
-            onChipDelete: this.onChipDelete,
-
             placeholder: "Enter a tag",
             secondaryPlaceholder: "+Tag",
           }}

@@ -5,14 +5,12 @@ import PropTypes from "prop-types";
 import {
   Login,
   Signup,
-  UserHome,
   AllLandlords,
   Home,
   SingleLandlord,
   BuildingResult,
   AddReview,
   RentInventory,
-  RentPrices,
   RentPricesHome,
   Explore,
   Account,
@@ -51,7 +49,6 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
             <Route path="/landlords/:landlordId" component={SingleLandlord} />
             <Route path="/account" component={Account} />
           </Switch>

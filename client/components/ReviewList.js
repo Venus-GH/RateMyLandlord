@@ -40,7 +40,6 @@ const mapState = (state) => {
 };
 
 const mapDispatch = (dispatch) => ({
-  // setReviews: (reviews) => dispatch(setReviews(reviews)),
   changeThumbs: (reviewId, direction) =>
     dispatch(updateThumbs(reviewId, direction)),
 });
