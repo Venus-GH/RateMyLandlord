@@ -241,6 +241,7 @@ div#tab_tabs-111.col.s12.active {
 
 .results-maps {
   margin: 1em;
+  min-width: 35vw;
 }
 
 .tabs {
