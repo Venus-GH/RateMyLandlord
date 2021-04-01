@@ -23,8 +23,6 @@ const BarChart = ({ avgs, mktAvgs }) => {
             },
           ],
         }}
-        // width={50}
-        // height={250}
         options={{
           maintainAspectRatio: false,
           scales: {

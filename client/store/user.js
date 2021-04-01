@@ -14,15 +14,19 @@ const UPDATE_PREFERENCES = "UPDATE_PREFERENCES";
  * ACTION CREATORS
  */
 const getUser = (user) => ({ type: GET_USER, user });
+
 const removeUser = () => ({ type: REMOVE_USER });
+
 const setReviews = (reviews) => ({
   type: SET_REVIEWS,
   reviews,
 });
+
 const updateName = (preferredName) => ({
   type: UPDATE_NAME,
   preferredName,
 });
+
 const _updatePreferences = (preferences) => ({
   type: UPDATE_PREFERENCES,
   preferredNeighborhood: preferences.neighborhood,
@@ -96,7 +100,6 @@ export const updatePreferredName = (id, name) => async (dispatch) => {
     const { data: user } = await axios.put(`/api/users/${id}`, {
       preferredName: name,
     });
-    console.log("in updatePreferredName user:", user);
     dispatch(updateName(user.preferredName));
   } catch (err) {
     console.log("there was an error updating preferred name");

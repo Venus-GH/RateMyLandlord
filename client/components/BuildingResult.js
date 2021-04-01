@@ -43,12 +43,6 @@ class BuildingResult extends React.Component {
       await this.props.fetchBuilding(address);
       this.setState({ isLoading: false });
     }
-    // if (
-    //   JSON.stringify(this.props.building.reviews) !==
-    //   JSON.stringify(prevProps.reviews)
-    // ) {
-    //   this.props.setReviews(this.props.building.reviews);
-    // }
   }
 
   render() {

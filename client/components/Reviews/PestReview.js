@@ -7,19 +7,16 @@ class PestReview extends React.Component {
   constructor() {
     super();
     this.state = {
-      rating: 0
+      rating: 0,
     };
     this.changeRating = this.changeRating.bind(this);
   }
 
   changeRating(newRating) {
-    // console.log('category', category)
-    console.log("newRating", newRating);
     this.setState({
-      rating: newRating
+      rating: newRating,
     });
     this.props.sendPest(newRating);
-    console.log(this.state, "this.state in change rating");
   }
   render() {
     return (
@@ -43,9 +40,9 @@ class PestReview extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    sendPest: rating => dispatch(_addPestReview(rating))
+    sendPest: (rating) => dispatch(_addPestReview(rating)),
   };
 };
 

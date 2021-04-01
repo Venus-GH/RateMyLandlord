@@ -21,8 +21,6 @@ const NYPD = () => {
     fetchData();
   }, []);
 
-  //   console.log("complaints", complaints);
-
   const complaintsData = [
     {
       year: "2006",

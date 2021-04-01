@@ -1,10 +1,6 @@
 import React from "react";
-import {
-  GoogleMap,
-  LoadScript,
-  StreetViewPanorama,
-} from "@react-google-maps/api";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { GoogleMap, StreetViewPanorama } from "@react-google-maps/api";
+import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import { Tabs, Tab } from "react-materialize";
 import { icon } from "./BuildingResult";
 

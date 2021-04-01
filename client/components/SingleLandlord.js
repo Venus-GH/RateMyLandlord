@@ -31,7 +31,6 @@ class SingleLandlord extends React.Component {
     const mktAvgs = this.props.landlord.mktAvgs || {};
     const avgWouldRecommend = avgs.avgWouldRecommend || {};
     const user = this.props.user;
-    // console.log("reviews in single landlord", reviews);
 
     return (
       <div className="single-landlord">
@@ -81,16 +80,12 @@ class SingleLandlord extends React.Component {
               <div className="single-landlord-ratings">
                 <div>
                   <span className="review-rating-name">Kindness: </span>
-                  <span className="review-rating-num">
-                    {/* {rating(avgs.avgKindness)} */}
-                    {avgs.avgKindness}
-                  </span>
+                  <span className="review-rating-num">{avgs.avgKindness}</span>
                   /5
                 </div>
                 <div className="review-rating">
                   <span className="review-rating-name">Maintenance: </span>
                   <span className="review-rating-num">
-                    {/* {rating(avgs.avgMaintenance)} */}
                     {avgs.avgMaintenance}
                   </span>
                   /5
@@ -98,7 +93,6 @@ class SingleLandlord extends React.Component {
                 <div className="review-rating">
                   <span className="review-rating-name">Responsiveness: </span>
                   <span className="review-rating-num">
-                    {/* {rating(avgs.avgResponsiveness)} */}
                     {avgs.avgResponsiveness}
                   </span>
                   /5
@@ -106,7 +100,6 @@ class SingleLandlord extends React.Component {
                 <div className="review-rating">
                   <span className="review-rating-name">Pest Control: </span>
                   <span className="review-rating-num">
-                    {/* {rating(avgs.avgPestControl)} */}
                     {avgs.avgPestControl}
                   </span>
                   /5
@@ -119,9 +112,7 @@ class SingleLandlord extends React.Component {
             </h6>
             <div className="single-landlord-graphs">
               <BarChart avgs={avgs} mktAvgs={mktAvgs} />
-              {/* <div className="col s12 m4 l4"> */}
               <WordCloud tagData={tagData} />
-              {/* </div> */}
             </div>
           </div>
           <BuildingByLandlord buildings={buildings} />
@@ -159,7 +150,6 @@ class SingleLandlord extends React.Component {
                   preventScrolling: true,
                   startingTop: "4%",
                 }}
-                // root={[object HTMLBodyElement]}
               >
                 <ReviewHome
                   landlord={this.props.landlord}

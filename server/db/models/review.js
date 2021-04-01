@@ -2,16 +2,6 @@ const Sequelize = require("sequelize");
 const db = require("../db");
 
 const Review = db.define("review", {
-  // landlordName: {
-  //   type: Sequelize.STRING,
-  //   allowNull: false,
-  //   unique: false,
-  //   validate: {
-  //     notNull: {
-  //       msg: "Must enter a Landlord name.",
-  //     },
-  //   },
-  // },
   grade: {
     type: Sequelize.INTEGER,
     allowNull: false,

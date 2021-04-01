@@ -116,19 +116,6 @@ const NYCPopulation = (props) => {
     },
   ];
 
-  pop.map((obj) => {
-    var randomColor = "#000000".replace(/0/g, function () {
-      return (~~(Math.random() * 16)).toString(16);
-    });
-
-    let insert = {
-      color: randomColor,
-      title: obj.key,
-      value: obj.votes,
-    };
-    // data.push(insert);
-  });
-
   const renderRows = pop.map((obj) => {
     return (
       <tr key={`group-${obj.key}`}>
@@ -204,18 +191,6 @@ const NYCPopulation = (props) => {
           <>
             <div className="chart-container">
               <PieChart
-                // onClick={console.log("hi")}
-                // segmentsStyle={{ transition: "stroke .3s", cursor: "pointer" }}
-                // segmentsShift={(index) => (index === selected ? 6 : 1)}
-                // onClick={(event, index) => {
-                //   action("CLICK")(event, index);
-                //   console.log("CLICK", { event, index });
-                //   setSelected(index === selected ? undefined : index);
-                // }}
-                // onMouseOver={console.log("hi")}
-                // onMouseOut={() => {
-                //   setHovered(undefined);
-                // }}
                 animate
                 animationDuration={500}
                 animationEasing="ease-out"

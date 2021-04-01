@@ -29,13 +29,11 @@ const _deleteReview = (reviewId) => ({
 
 // THUNK CREATORS
 export const fetchAllReviews = (category, id) => {
-  // category = user/landlord/building
   return async (dispatch) => {
     try {
       const { data: reviews } = await axios.get(
         `/api/reviews/${category}/${id}`
       );
-      console.log("reviews:", reviews);
       dispatch(setReviews(reviews));
     } catch (error) {
       console.log(
@@ -61,7 +59,6 @@ export const updateThumbs = (reviewId, direction) => {
 };
 
 export const deleteReview = (reviewId) => {
-  console.log("deleting review:", reviewId);
   return async (dispatch) => {
     try {
       await axios.delete(`/api/reviews/${reviewId}`);
@@ -82,7 +79,6 @@ export default function (state = initialState, action) {
         : initialState;
     case ADD_REVIEW:
       return [action.review, ...state];
-
     case SET_THUMBS:
       return state.map((review) => {
         if (review.id === action.updatedReview.id) {
