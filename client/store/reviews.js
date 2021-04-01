@@ -2,8 +2,6 @@ import axios from "axios";
 import { _addReview } from "./reviewList";
 import { fetchSingleLandlord } from "./singleLandlord";
 
-const ADD_REVIEW = "ADD_REVIEW";
-
 const ADD_KINDNESS_REVIEW = "ADD_KINDNESS_REVIEW";
 const ADD_PEST_REVIEW = "ADD_PEST_REVIEW";
 const ADD_RESPONSIVENESS_REVIEW = "ADD_RESPONSIVENESS_REVIEW";

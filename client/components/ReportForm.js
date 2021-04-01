@@ -7,7 +7,6 @@ init("user_oZWm5y7fvI9ZzqhF6DKxk");
 const ReportForm = (props) => {
   const { reply_to } = props;
   const [sent, updateSent] = useState(false);
-  console.log("state", sent);
 
   function sendEmail(e) {
     e.preventDefault();

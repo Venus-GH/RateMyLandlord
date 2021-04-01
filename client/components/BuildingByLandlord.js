@@ -13,7 +13,7 @@ const BuildingByLandlord = ({ buildings }) => {
   const [activeBuilding, setActiveBuilding] = useState(null);
 
   return (
-    <div className="section container">
+    <div className="section container" id="single-landlord-map">
       <div className="col s12 m12 l12">
         <Tabs className="tab-demo z-depth-1">
           <Tab
