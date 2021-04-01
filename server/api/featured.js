@@ -8,7 +8,7 @@ router.get("/", async (req, res, next) => {
     console.log("URL", url);
     // const url = "https://www.renthop.com/nyc/brooklyn-apartments";
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
     const page = await browser.newPage();
 
     await page.goto(url);
