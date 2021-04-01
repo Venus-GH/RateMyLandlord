@@ -69,7 +69,10 @@ class BulidingResultsReviews extends React.Component {
           </div>
         ) : landlord.name ? (
           <div>
-            <h6>{reviews.length} Reviews</h6>
+            <h6 className="building-num-reviews">
+              {reviews.length} {reviews.length === 1 ? "Review" : "Reviews"}
+            </h6>
+
             {reviews.length > 0 ? (
               <ReviewList type="building-review-list" />
             ) : (
