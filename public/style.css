@@ -17,9 +17,9 @@ label {
   display: block;
 }
 
-nav {
+/* nav {
   z-index: 1;
-}
+} */
 
 .sidenav {
   background-color: darkgrey;
@@ -130,6 +130,11 @@ div#tab_tabs-111.col.s12.active {
 /* Home */
 .home-view {
   height: 100%;
+}
+
+.leaflet-top .leaflet-control {
+  margin-top: 7em;
+  position: fixed;
 }
 
 .map-container {
@@ -634,13 +639,15 @@ button.btn.transparent-button {
     max-width: 100%;
   }
 
-  .nav {
-    position: fixed;
-    top: 0;
-    z-index: 2;
+  .sidenav-overlay {
+    z-index: 3;
   }
 
-  .searchby {
+  .sidenav-overlay {
+    z-index: 3;
+  }
+
+  .searchBy {
     font-size: 0.8rem;
   }
 
@@ -656,6 +663,29 @@ button.btn.transparent-button {
     margin: 0.5em;
     margin-bottom: 1.5em;
   }
+
+  #helpDiv {
+    background-color: pink;
+    color: white;
+    display: flex;
+    height: 80%;
+    width: 80%;
+    margin: 3em;
+    /* height: 400px;
+    width: 300px;
+    margin-top: -100px; 
+    margin-left: -400px;
+    border-radius: 0px;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    text-align: left; */
+  }
+
+  #helpDiv:before {
+    border-radius: 0;
+  }
 }
 
 @media only screen and (min-width: 990px) and (max-width: 1300px) {
@@ -667,8 +697,8 @@ button.btn.transparent-button {
   }
 }
 
-@media only screen and (max-width: 400px) {
-  .row .col {
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+   .row .col {
     padding: 0rem;
   }
 
@@ -690,6 +720,55 @@ button.btn.transparent-button {
     width: 95%;
     margin: 0em;
     margin-top: 1em;
+  }
+  
+  .widget-ratings {
+    margin-left: -30px;
+    width: 500px;
+  }
+  div.modal-content {
+    margin-top: -115px;
+    margin-left: -50px;
+    -webkit-transform: scale(0.75);
+  }
+  .carousel-card {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    max-height: 33%;
+    margin: 2em;
+    background-color: rgba(19, 12, 12, 0.062);
+    transition: box-shadow 0.25s, -webkit-box-shadow 0.25s;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%),
+      0 1px 5px 0 rgb(0 0 0 / 20%);
+  }
+
+  .carousel-card img {
+    max-height: 200px;
+    max-width: 250px;
+    object-fit: contain;
+    margin: 1em;
+  }
+
+  .carousel-card div {
+    text-align: center;
+  }
+
+  .select-preferences {
+    display: flex;
+  }
+
+  .featured-loading {
+    text-align: center;
+    animation: loading03 1.3s infinite alternate;
+  }
+
+  .featured-container h4 {
+    text-align: center;
+  }
+  .leaflet-container {
+    height: 65vh;
   }
 
   div#tab_tabs-111.col.s12.active {
@@ -788,6 +867,33 @@ button.btn.transparent-button {
     margin-left: 2.5em;
   }
 
+  #helpDiv {
+    background-color: gray;
+    color: black;
+    display: flex;
+    height: 80vh;
+    width: 80vh;
+    margin: 3em;
+    height: 400px;
+    width: 300px;
+    margin-top: -80%;
+    margin-left: -50%;
+    border-radius: 10px;
+    padding: 1em;
+    display: inline-block;
+    position: absolute;
+    overflow: hidden;
+    z-index: 1;
+    text-align: left;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%),
+      0 1px 5px 0 rgb(0 0 0 / 20%);
+    transition: box-shadow 0.25s, -webkit-box-shadow 0.25s;
+  }
+
+  #helpDiv:before {
+    border-radius: 0;
+  }
+
   .review-rating {
     margin-left: 0em;
   }
@@ -823,6 +929,10 @@ button.btn.transparent-button {
   .review-mail-flag {
     -webkit-transform: scale(1.4);
   }
+
+  .searchBy {
+    font-size: 0.8rem;
+  }
 }
 
 /* population by borough styling */
@@ -855,21 +965,23 @@ i.material-icons.helpFAB {
   color: white;
 }
 
-#helpDiv {
-  background-color: black;
-  color: white;
-  height: 125px;
-  width: 900px;
-  margin-top: -150px;
-  margin-left: -400px;
-  border-radius: 0px;
-  display: inline-block;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  text-align: left;
-}
+@media only screen and (min-width: 400x) {
+  #helpDiv {
+    background-color: black;
+    color: white;
+    height: 125px;
+    width: 900px;
+    margin-top: -150px;
+    margin-left: -400px;
+    border-radius: 0px;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    text-align: left;
+  }
 
-#helpDiv:before {
-  border-radius: 0;
+  #helpDiv:before {
+    border-radius: 0;
+  }
 }
