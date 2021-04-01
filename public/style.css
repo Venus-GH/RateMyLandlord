@@ -266,7 +266,7 @@ div#tab_tabs-111.col.s12.active {
   margin-left: 2em;
   margin-bottom: 1em;
   padding: 0.8em;
-  width: 46vw;
+  max-width: 85vw;
 }
 
 .building-num-reviews {
