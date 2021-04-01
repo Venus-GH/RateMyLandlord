@@ -103,7 +103,7 @@ class AllLandlords extends React.Component {
             {landlords.map((landlord) => (
               <Col key={landlord.id} m={4} s={12}>
                 <CardPanel className="blue-grey lighten-4">
-                  <h5>
+                  <h5 className="all-landlords-name">
                     <Link to={`/landlords/${landlord.id}`}>
                       {landlord.name}
                     </Link>

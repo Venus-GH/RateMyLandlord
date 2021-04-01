@@ -48,7 +48,10 @@ class ReviewList extends React.Component {
                   {this.props.type === "user-review-list" ? (
                     <div className="user-review-landlord-address">
                       {review.landlord && review.landlord.name && (
-                        <Link to={`/landlords/${review.landlordId}`}>
+                        <Link
+                          className="user-review-landlord-name"
+                          to={`/landlords/${review.landlordId}`}
+                        >
                           {review.landlord.name}
                         </Link>
                       )}
@@ -237,7 +240,7 @@ class ReviewList extends React.Component {
                       }}
                       trigger={
                         <Button className="transparent-button" tooltip="Report">
-                          <Icon>flag</Icon>
+                          <Icon className="icon-flag">flag</Icon>
                         </Button>
                       }
                     >

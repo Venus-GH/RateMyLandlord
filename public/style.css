@@ -255,6 +255,10 @@ div#tab_tabs-111.col.s12.active {
   align-items: center;
 }
 
+.all-landlords-name:hover {
+  font-size: 25px;
+}
+
 .reviews-single-landlord-view {
   display: flex;
   flex-direction: column;
@@ -465,6 +469,22 @@ div#tab_tabs-111.col.s12.active {
 
 .user-review-address {
   font-size: smaller;
+}
+
+.user-review-address:hover {
+  font-size: 17px;
+}
+
+.icon-flag {
+  -webkit-transform: scale(1.4);
+}
+
+.user-review-landlord-name {
+  font-size: 20px;
+}
+
+.user-review-landlord-name:hover {
+  font-size: 22px;
 }
 
 .review-ratings,
@@ -701,6 +721,10 @@ button.btn.transparent-button {
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
   .row .col {
     padding: 0rem;
+  }
+
+  .icon-flag {
+    -webkit-transform: scale(1.1);
   }
 
   .preference-input {

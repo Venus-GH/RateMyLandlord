@@ -110,7 +110,7 @@ class Account extends React.Component {
                     ) : (
                       <td>
                         <i
-                          className="material-icons"
+                          className="material-icons transparent-button"
                           onClick={this.handleNameSubmit(true)}
                         >
                           edit
