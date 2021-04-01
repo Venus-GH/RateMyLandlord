@@ -6,32 +6,18 @@ import { Modal, Button, Icon, Chip } from "react-materialize";
 import { Link } from "react-router-dom";
 import ContactForm from "./ContactForm";
 import ReportForm from "./ReportForm";
-import EditReviewForm from "./EditReviewForm";
 import { updateThumbs, deleteReview } from "../store/reviewList";
 import { connect } from "react-redux";
 
 class SingleReview extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      edit: false,
-    };
     this.clickThumb = this.clickThumb.bind(this);
-    this.startEdit = this.startEdit.bind(this);
-    this.endEdit = this.endEdit.bind(this);
     this.deleteReviewOnClick = this.deleteReviewOnClick.bind(this);
   }
 
   clickThumb(reviewId, direction) {
     this.props.changeThumbs(reviewId, direction);
-  }
-
-  startEdit() {
-    this.setState({ edit: true });
-  }
-
-  endEdit() {
-    this.setState({ edit: false });
   }
 
   deleteReviewOnClick(reviewId) {
@@ -92,55 +78,6 @@ class SingleReview extends React.Component {
                 <div className="user-review-date">
                   {moment(review.createdAt).format("LL")}
                 </div>
-                {/* <div>
-                  <Button
-                    className="modal-trigger"
-                    href="#modal1"
-                    node="button"
-                  >
-                    <Icon>edit</Icon>
-                  </Button>
-                  <Modal
-                    actions={[
-                      <Button
-                        key="1"
-                        flat
-                        modal="close"
-                        node="button"
-                        waves="green"
-                      >
-                        Close
-                      </Button>,
-                    ]}
-                    bottomSheet={false}
-                    fixedFooter={false}
-                    header="Edit Review"
-                    id="modal1"
-                    open={false}
-                    options={{
-                      dismissible: true,
-                      endingTop: "10%",
-                      inDuration: 250,
-                      onCloseEnd: null,
-                      onCloseStart: this.endEdit,
-                      onOpenEnd: null,
-                      onOpenStart: this.startEdit,
-                      opacity: 0.5,
-                      outDuration: 250,
-                      preventScrolling: true,
-                      startingTop: "4%",
-                    }}
-                    // root={[object HTMLBodyElement]}
-                  >
-                    {this.state.edit && (
-                      <EditReviewForm
-                        review={review}
-                        landlord={review.landlord.name}
-                        address={review.building.address}
-                      />
-                    )}
-                  </Modal>
-                </div> */}
                 <button
                   className="transparent-button"
                   type="button"
@@ -293,7 +230,6 @@ class SingleReview extends React.Component {
                   preventScrolling: true,
                   startingTop: "4%",
                 }}
-                // root={[object HTMLBodyElement]}
                 trigger={
                   <Button className="transparent-button" tooltip="Report">
                     <Icon>flag</Icon>
