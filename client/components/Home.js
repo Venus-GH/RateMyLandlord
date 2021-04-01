@@ -206,11 +206,13 @@ class Home extends Component {
           <ul>
             <li>
               <div id="helpDiv" className="btn-floating">
-                Welcome! To get started rating your landlord (or finding out
-                about a future landlord), either search above by address or by
-                landlord. Are you new to NYC and just want to learn more about
-                different boroughs? <br />
-                <Link to="/explore">Check out our Explore page!</Link>
+                <p>
+                  Welcome! To get started rating your landlord (or finding out
+                  about a future landlord), either search above by address or by
+                  landlord. Are you new to NYC and just want to learn more about
+                  different boroughs? <br />
+                  <Link to="/explore">Check out our Explore page!</Link>
+                </p>
               </div>
             </li>
           </ul>
