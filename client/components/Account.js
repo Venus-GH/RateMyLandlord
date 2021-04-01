@@ -62,9 +62,11 @@ class Account extends React.Component {
     this.setState({ preferenceEdit: true });
   }
 
+  // eslint-disable-next-line complexity
   render() {
     console.log("in render", this.state);
     const { user } = this.props;
+    const reviews = user.reviews || [];
     return (
       <div>
         <div id="account-container">
@@ -199,8 +201,11 @@ class Account extends React.Component {
               title="Your Reviews"
             >
               <div>
-                {user.reviews ? (
-                  <ReviewList type="user-review-list" />
+                {reviews.length ? (
+                  <div>
+                    <ReviewList type="user-review-list" />
+                  </div>
+
                 ) : (
                   "No Reviews Yet"
                 )}
