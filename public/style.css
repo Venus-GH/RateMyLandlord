@@ -673,7 +673,7 @@ button.btn.transparent-button {
     margin: 3em;
     /* height: 400px;
     width: 300px;
-    margin-top: -100px; 
+    margin-top: -100px;
     margin-left: -400px;
     border-radius: 0px;
     display: inline-block;
@@ -698,7 +698,7 @@ button.btn.transparent-button {
 }
 
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
-   .row .col {
+  .row .col {
     padding: 0rem;
   }
 
@@ -708,7 +708,7 @@ button.btn.transparent-button {
   }
 
   .single-landlord-grade {
-    margin-right: 6em;
+    margin-right: 2em;
   }
 
   .single-landlord-card {
@@ -721,7 +721,7 @@ button.btn.transparent-button {
     margin: 0em;
     margin-top: 1em;
   }
-  
+
   .widget-ratings {
     margin-left: -30px;
     width: 500px;
@@ -814,7 +814,15 @@ button.btn.transparent-button {
 
   #order-filter {
     flex-direction: column;
-    width: 500px;
+    width: 300px;
+  }
+
+  h3 {
+    margin-left: 0.3em;
+  }
+
+  .rowcontainer {
+    margin: 1em;
   }
   .review-card {
     margin: 1em;
@@ -965,7 +973,7 @@ i.material-icons.helpFAB {
   color: white;
 }
 
-@media only screen and (min-width: 400x) {
+@media only screen and (min-width: 400px) {
   #helpDiv {
     background-color: black;
     color: white;
