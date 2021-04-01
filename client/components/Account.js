@@ -200,24 +200,12 @@ class Account extends React.Component {
             >
               <div>
                 {user.reviews ? (
-                  <div>
-                    <h6>{user.reviews.length} Reviews</h6>
-                    <ReviewList type="user-review-list" />
-                  </div>
+                  <ReviewList type="user-review-list" />
                 ) : (
                   "No Reviews Yet"
                 )}
               </div>
             </Tab>
-            {/* <Tab
-              options={{
-                duration: 300,
-                onShow: null,
-                responsiveThreshold: Infinity,
-                swipeable: false,
-              }}
-              title="Saved Items"
-            ></Tab> */}
           </Tabs>
         </div>
         <FeaturedListings
