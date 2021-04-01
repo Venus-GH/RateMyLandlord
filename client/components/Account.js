@@ -130,7 +130,7 @@ class Account extends React.Component {
                         <span>Interested in apartments in</span>
                         <Select
                           name="neighborhood"
-                          if="Select-9"
+                          id="Select-9"
                           onChange={this.handleChange}
                         >
                           {/* <option disabled value="">
