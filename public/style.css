@@ -687,22 +687,26 @@ button.btn.transparent-button {
   }
 
   #helpDiv {
-    background-color: pink;
-    color: white;
+    background-color: gray;
+    color: black;
     display: flex;
-    height: 80%;
-    width: 80%;
+    height: 80vh;
+    width: 80vh;
     margin: 3em;
-    /* height: 400px;
+    height: 400px;
     width: 300px;
-    margin-top: -100px;
-    margin-left: -400px;
-    border-radius: 0px;
+    margin-top: -80%;
+    margin-left: -50%;
+    border-radius: 10px;
+    padding: 1em;
     display: inline-block;
-    position: relative;
+    position: absolute;
     overflow: hidden;
     z-index: 1;
-    text-align: left; */
+    text-align: left;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%),
+      0 1px 5px 0 rgb(0 0 0 / 20%);
+    transition: box-shadow 0.25s, -webkit-box-shadow 0.25s;
   }
 
   #helpDiv:before {
@@ -720,6 +724,263 @@ button.btn.transparent-button {
 }
 
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+  .row .col {
+    padding: 0rem;
+  }
+
+  .icon-flag {
+    -webkit-transform: scale(1.1);
+  }
+
+  .preference-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #chartdiv_wordCloud {
+    width: 300px;
+    height: 260px;
+  }
+
+  .single-landlord-grade {
+    margin-right: 2em;
+  }
+
+  .single-landlord-card {
+    width: 90vw;
+    margin: 1em 1.35em;
+  }
+
+  #results-header {
+    width: 95%;
+    margin: 0em;
+    margin-top: 1em;
+  }
+
+  .widget-ratings {
+    margin-left: -30px;
+    width: 500px;
+  }
+  div.modal-content {
+    margin-top: -115px;
+    margin-left: -50px;
+    -webkit-transform: scale(0.75);
+  }
+  .carousel-card {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    max-height: 33%;
+    margin: 2em;
+    background-color: rgba(19, 12, 12, 0.062);
+    transition: box-shadow 0.25s, -webkit-box-shadow 0.25s;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%),
+      0 1px 5px 0 rgb(0 0 0 / 20%);
+  }
+
+  .carousel-card img {
+    max-height: 200px;
+    max-width: 250px;
+    object-fit: contain;
+    margin: 1em;
+  }
+
+  .carousel-card div {
+    text-align: center;
+  }
+
+  .select-preferences {
+    display: flex;
+  }
+
+  .featured-loading {
+    text-align: center;
+    animation: loading03 1.3s infinite alternate;
+  }
+
+  .featured-container h4 {
+    text-align: center;
+  }
+  .leaflet-container {
+    height: 65vh;
+  }
+
+  div#tab_tabs-111.col.s12.active {
+    height: auto;
+  }
+  .single-landlord-info {
+    flex-direction: column;
+  }
+
+  #single-landlord-name {
+    font-size: x-large;
+  }
+
+  .results-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+
+  .single-landlord-graphs {
+    flex-direction: column;
+  }
+
+  .single-landlord-ratings {
+    flex-direction: column;
+  }
+
+  div.col.s12.m12.l12 {
+    width: 90vw;
+    height: 60vh;
+    margin-top: 1em;
+    margin-left: 5vw;
+  }
+
+  nav .brand-logo {
+    font-size: 1rem;
+  }
+  #account-container {
+    margin: 25px 0vw;
+  }
+
+  #order-filter {
+    flex-direction: column;
+    width: 300px;
+  }
+
+  h3 {
+    margin-left: 0.3em;
+  }
+
+  .rowcontainer {
+    margin: 1em;
+  }
+  .review-card {
+    margin: 1em;
+    margin-bottom: 1.5em;
+    /* margin-left: 3vw; */
+    padding: 1em;
+    width: 93vw;
+    -webkit-transform: scale(1);
+  }
+
+  .landlord-review-list {
+    max-width: 100vw;
+  }
+
+  .review-boxes {
+    margin-top: 1em;
+    width: 5em;
+  }
+
+  .review-box {
+    margin-right: 0em;
+  }
+
+  .box-name {
+    font-size: small;
+  }
+
+  .box-value {
+    width: 65px;
+    height: 65px;
+    font-size: x-large;
+  }
+
+  .review-address-date {
+    flex-direction: column;
+    font-size: small;
+  }
+
+  .review-address {
+    font-size: 14px;
+  }
+
+  .review-date {
+    visibility: hidden;
+    height: 0em;
+  }
+
+  .review-ratings {
+    flex-direction: column;
+    margin-left: 2.5em;
+  }
+
+  #helpDiv {
+    background-color: gray;
+    color: black;
+    display: flex;
+    height: 80vh;
+    width: 80vh;
+    margin: 3em;
+    height: 400px;
+    width: 300px;
+    margin-top: -80%;
+    margin-left: -50%;
+    border-radius: 10px;
+    padding: 1em;
+    display: inline-block;
+    position: absolute;
+    overflow: hidden;
+    z-index: 1;
+    text-align: left;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%),
+      0 1px 5px 0 rgb(0 0 0 / 20%);
+    transition: box-shadow 0.25s, -webkit-box-shadow 0.25s;
+  }
+
+  #helpDiv:before {
+    border-radius: 0;
+  }
+
+  .review-rating {
+    margin-left: 0em;
+  }
+
+  .review-rating-num {
+    font-size: 20px;
+  }
+
+  .review-comments {
+    font-size: 14px;
+    min-height: 5em;
+    margin-left: 1em;
+    width: 60vw;
+  }
+
+  .review-tags {
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: row;
+    max-width: 60vw;
+    flex-wrap: wrap;
+  }
+
+  .review-buttons {
+    width: 85vw;
+    width: 65vw;
+  }
+
+  .review-thumbs {
+    width: 7.5em;
+  }
+
+  .review-mail-flag {
+    -webkit-transform: scale(1.4);
+  }
+
+  .searchBy {
+    font-size: 0.8rem;
+  }
+}
+
+@media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
   .row .col {
     padding: 0rem;
   }
