@@ -133,9 +133,9 @@ class Account extends React.Component {
                           id="Select-9"
                           onChange={this.handleChange}
                         >
-                          {/* <option disabled value="">
-                              New York City
-                          </option> */}
+                          <option disabled value="">
+                            {user.neighborhoodPreference}
+                          </option>
                           <option value="Manhattan">Manhattan</option>
                           <option value="Brooklyn">Brooklyn</option>
                           <option value="Queens">Queens</option>
@@ -165,7 +165,7 @@ class Account extends React.Component {
                           : "New York City "}
                         for under{" "}
                         {user.maxPricePreference
-                          ? user.maxPricePreference
+                          ? `$${user.maxPricePreference}`
                           : "$4,000"}
                         .
                       </td>
