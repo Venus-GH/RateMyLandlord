@@ -46,29 +46,20 @@ class ReviewList extends React.Component {
               <div className="review-body">
                 <div className="review-address-date">
                   {this.props.type === "user-review-list" ? (
-                    <div className="user-review-landlord-address">
-                      {review.landlord && review.landlord.name && (
-                        <Link
-                          className="user-review-landlord-name"
-                          to={`/landlords/${review.landlordId}`}
-                        >
-                          {review.landlord.name}
-                        </Link>
-                      )}
-
+                    <div className="user-review-list-name-delete">
                       <Link
-                        className="user-review-address"
-                        to={{
-                          pathname: "/results",
-                          state: {
-                            address: review.building.address,
-                            lat: review.building.lat,
-                            lng: review.building.lng,
-                          },
-                        }}
+                        className="user-review-landlord-name"
+                        to={`/landlords/${review.landlordId}`}
                       >
-                        {review.building.address.slice(0, -5)}
+                        {review.landlord.name}
                       </Link>
+                      <button
+                        className="transparent-button trash"
+                        type="button"
+                        onClick={() => this.deleteReviewOnClick(review.id)}
+                      >
+                        <Icon>delete</Icon>
+                      </button>
                     </div>
                   ) : (
                     <div className="review-address">
