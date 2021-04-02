@@ -76,11 +76,6 @@ class Navbar extends React.Component {
           </nav>
 
           <ul className="sidenav" id="mobile-demo">
-            {isLoggedIn && (
-              <li>
-                <Link to="/landlords">Landlords</Link>
-              </li>
-            )}
             <li>
               <Link to="/explore">Explore</Link>
             </li>
